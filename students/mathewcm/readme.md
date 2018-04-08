@@ -1,6 +1,6 @@
-#ReadMe
+# ReadMe
 
-###University of Washington Spring 2018 Accelerated Python Certification Coursework
+### University of Washington Spring 2018 Accelerated Python Certification Coursework
 Student/Primary Contributor: Mathew C. Martin
 
 This repo is forked off the offical class repository located at: https://github.com/UWPCE-PythonCert-ClassRepos/Sp2018-Accelerated
