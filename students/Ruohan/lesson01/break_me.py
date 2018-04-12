@@ -5,7 +5,7 @@ def give_NameError():
 
 #TypeError
 def give_TypeError():
-....print ('TypeError: ')
+    print ('TypeError: ')
     x = 2
     y = 'hello'
     print(x+y)
