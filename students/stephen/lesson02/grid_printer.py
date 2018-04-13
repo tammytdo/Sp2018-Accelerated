@@ -138,10 +138,9 @@ def print_grid2(x, y):
     s = ' '
     c = '|'
     side = p + s + y * (m + s)
-    row = (2 * side) + p
+    row = (x * side) + p
     col = c + (len(side) - 1) * s
     column = (2 * col) + c
-    print(row)
     for i in range(0, x):
         print(row)
         for j in range(0, y):
