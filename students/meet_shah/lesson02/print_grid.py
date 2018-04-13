@@ -19,3 +19,7 @@ def print_grid(x):
 
 print_grid(3)
 print_grid(4)
+print_grid(5)
+print_grid(6)
+print_grid(7)
+
