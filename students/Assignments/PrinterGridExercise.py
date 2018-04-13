@@ -8,6 +8,37 @@ line = '|'
 
 space = ' '
 
+#Building function to build a single variable print function 
+
+def print_grid(n):
+    count = n
+    yolo = ((n-1)//2)
+    center = ((n-1)//2)-1
+    row = (plus + (minus*center) + plus + (minus*center) +plus)
+    column = (line + (space * center) + line + (space * center) +line)
+    
+    while count >= 1:
+        if count ==1:
+            print(row)
+        elif count == n:
+            print(row)
+        elif count == yolo:
+            print(row)
+        else:
+            print(column)
+        count = count - 1
+        
+    
+
+#run function print_grid
+
+print_grid(11)
+    
+
+
+
+    
+
 #rows occur for 1, (n-1)/2, or when n = n (i.e. the last row)
 
 #    for (n == 1 or n == yolo or n = n)
@@ -19,22 +50,6 @@ space = ' '
             #print(row)
     #else: 
         #print(column)
-
-
-def print_grid(n):
-    yolo = ((n-1)//2)
-    row = (plus+minus*yolo+plus+minus*yolo+plus)
-    column = (line+space*yolo+line+space*yolo+line)
-    
-    while n > 0:
-        if n ==1 or n == yolo or n ==15:
-            print(row)
-        n = n - 1
-    print ('done') 
-
-
-print_grid(3)
-    
 
 
 
