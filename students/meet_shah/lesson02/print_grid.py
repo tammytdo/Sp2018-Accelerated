@@ -22,10 +22,8 @@ def help_print_line(startpattern, endpattern, repeat):
         print(startpattern, end='')
     print(endpattern)
 
-def print_grid2(x,y):
+def print_grid2(box_repeat,grid_repeat):
 
-    box_repeat = x
-    grid_repeat = y 
     topstart = "+ "
     topmid   = "- "
     topend   = "+"
@@ -42,19 +40,13 @@ def print_grid2(x,y):
 
     for i in range(0,box_repeat):
         help_print_line(pattern1, pattern1end, box_repeat)
-#        for i in range(0,box_repeat):
-#            print(pattern1, end='')
-#        print(pattern1end)
-        for i in range(0,box_repeat):
-            for i in range(0,box_repeat):
-                print(pattern2, end='')
-            print(pattern2end)
+        for i in range(0,grid_repeat):
+            help_print_line(pattern2, pattern2end, box_repeat)
 
-    for i in range(0,box_repeat):
-        print(pattern1, end='')
-    print(pattern1end)
+    help_print_line(pattern1, pattern1end, box_repeat)
 
 
+print_grid2(0,0)
 print_grid2(3,4)
 print()
 print_grid2(5,10)
