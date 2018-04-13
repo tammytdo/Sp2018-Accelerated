@@ -1,4 +1,5 @@
-# Create a grid:
+# Part 1
+# Print this grid:
 # + - - - - + - - - - +
 # |         |         |
 # |         |         |
@@ -10,30 +11,6 @@
 # |         |         |
 # |         |         |
 # + - - - - + - - - - +
-#
-# + - + - +
-# |   |   |
-# + - + - +
-# |   |   |
-# + - + - +
-#
-# + - - - - - - - + - - - - - - - +
-# |               |               |
-# |               |               |
-# |               |               |
-# |               |               |
-# |               |               |
-# |               |               |
-# |               |               |
-# + - - - - - - - + - - - - - - - +
-# |               |               |
-# |               |               |
-# |               |               |
-# |               |               |
-# |               |               |
-# |               |               |
-# |               |               |
-# + - - - - - - - + - - - - - - - +
 
 
 def print_test():
@@ -140,7 +117,7 @@ def print_grid2(x, y):
     side = p + s + y * (m + s)
     row = (x * side) + p
     col = c + (len(side) - 1) * s
-    column = (2 * col) + c
+    column = (x * col) + c
     for i in range(0, x):
         print(row)
         for j in range(0, y):
@@ -150,3 +127,5 @@ def print_grid2(x, y):
 
 
 print_grid2(3, 4)
+
+print_grid2(5, 3)
