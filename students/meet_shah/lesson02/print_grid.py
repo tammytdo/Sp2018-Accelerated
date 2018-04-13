@@ -1,10 +1,21 @@
 def print_grid(x):
-    start = "+ "
-    mid   = "- "
-    end   = "+"
+    topstart = "+ "
+    topmid   = "- "
+    topend   = "+"
+
+    midstart = "| "
+    midmid   = "  "
+    midend   = "|"
 
     repeat = int(x/2)
-    print(start,mid*repeat,start,mid*repeat,end)
+    topline = topstart + topmid*repeat + topstart + topmid*repeat + topend
+    midline = midstart + midmid*repeat + midstart + midmid*repeat + midend
+    
+    print(topline)
+    for i in range(0,repeat):
+        print(midline)
+    print(topline)
+ 
 
 print_grid(3)
 print_grid(4)
