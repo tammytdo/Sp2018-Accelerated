@@ -31,3 +31,16 @@ def sum_series(n, a=0, b=1):
     The two optional parameters will have default values of 0 and 1 and
     will determine the first two values for the series to be produced.
     '''
+#    print('a = ', a)
+#    print('b = ', b)
+    if n == 0:
+        return a
+    if n == 1:
+        return b
+    else:
+        return sum_series(n-1, a, b) + sum_series(n-2, a, b)
+
+
+print(fibonacci(10))
+print(lucas(10))
+print(sum_series(10, 2, 1))
