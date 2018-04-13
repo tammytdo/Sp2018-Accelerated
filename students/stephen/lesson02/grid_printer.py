@@ -107,3 +107,47 @@ def print_grid(n):
 print_grid(3)
 
 print_grid(15)
+
+# Write a function that draws a similar grid with a specified number of
+# rows and columns, and with each cell a given size.
+
+# For example, print_grid2(3,4) results in:
+
+# + - - - - + - - - - + - - - - +
+# |         |         |         |
+# |         |         |         |
+# |         |         |         |
+# |         |         |         |
+# + - - - - + - - - - + - - - - +
+# |         |         |         |
+# |         |         |         |
+# |         |         |         |
+# |         |         |         |
+# + - - - - + - - - - + - - - - +
+# |         |         |         |
+# |         |         |         |
+# |         |         |         |
+# |         |         |         |
+# + - - - - + - - - - + - - - - +
+# (three rows, three columns, and each grid cell four “units” in size)
+
+
+def print_grid2(x, y):
+    p = '+'
+    m = '-'
+    s = ' '
+    c = '|'
+    side = p + s + y * (m + s)
+    row = (2 * side) + p
+    col = c + (len(side) - 1) * s
+    column = (2 * col) + c
+    print(row)
+    for i in range(0, x):
+        print(row)
+        for j in range(0, y):
+            print(column)
+    print(row)
+    return
+
+
+print_grid2(3, 4)
