@@ -22,9 +22,28 @@ def grid():
 
 def print_grid(n):
     '''
-    This function will print a grid of an arbritrary size using the argument to
-    define the size of the quadrants.
+    This function will print a grid with four quadrants of an arbritrary size.
+    The argument will define the numbers of rows/columns in the grid.
+    If the argument needs to be adjusted to provide equal sized quadrants, it
+    will be increased by a value of 1.
     '''
+    # Adjust the argument if necessary to ensure all four quadrants will have
+    # equal sizes.
+    if n % 2 == 1:
+        pass
+    else:
+        n = n + 1
+    # define the number of '-' or '|' characters between the corners ('+')
+    x = int((n-1)/2) - 1
+    # top row
+    print('+' + x*'-' + '+' + x*'-' + '+')
+    for i in range(x):
+        print('|' + x*' ' + '|' + x*' ' + '|')
+    print('+' + x*'-' + '+' + x*'-' + '+')
+    for i in range(x):
+        print('|' + x*' ' + '|' + x*' ' + '|')
+    print('+' + x*'-' + '+' + x*'-' + '+')
 
 
 grid()
+print_grid(11)
