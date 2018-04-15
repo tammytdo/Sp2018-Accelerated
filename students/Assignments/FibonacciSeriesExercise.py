@@ -36,10 +36,21 @@ def lucas_series (n):
 
 print(lucas_series(15))
 
-def sum_series (i,0 = None,1 = None):
-    if 0 or 1 = True:
+#step 3 
+
+#Calls the defined functions above
+
+def sum_series1 (n,lucas0,lucas1):
+    if lucas0 ==2 and lucas1 == 1:
+        return lucas_series(n)
+    else:
+        return fibinacci_series(n)
+
+print(sum_series1(15,2,1))
+
+def sum_series1 (i,lucas0,lucas1):
+    if lucas0 ==2 and lucas1 == 1:
         return lucas_series(i)
     else:
         return fibinacci_series(i)
-
 
