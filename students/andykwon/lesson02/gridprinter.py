@@ -1,16 +1,14 @@
 def print_grid(num):
-    for i in range(num):
-        if i % 2 == 0:
-            for j in range(num//2):
-                print('+', end=' - ' * int(num/2))
-                
-            print('+')
-        else:  
-            for j in range(num//2):
-                for k in range (num//2):
-                    print('|', ' ', end=' ' * int(num-1))
-                print('|')
+    print('+' + ' - ' * int(num/2) + ' + ' + ' - ' * int(num/2) + '+')
 
-        
+    for i in range(int(num/2)):
+        print('| ' + ' ' * int(num/2)*3 + '|' + ' ' * int(num/2)*3 + ' |')
 
-print_grid(5)
+    print('+' + ' - ' * int(num/2) + ' + ' + ' - ' * int(num/2) + '+')
+
+    for i in range(int(num/2)):
+        print('| ' + ' ' * int(num/2)*3 + '|' + ' ' * int(num/2)*3 + ' |')
+
+    print('+' + ' - ' * int(num/2) + ' + ' + ' - ' * int(num/2) + '+')
+
+print_grid(15)
