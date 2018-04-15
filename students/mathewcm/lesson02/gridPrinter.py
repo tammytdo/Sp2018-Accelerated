@@ -38,23 +38,23 @@ def postFunc(width):
     """
     print(" |     "*width, "|")
 
-#Need to dry code and replace length and width to just a 'size' that is length times height.
+#Need to dry code and replace length and width to just a 'units' that is length times height.
 
-def print_middle(beam, middle = ' ', width = 2, length = 2):
+def print_fill(horizontal, fill = ' ', rowXcolumn = 2, units = 2):
     """
-    def print_middle(beam, middle = ' ', width = 2, length = 2):
-        where 'beam' is the horizontal line which makes up the 'middle' times the parameter width. The function loops through and prints the beams middle 'length' number of times.
+    def print_fill(horizontal, fill = ' ', units = 2):
+        where 'horizontal' is the horizontal line which makes up the 'fill' times the parameter units. The function loops through and prints the horizontals fill 'units' number of times.
     """
-    for i in range(length):
-        print("%s %s " % (beam, middle*width), end="")
-    print(beam)
+    for i in range(units):
+        print("%s %s " % (horizontal, fill*units), end="")
+    print(horizontal)
 
-def draw_grid(length = 2, height = 2, width = 2):
+def draw_grid(rowXcolumn = 2, units = 2):
     """
-    draw_grid() loops thru printing a grid determined by the parameters width and length.
+    draw_grid() loops thru printing a grid determined by the parameters units and rowXcolumn.
     """
-    for j in range(height):
-        print_middle('+', '-', width, length)
-        for k in range(length):
-            print_middle('|', ' ', width, length)
-    print_middle('+', '-', width, length)
+    for j in range(units):
+        print_fill('+', '-', rowXcolumn, units)
+        for k in range(rowXcolumn):
+            print_fill('|', ' ', rowXcolumn, units)
+    print_fill('+', '-', rowXcolumn, units)
