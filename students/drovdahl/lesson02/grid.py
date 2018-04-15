@@ -71,6 +71,6 @@ def print_grid2(x, y):
         print(x*('+' + (y*'-')) + '+')
 
 
-# grid()
-# print_grid(11)
+grid()
+print_grid(11)
 print_grid2(5, 3)
