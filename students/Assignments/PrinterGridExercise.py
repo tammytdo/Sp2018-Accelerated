@@ -1,5 +1,7 @@
 #print grid with single variable
 
+# declaring grid variables
+
 plus = '+'
 
 minus = ' - '
@@ -32,10 +34,10 @@ def print_grid(n):
 
 #run function print_grid
 
-print_grid(11)
+print_grid(15)
     
 
-
+#Building function to build a multiple variable print function
 
 
 
