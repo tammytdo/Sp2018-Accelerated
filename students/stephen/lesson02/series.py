@@ -41,4 +41,30 @@ def lucas(n):
 print(lucas(4)) # should return 4 (2, 1, 3, 4, ...)
 
 print(lucas(8)) # should return 29 (2, 1, 3, 4, 7, 11, 18, 29...)
+
+# Step 3
+# Generalizing
+# Both the fibonacci series and the lucas numbers are based on an identical formula.
+# Add a third function called sum_series with one required parameter and two optional parameters.
+# The required parameter will determine which element in the series to print. The two optional parameters
+# will have default values of 0 and 1 and will determine the first two values for the series to be produced.
+
+# Calling this function with no optional parameters will produce numbers from the fibonacci series.
+# Calling it with the optional arguments 2 and 1 will produce values from the lucas numbers. Other values for
+# the optional parameters will produce other series.
+
+def sum_series(n, a = 0, b = 1):
+    if n == 1:
+        return a
+    elif n == 2:
+        return b
+    else:
+        return sum_series(n - 1, a, b) + sum_series(n - 2, a, b)
+
+# The following should print the same results as fibonacci(1) and fibonacci(8)
+print(sum_series(3))
+print(sum_series(8))
     
+# The following should print the same results as lucas(4) and lucas(8)
+print(sum_series(4, 2, 1))
+print(sum_series(8, 2, 1))
