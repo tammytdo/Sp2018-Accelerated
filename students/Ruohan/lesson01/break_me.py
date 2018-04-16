@@ -1,22 +1,26 @@
-# NameError:
-#print ('NameError: ')
-#print (y)
+#NameError:
+def give_NameError():
+    print ('NameError: ')
+    print (y)
 
 #TypeError
-#print ('TypeError: ')
-#x = 2
-#y = 'hello'
-#print(x+y)
+def give_TypeError():
+    print ('TypeError: ')
+    x = 2
+    y = 'hello'
+    print(x+y)
 
 
 # SyntaxError
-#print ('SyntaxError: ')
-#def name_error():
-    #x = and
-    #print(x)
+def give_SyntaxError():
+    print ('SyntaxError: ')
+    x = and
+    print(x)
 
 
 #AttributeError
-print('AttributeError: ')
-A = {1,3,5,7,9}
-B = A.split
+def give_AttributeError():
+    print('AttributeError: ')
+    A = {1,3,5,7,9}
+    B = A.split()
+    
