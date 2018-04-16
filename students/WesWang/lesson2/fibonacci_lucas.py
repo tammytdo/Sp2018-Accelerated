@@ -4,6 +4,11 @@
 #Date: 4/12/2018
 #=========================================================================================
 
+"""
+Calculate value at nth position by using the formula f(n)=f(n-2)+f(n-1)
+:param: First num in series, Second num in series, Nth position to return
+:return: Value at Nth position
+"""
 def sum_series(n0, n1, nth):
     prev = n0
     current = n1
@@ -17,13 +22,15 @@ def sum_series(n0, n1, nth):
     else:
         return current
 
+#Pass in 0 and 1 as first two values and nth to sum_series to calculate value at nth position
 def fibonacci(nth):
     return sum_series(0, 1, nth)
 
+#Pass in 2 and 1 as first two values and nth to sum_series to calculate value at nth position
 def lucas(nth):
     return sum_series(2, 1, nth)
 
 
-print(fibonacci(5))
-print(lucas(5))
+assert fibonacci(5) == 3 #Check if 5th number of Fibonacci series is 3, throws exception if not
+assert lucas(5) == 7 #Check if 5th number of Lucas series is 3, throws exception if not
 

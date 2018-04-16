@@ -4,6 +4,12 @@
 #Date: 4/12/2018
 #=========================================================================================
 
+"""
+This function return interger 1 ~ 100
+If the number is divisible by 3, return "Fizz"
+If the number is divisible by 5, return "Buzz"
+If the number is divisible by 3 and 5, reutnr "FizzBuzz"
+"""
 def fizz_buzz():
     result = ""
     for i in range(1, 101):
@@ -17,4 +23,4 @@ def fizz_buzz():
         result += '\n'
     return result
 
-print(fizz_buzz())
+print(fizz_buzz()) #Print fizz_buzz
