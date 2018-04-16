@@ -50,11 +50,12 @@ print(sum_series1(15))
 
 def sum_series (n,lucas0=None,lucas1=None):
     m = n
-    if lucas0 == 2 and lucas1 ==1 and m == 0:
+    if lucas0 == 2 and lucas1 ==1 and n == 0:
         return (2)
-    elif lucas0 == 2 and lucas1 == 1 and m == 1:
-            return(1)
-    else:
-        return (m-1) + (m-2)
+    elif lucas0 == 2 and lucas1 == 1 and n == 1:
+        return(1)
+    else:   
+        return sum_series (m-1)
 
 print(sum_series(15))
+
