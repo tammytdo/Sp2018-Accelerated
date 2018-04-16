@@ -4,6 +4,8 @@
 
 plus = '+'
 
+endplus = '+'
+
 minus = ' - '
 
 line = '|'
@@ -59,18 +61,19 @@ def print_grid2(n,m):
     gridcount = n
     mrow = (plus + (minus*m))
     midrow = (plus + (minus*m))
-    newrow = mrow+midrow+plus
+    newrow = mrow+endplus
+    endrow = endplus
     mcolumn = (line + (space *m))
     midcolumn = (line + space *m)
     newcolumn = mcolumn + midcolumn + line
     
     while unitcount >= 1:
         if unitcount ==1:
-            print(newrow)
+            print(newrow + ((newrow[1:])*(n-1)))
         elif unitcount == m:
-            print(newrow)
+            print(newrow + ((newrow[1:])*(n-1)))
         elif unitcount % m == 0:
-            print(newrow)
+            print(newrow + ((newrow[1:])*(n-1)))
         else:
             print(newcolumn)
         unitcount = unitcount - 1
