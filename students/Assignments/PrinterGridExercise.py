@@ -10,6 +10,8 @@ minus = ' - '
 
 line = '|'
 
+endline = '|'
+
 space = '   '
 
 #Building function to build a single variable print function 
@@ -58,14 +60,12 @@ mcolumns = newcolumn
 
 def print_grid2(n,m):
     unitcount = (m * n)+(n+1)
-    gridcount = n
     mrow = (plus + (minus*m))
-    midrow = (plus + (minus*m))
     newrow = mrow+endplus
     endrow = endplus
     mcolumn = (line + (space *m))
-    midcolumn = (line + space *m)
-    newcolumn = mcolumn + midcolumn + line
+    endcolumn = (mcolumn + endline)
+    newcolumn = (mcolumn + endline)
     
     while unitcount >= 1:
         if unitcount ==1:
@@ -75,7 +75,7 @@ def print_grid2(n,m):
         elif unitcount % m == 0:
             print(newrow + ((newrow[1:])*(n-1)))
         else:
-            print(newcolumn)
+            print(newcolumn + ((newcolumn[1:])*(n-1)))
         unitcount = unitcount - 1
         
     
