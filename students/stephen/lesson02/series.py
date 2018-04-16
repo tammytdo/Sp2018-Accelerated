@@ -9,6 +9,7 @@
 # fib(n) = fib(n-2) + fib(n-1)
 
 def fibonacci(n):
+    """Return the nth value of the Fibonacci series"""
     if n == 1:
         return 0
     elif n == 2:
@@ -30,6 +31,7 @@ print(fibonacci(8)) # should return 13 (0, 1, 1, 2, 3, 5, 8, 13, ...)
 # Ensure that your function has a well-formed docstring.
 
 def lucas(n):
+    """Return the nth value of the Lucas series."""
     if n == 1:
         return 2
     elif n == 2:
@@ -54,6 +56,10 @@ print(lucas(8)) # should return 29 (2, 1, 3, 4, 7, 11, 18, 29...)
 # the optional parameters will produce other series.
 
 def sum_series(n, a = 0, b = 1):
+    """
+    Return the nth term of a series where every term is the sum of the previous two terms.
+    The a and b parameters specify the first and second values, respectively, in the series.
+    """
     if n == 1:
         return a
     elif n == 2:
