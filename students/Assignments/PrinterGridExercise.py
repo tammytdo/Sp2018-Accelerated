@@ -55,7 +55,7 @@ mcolumns = newcolumn
 #print(mrows)
 
 def print_grid2(n,m):
-    unitcount = m
+    unitcount = (m * n)+(n+1)
     gridcount = n
     mrow = (plus + (minus*m))
     midrow = (plus + (minus*m))
@@ -66,20 +66,20 @@ def print_grid2(n,m):
     
     while unitcount >= 1:
         if unitcount ==1:
-            print(newrow*m)
+            print(newrow)
         elif unitcount == m:
-            print(newrow*unitcount)
+            print(newrow)
         elif unitcount % m == 0:
             print(newrow)
         else:
-            print(newcolumn*m)
+            print(newcolumn)
         unitcount = unitcount - 1
         
     
 
 #run function print_grid
 
-print_grid2(4,5)
+print_grid2(3,4)
     
 
 #Building function to build a multiple variable print function
