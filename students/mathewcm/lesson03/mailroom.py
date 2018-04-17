@@ -25,7 +25,7 @@ def quit():
 
 
 def mainloop():
-    print("Welcom to Mailroom")
+    print("Welcome to Mailroom")
 
     response = ""
     while True:
