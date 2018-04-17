@@ -22,4 +22,5 @@ def give_SyntaxError():
 def give_AttributeError():
     print('AttributeError: ')
     A = {1,3,5,7,9}
-    B = A.split
+    B = A.split()
+    
