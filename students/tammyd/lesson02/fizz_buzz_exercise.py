@@ -20,3 +20,5 @@ for i in range(1,101):
 #not multiples of 3 or 5
     else:
         print(i)
+
+
