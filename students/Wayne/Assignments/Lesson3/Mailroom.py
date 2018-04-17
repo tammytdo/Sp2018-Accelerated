@@ -6,6 +6,12 @@ Simple mailroom program for a non profit
 
 import sys
 
+donors = [("Donor A",[50,100,24,100]),
+         ("Donor B",[525,10,23]),
+         ("Donor C",[50]),
+        ]
+
+
 def thankyou():
     print("This is the thank you\n")
 
