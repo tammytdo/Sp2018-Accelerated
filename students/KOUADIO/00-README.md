@@ -1,6 +1,4 @@
-You can find the sessionnotes rendered here:
-
-https://uwpce-pythoncert-classrepos.github.io/Sp2018-Accelerated/
+Hello My Name is Kouadio Yannick Assouman
 
 # Class Repository For Spring 2018 Accelerated class
 
@@ -24,5 +22,3 @@ a directory, then store work for each exercise in a subdirectory of that.
 If you are a student in the class, you should create a fork of this repo, add your work to your fork, and use Pull Requests to submit your work for review:
 
 https://uwpce-pythoncert.github.io/PythonCertDevel/modules/Git.html#setting-up-your-fork-of-the-class-repository
-
-
