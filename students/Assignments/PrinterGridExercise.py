@@ -38,7 +38,7 @@ def print_grid(n):
 
 #run function print_grid
 
-#print_grid(15)
+print_grid(15)
     
 
 #Building function to build a multiple variable print function
@@ -82,7 +82,7 @@ def print_grid2(n,m):
 
 #run function print_grid
 
-print_grid2(3,4)
+print_grid2(5,3)
     
 
 #Building function to build a multiple variable print function

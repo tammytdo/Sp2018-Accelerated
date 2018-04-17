@@ -46,16 +46,21 @@ def sum_series1 (n,lucas0=None,lucas1=None):
     else:
         return fibinacci_series(n)
 
-print(sum_series1(15))
+print(sum_series1(15,2,1))
+
+# Build sum_series without lucas and fibonacci functions 
 
 def sum_series (n,lucas0=None,lucas1=None):
-    m = n
-    if lucas0 == 2 and lucas1 ==1 and n == 0:
-        return (2)
-    elif lucas0 == 2 and lucas1 == 1 and n == 1:
-        return(1)
+    m = n 
+    if lucas0 == 2 and lucas1 ==1 and m == 0:
+            return (2)
+    elif m == 1 :
+        return (1)
+    elif m == 0:
+        return(0) 
     else:   
-        return sum_series (m-1)
+        return sum_series (m -1) + sum_series (m -2) 
 
-print(sum_series(15))
+
+print(sum_series(15,2,1))
 
