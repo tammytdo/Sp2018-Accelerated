@@ -1,3 +1,7 @@
+You can find the sessionnotes rendered here:
+
+https://uwpce-pythoncert-classrepos.github.io/Sp2018-Accelerated/
+
 # Class Repository For Spring 2018 Accelerated class
 
 UWPCE Python Certificate Program
