@@ -36,6 +36,7 @@ import sys
 
 donors = {"Bee": [100, 25, 75], "Puppycat": [10, 200], "Deckard": [15, 15, 15, 15, 15]}
 
+
 def menu():
     message = ("Welcome to The Mailroom!\n\n"
                "Please choose from the following options:\n"
@@ -43,24 +44,46 @@ def menu():
                "2 Create a Report\n"
                "3 Quit\n")
 
+    valid_response = ["1", "2", "3"]
     print(message)
-    response = None
-    valid_response = ["1","2","3"]
+    response = input(">> ")
+
+    while response not in valid_response:
+        response = input("{} is not an available option. Please enter 1, 2 or 3.\n"
+                         ">> ".format(response))
 
     while response in valid_response:
-        response = input(">> ")
         if response == "1":
             thank_you()
         elif response == "2":
             create_report()
         elif response == "3":
             exit_()
-        else:
-            response = input ("{} is not an available option. Please enter 1, 2 or 3.".format(response))
 
 
 def thank_you():
-    print("You selected Send a Thank You!\n")
+    message = ("You selected Send a Thank You!\n\n"
+               "Please enter the full name of the donor you would like to thank below.\n"
+               "Type 'List' to view previous donors to select from.\n"
+               "Type 'Quit' to exit to the main menu.\n\n")
+
+
+    valid_response = ["List", "list", "Quit", "quit"]
+    print(message)
+    response = input(">> ")
+
+    while response in valid_response:
+        donor_names = donors.keys()
+        if response == "List" or "list":  # Isn't there something like L|list for this?
+            print(donor_names)  # Currently this return "dict_keys([names])" make pretty!
+            response = input(">> ")
+        elif response == "Quit" or "quit:":  # Isn't there something like L|list for this?
+            menu()  # This may deepen the stack. Another way to get back to main menu function?
+        else:
+            if response in donor_names:
+                pass
+            else:
+                pass
 
 
 def create_report():
