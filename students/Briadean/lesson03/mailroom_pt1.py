@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 # It should have a data structure that holds a list of your donors and a history of the amounts they have donated. This structure should be populated at first with at least five donors, with between 1 and 3 donations each.
 #
 # You can store that data structure in the global namespace.
@@ -33,6 +34,49 @@
 # Jeff Bezos                 $     877.33           1  $      877.33
 # Paul Allen                 $     708.42           3  $      236.14
 
+donors = {"Bee": [100, 25, 75], "Puppycat": [10, 200], "Deckard": [15, 15, 15, 15, 15]}
 
-if __name__ == "__main__":
-    pass
+def menu():
+    message = ("Welcome to The Mailroom!\n\n"
+               "Please choose from the following options:\n"
+               "1 Send a Thank You\n"
+               "2 Create a Report\n"
+               "3 Quit\n")
+
+    print(message)
+    response = None
+    valid_response = ["1","2","3"]
+
+    while response in valid_response:
+        response = input(">> ")
+        if response == "1":
+            thank_you()
+        elif response == "2":
+            create_report()
+        elif response == "3":
+            exit_()
+        else:
+            response = input ("{} is not an available option. Please enter 1, 2 or 3.".format(response))
+
+
+def thank_you():
+    print("You selected Send a Thank You!\n")
+
+
+def create_report():
+    print("You selected Create a Report!\n")
+
+
+def exit_():
+    response = input("Are you sure you'd like to exit the program? Y/N\n >> ")
+    valid_response = ["Y", "y", "N", "n"]
+    while response in valid_response:
+        if response == "N" or "n":
+            menu()
+        elif response == "Y" or "y":
+            sys.exit()
+        else:
+            response = input("{} is not an available option. Please enter Y or N\n >> ".format(response))
+
+
+menu()
