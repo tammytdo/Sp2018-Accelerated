@@ -108,7 +108,7 @@ Welcome to Mailroom\n''')
               '2 - report\n'
               '3 - quit')
         response = input('>> ')
-        if response not in ('1', '2', '3'):
+        if response not in ('1', '2', '3', 'quit'):
             os.system('clear')
             print('not a valid repsonse, type "1, 2, or 3"\n')
             continue
@@ -120,7 +120,7 @@ Welcome to Mailroom\n''')
             os.system('clear')
             report()
             continue
-        elif response == '3':
+        elif response == '3' or 'quit':
             quit()
 
 
