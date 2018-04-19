@@ -35,18 +35,22 @@ import sys
 # Paul Allen                 $     708.42           3  $      236.14
 
 donors = {"Bee": [100, 25, 75], "Puppycat": [10, 200], "Deckard": [15, 15, 15, 15, 15]}
+# donors_viewobj = donors.items()  # this returns tuple, which i want because tuples are sortable?
+#
+# for x in donors_viewobj:
+#     print(x)
 
 
 def menu():
-    message = ("Welcome to The Mailroom!\n\n"
-               "Please choose from the following options:\n"
-               "1 Send a Thank You\n"
-               "2 Create a Report\n"
-               "3 Quit\n")
+    main_menu = ("Welcome to The Mailroom!\n\n"
+                 "Please choose from the following options:\n"
+                 "1: Send a Thank You\n"
+                 "2: Create a Report\n"
+                 "3: Quit\n")
 
     valid_response = ["1", "2", "3"]
-    print(message)
-    response = input(">> ")
+    print(main_menu)
+    response = input(">> ").title()
 
     while response not in valid_response:
         response = input("{} is not an available option. Please enter 1, 2 or 3.\n"
@@ -62,44 +66,61 @@ def menu():
 
 
 def thank_you():
-    message = ("You selected Send a Thank You!\n\n"
-               "Please enter the full name of the donor you would like to thank below.\n"
-               "Type 'List' to view previous donors to select from.\n"
-               "Type 'Quit' to exit to the main menu.\n\n")
+    thankyou_menu = ("You selected Send a Thank You!\n\n"
+                     "Please enter the full name of the donor you would like to thank below.\n"
+                     "Type 'List' to view previous donors to select from.\n"
+                     "Type 'Quit' to exit to the main menu.\n")
 
+    thankyou_template = ("\n\nDear {},\n\n"
+                         "Thank you for your generous {} donation which will allow us to continue\n"
+                         "our fight against the tyranny of the flying spaghetti monster and help\n"
+                         "rebuild the devastation caused by his meatballs.\n\n"
+                         "All donations received by our organization go directly to fund R&D geared\n"
+                         "towards stopping this vicious beast, rebuilding of areas devastated by meatballs\n"
+                         "and paying our meatball eaters a fair and livable wage.\n\n"
+                         "Many Thanks,\n"
+                         "Team Meatball Eaters\n\n")
 
-    valid_response = ["List", "list", "Quit", "quit"]
-    print(message)
-    response = input(">> ")
+    valid_response = ["List", "Quit"]
+    print(thankyou_menu)
+    response = input(">> ").title()
+    donor_names = donors.keys()
 
-    while response in valid_response:
-        donor_names = donors.keys()
-        if response == "List" or "list":  # Isn't there something like L|list for this?
+    if response not in valid_response:
+        donors.setdefault(response, [])
+        print(donor_names)  # Delete this check after it works correctly!
+        donation_amt = input(int("How much are they donating today? >> $ "))
+        donors[response].append(donation_amt)
+        print(thankyou_template.format(response, donation_amt))
+
+    for response in valid_response:
+        if response == "List":
             print(donor_names)  # Currently this return "dict_keys([names])" make pretty!
-            response = input(">> ")
-        elif response == "Quit" or "quit:":  # Isn't there something like L|list for this?
-            menu()  # This may deepen the stack. Another way to get back to main menu function?
-        else:
-            if response in donor_names:
-                pass
-            else:
-                pass
+            response = input(">> ").title()  # This isn't evaluating right now. fix! Maybe turn if above into function?
+        elif response == "Quit":
+             menu()  # This may deepen the stack. Another way to get back to main menu function?
 
 
 def create_report():
-    print("You selected Create a Report!\n")
+    report_header = ("Donor Name          | Total Given | Num Gifts | Average Gift\n"
+                     "------------------------------------------------------------\n")
+    report_line = "{:20} ${:12,.2f}{:11} ${:12}".format("banana", 400, 6, 60)  #
+    # I thought d would make it so many from left, linter complaining?
+
+
+    print(report_header, report_line)
 
 
 def exit_():
-    response = input("Are you sure you'd like to exit the program? Y/N\n >> ")
-    valid_response = ["Y", "y", "N", "n"]
+    response = input("Are you sure you'd like to exit the program? Y/N\n >> ").capitalize()
+    valid_response = ["Y", "N"]
     while response in valid_response:
-        if response == "N" or "n":
+        if response == "N":
             menu()
-        elif response == "Y" or "y":
+        elif response == "Y":
             sys.exit()
         else:
             response = input("{} is not an available option. Please enter Y or N\n >> ".format(response))
 
 
-menu()
+thank_you()
