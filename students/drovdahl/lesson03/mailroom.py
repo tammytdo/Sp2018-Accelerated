@@ -68,7 +68,26 @@ def thankyou():
 
 
 def report():
-    print('this is the reporting function\n')
+    os.system('clear')
+    print('Donor Name                | Total Given | Num Gifts | Average Gift',
+          '\n' + ('-' * 66))
+    a1 = ' ' * 28
+    a2 = ' ' * 11
+    a3 = ' ' * 7
+    a4 = ' ' * 7
+    a5 = ' ' * 11
+    for x in donors:
+        donor = x[0]
+        gift_total = round(sum(x[1]), 2)
+        gift_number = len(x[1])
+        gift_average = round((sum(x[1])/len(x[1])), 2)
+        b1 = donor + a1[len(donor):]
+        y = 11 - len(str(gift_total))
+        z = 7 - len(str(gift_number))
+        zz = 11 - len(str(gift_average))
+        print(b1 + '$' + a2[0:y] + str(gift_total) + a3[0:z] + str(gift_number)
+              + a4 + '$' + a5[0:zz] + str(gift_average))
+    print('\n\n')
 
 
 def quit():
