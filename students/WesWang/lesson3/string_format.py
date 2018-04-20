@@ -32,9 +32,6 @@ def task5(lst):
   result = f"The weight of an {lst[0][:-1].upper()} is {lst[1]} and the weight of a {lst[2][:-1].upper()} is {lst[3]}"
   return result
 
-def task6()
-
-
 
 print("Task 1: " + task1(tuple1))
 print("Task 2: " + task2(tuple1))
