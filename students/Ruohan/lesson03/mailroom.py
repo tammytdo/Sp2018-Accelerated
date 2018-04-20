@@ -4,30 +4,68 @@
 
 import sys
 
-datas = [['William Gates, III',  653784.39, 2],['Mark Zuckerberg', 16396.10, 3],
-        ['Jeff Bezos', 877.33, 1],['Paul Allen', 708.42, 3]]
+datas = [['William Gates III',  653784.39, 2],
+         ['Mark Zuckerberg', 16396.10, 3],
+         ['Jeff Bezos', 877.33, 1],
+         ['Paul Allen', 708.42, 3]]
 
-names = []
+'''make a donors' name list'''
+donors = []
 for data in datas:
-    names.append(data[0])
+    donors.append(data[0])
+
+'''find if donor is already in the datas, if not add the name to the datas'''
+def find_donor(donor):
+    donor = donor.rstrip().title()
+    if donor in donors:
+        return donor
+    else:
+        datas.append([donor, 0, 0])
+        return donor
+
+def upgrade_datas(donor):
+    amount = float(input('Enter donation amount: ').rstrip())
+    for data in datas:
+        if donor == data[0]:
+            data[1] += amount
+            data[2] += 1
+            result = data
+    return amount
+
+def letter(donor, amount):
+    print('''Dear {}
+        Thank you for your generous donation of ${:.2f}.
+        We very appreciate your contribution.
+        Team R '''.format(donor, amount))
+
+
 def thank_you():
-    item = input("Enter donor's name: ")
-    if items == 'list':
-        print(names)
-    elif items not in names:
-        names.appen(item)
+    name = input("Enter donor's name or type 'list' to see all donors ").title()
+    if name.lower() == 'list':
+        print(donors)
     else:
+        am = upgrade_datas(find_donor(name))
+        letter(name, am)
+
+        #letter(name, amount)
+    print('\n<return to main menu>\n')
 
 
-    else:
-        for i in datas:
-            if item == i[0]
+
 
 
 def report():
-    print('This is the report function')
+    report = []
+    first_row = '{:20}|{:20}|{:10}|{:20}|'.format('Donor Name','Total Given', 'Num Gifts','Average Gifts')
+    print(first_row)
+    print('-'*len(first_row))
+    for data in datas:
+        row = '{:20}|{:20.2f}|{:10}|{:20.2f}|'.format(data[0],data[1],data[2],(data[1]/data[2]))
+        print(row)
+
 
 def quit():
+    print('Exit Now')
     sys.exit()
 
 def mainloop():
@@ -35,7 +73,7 @@ def mainloop():
 
     response = ''
     while True:
-        print('what do you want to do?')
+        print('\nwhat do you want to do?')
         print('1) than you\n'
               '2) report\n'
               '3) quit\n')
@@ -54,4 +92,4 @@ def mainloop():
 
 
 if __name__ == '__main__':
-#     mail()
+    mainloop()
