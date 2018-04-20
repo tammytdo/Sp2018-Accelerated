@@ -9,12 +9,16 @@
 
 # with the first and last items exchanged.
 
-a = 'This is a string'
+def exchange_first_last(a_string):
+    a_string = input()
+    a_tuple = 'taco'
+    return (a_string[-1:] + a_string[1:-1] + a_string[:1])
+    a_string[-1] + a_string[1:-1] + a_string[0]
+    tuple[-1:] + a_tuple[1:-1] + a_tuple[:1]
 
-# returns 'ghis is a string'
+assert exchange_first_last ('This is a string') == "ghis is a strint"
 
-a[-1] + a[1:-1] + a[0]
-
+print('exchange_first_last passed assert test')
 
 
 
