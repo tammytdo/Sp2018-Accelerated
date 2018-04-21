@@ -26,8 +26,8 @@ def list_donors():
 
 def thankyou():
     while True:
-        name = input ("Enter the donor's name or a list of donor's"
-                      "(or a 'list' to see all donors or type 'menu' to exit)>").strip()
+        name = input("Enter the donor's name or a list of donor's"
+                      "(names to see all donors or type 'menu' to exit)>").strip()
         if name == "list":
             list_donors()
         elif name == "menu":
@@ -57,15 +57,12 @@ def mainloop():
     return mainmenuinput.strip()
 
 
-
-
-
 if __name__ == "__main__":
     running = True
     while running:
         response = mainloop()
         if response not in ('1', '2', '3'):
-            print("Not a Valid Response, input 1, 2, or 3***\n")
+            print("Not a Valid Response, input 1, 2, or 3")
             continue
         elif response == '1':
             thankyou()
