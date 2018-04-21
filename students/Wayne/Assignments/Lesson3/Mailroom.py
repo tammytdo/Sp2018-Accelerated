@@ -1,8 +1,8 @@
 """
-Simple mailroom program for a non profit 
+Simple mailroom program for a non profit
 """
 
-#Start with interactive loop 
+# Start with interactive loop
 
 import sys
 from textwrap import dedent
@@ -16,15 +16,18 @@ donors = [("Donor A", [50, 100, 24, 100]),
 #Building Donor List
 """
 
+
 def list_donors():
     print("Donors:\n")
     for donor in donors:
         print(donor[0])
 
+
 def thankyou():
     while True:
         name = input("Enter the donor's name or a list of donor's"
-                     "(names to see all donors or type 'menu' to exit)>").strip()
+                     "names to see all donors (or type 'menu'"
+                     "to exit)>").strip()
         if name == 'list':
             list_donors()
         elif name == 'menu':
@@ -32,18 +35,26 @@ def thankyou():
         else:
             break
 
+# creates loop for donation amount input
+
     while True:
-        donationinput = input("Enter the amount donated (or 'menu' to exit)>").strip()
-        if donationiput == 'menu':
+        donationinput = input("Enter the amount donated "
+                              "(or 'menu' to exit)>").strip()
+        if donationinput == 'menu':
             return
 
+# Building reporting function
 
 
 def report():
     print("This is the report function\n")
 
+# Builds the quit function to exit the application
+
+
 def quit():
     sys.exit()
+
 
 def mainloop():
 
