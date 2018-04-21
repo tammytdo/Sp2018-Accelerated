@@ -7,17 +7,14 @@ Simple mailroom program for a non profit
 import sys
 from textwrap import dedent
 
-donors = [("Donor A",[50,100,24,100]),
-         ("Donor B",[525,10,23]),
-         ("Donor C",[50]),
-        ]
+donors = [("Donor A", [50, 100, 24, 100]),
+          ("Donor B", [525, 10, 23]),
+          ("Donor C", [50]),
+          ]
 
-
-#def thankyou():
-    #print("Please Input the Donor you would like to thank\n")
-
-
-#Building Donor List 
+"""
+#Building Donor List
+"""
 
 def list_donors():
     print("Donors:\n")
@@ -27,14 +24,18 @@ def list_donors():
 def thankyou():
     while True:
         name = input("Enter the donor's name or a list of donor's"
-                      "(names to see all donors or type 'menu' to exit)>").strip()
-        if name == "list":
+                     "(names to see all donors or type 'menu' to exit)>").strip()
+        if name == 'list':
             list_donors()
-        elif name == "menu":
+        elif name == 'menu':
             return
         else:
             break
 
+    while True:
+        donationinput = input("Enter the amount donated (or 'menu' to exit)>").strip()
+        if donationiput == 'menu':
+            return
 
 
 
@@ -45,7 +46,7 @@ def quit():
     sys.exit()
 
 def mainloop():
-    
+
     mainmenuinput = input(dedent("""
         What would you like to do?
 
