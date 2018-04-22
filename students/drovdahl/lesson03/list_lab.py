@@ -134,7 +134,7 @@ def series4():
 
 if __name__ == "__main__":
     os.system('clear')
-#    series1()
-#    series2()
+    series1()
+    series2()
     series3()
     series4()
