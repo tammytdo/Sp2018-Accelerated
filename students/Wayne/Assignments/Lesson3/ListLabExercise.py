@@ -18,22 +18,22 @@
 
 
 lst = ['Apples', 'Pears', 'Orange']
-# lstadd = input("Enter a new fruit").strip()
-# lst.append(lstadd)
-# numberoffruit = int(input('What is the quanity of fruit?'
-#                           ' 1 = Apple'
-#                           ' 2 = Pears'
-#                           ' 3 = Orange'
-#                           ' 4 = {}'.format(lstadd)).strip())
-# print(lst[numberoffruit - 1])
+lstadd = input("Enter a new fruit").strip()
+lst.append(lstadd)
+numberoffruit = int(input('What is the quanity of fruit?'
+                          ' 1 = Apple'
+                          ' 2 = Pears'
+                          ' 3 = Orange'
+                          ' 4 = {}'.format(lstadd)).strip())
+print(lst[numberoffruit - 1])
 
-# lst = ['Banana'] + lst
+lst = ['Banana'] + lst
 
-# print(lst)
+print(lst)
 
-# for fruit in lst:
-#     if fruit[0].lower() == 'p':
-#         print(fruit)
+for fruit in lst:
+    if fruit[0].lower() == 'p':
+        print(fruit)
 
 
 # SERIES 2
@@ -47,22 +47,22 @@ lst = ['Apples', 'Pears', 'Orange']
 # (Bonus: Multiply the list times two. Keep asking until a match is found. Once found,
 # delete all occurrences.)
 
-# print(lst)
+print(lst)
 
 """
 .pop() the last part of the list
 """
 
-# lst.pop()
+lst.pop()
 
-# print(lst)
+print(lst)
 
-# deleteafruit = input('Which fuit do you want to '
-#                      'remove from the list?')
+deleteafruit = input('Which fuit do you want to '
+                     'remove from the list?')
 
-# lst.remove(deleteafruit)
+lst.remove(deleteafruit)
 
-# print(lst)
+print(lst)
 
 
 # Series 3
@@ -95,8 +95,10 @@ for fruit in lst:
 # Delete the last item of the original list. Display the original list and the copy
 
 
+reverselst = newlst[::-1]
 
+print(reverselst)
 
+deletelastlst = lst[:-1]
 
-
-
+print(deletelastlst)
