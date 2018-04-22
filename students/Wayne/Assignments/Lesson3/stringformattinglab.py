@@ -20,38 +20,27 @@
 
 # Write a format string that will take the following four element tuple:
 
-# 1
-
-# The first element is used to generate a filename that can help with file sorting. The
-# idea behind the “file_002” is that if you have a bunch of files that you want to name
-# with numbers that can be sorted, you need to “pad” the numbers with zeros to get the
-# right sort order.
-
-# In [1]: fnames = ['file001', 'file002', 'file010', 'file011']
-# In [3]: sorted(fnames)
-# Out[3]: ['file001', 'file002', 'file010', 'file011']
-
-# 2
-
-# The second element is a floating point number. You should display it with 2 decimal
-# places shown.
-
-# 3
-
-# The third value is an integer, but could be any number. You should display it in
-# scientific notation, with 2 decimal places shown.
-
-# 4
-
-# The fourth value is a float with a lot of digits – display it in scientific notation 
-# with 3 significant figures.
+# (2, 123.4567, 10000, 12345.67))
 
 
+"""
 
+String presentation types:
 
+d = decimal integer and ouputs the number in base 10
+f = shows how many figures should be displayed after the
+    decimal point
+g = shows the before and after the decimal point
+e = prints the number in scientific noation using
+    letter e to indicate the exponent. Defualt
+    precision is 6.
 
+    https://docs.python.org/3.4/library/string.html
 
+"""
 
+print("File_{:03d} : {:10.2f}, {:.2e}, {:.3g}".format(2, 123.4567, 10000, 12345.67))
+print()
 
 ################################## Task Two ##################################
 
