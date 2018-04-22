@@ -83,10 +83,58 @@ def series2():
             lists2 = lists2 + lists2
             response = input("Hit 'Enter' to continue >>")
             os.system('clear')
-    print('Congratulations!\nYou have successfully removed all the fruit')
+    print('Congratulations!\nYou have successfully removed all the fruit\n\n')
+    response = input("Hit 'Enter' to continue >>")
+    return
+
+
+def series3():
+    global list
+    global lists3
+    lists3 = list[:]
+    os.system('clear')
+    print('Starting Series 3\n'
+          'Here is the current list of fruits:', '\n\n', lists3, '\n\n')
+    # remove fruit the user doesn't like
+    lists3_copy = lists3[:]
+    for fruit in lists3_copy:
+        i = lists3.index(fruit)
+        response = input(f'do you like {fruit}?\n  >>')
+        if response.lower() == 'no':
+            del lists3[i]
+    os.system('clear')
+    print('You\'re a picky eater!!\n'
+          'Here is a new list with all the fruit you like\n\n', lists3, '\n\n')
+    response = input("Hit 'Enter' to continue >>")
+    return
+
+
+def series4():
+    global list
+    global lists4
+    lists4 = list[:]
+    os.system('clear')
+    print('Starting Series 4\n'
+          'Here is the current list of fruits:\n\n', lists4, '\n\n')
+    lists4_copy = lists4[:]
+    i = 0
+    for fruit in lists4:
+        lists4_copy[i] = fruit[::-1]
+        i += 1
+    print('We\'ve just reversed the letters in every fruit in your list...\n')
+    response = input("Hit 'Enter' to continue >>")
+    os.system('clear')
+    print('Here is the current list of fruits with backwards letters:\n\n',
+          lists4_copy, '\n\n')
+    del lists4[-1]
+    print('Lastly - Here\'s the original list with the last item deleted:\n',
+          lists4, '\n\nNow go eat some pizza...')
+    return
 
 
 if __name__ == "__main__":
     os.system('clear')
-    series1()
-    series2()
+#    series1()
+#    series2()
+    series3()
+    series4()
