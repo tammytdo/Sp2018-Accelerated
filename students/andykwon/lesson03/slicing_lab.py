@@ -39,6 +39,10 @@ def reorder_middle_last_first_third(seq):
 
     return reordered
 
+    #CLASS SOLUTION:
+    #i = len(seq) // 3
+    #return seq[:i] + seq[i:-i] + seq[-i:]
+
 a_string = "Good eye might"
 a_tuple = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
 

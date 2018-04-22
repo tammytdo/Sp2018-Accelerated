@@ -12,11 +12,12 @@ donors = [("Donor A", [1, 2, 4, 5]),
 print(donors)
 
 def thank_you():
-
+    """
+    Get into the thank you note generation portion of the program
+    """
     selection = ""
 
     print("== Send a Thank You ==\n")
-
     print("Please enter the name of the person you would like to send a Thank You to."
           "(type 'list' if you would like a list of the donor names\n")
 
@@ -28,13 +29,11 @@ def thank_you():
     # Checking to see if the name is in the donors list
     for item in donors:
         if response_name in item:
-
             selection = item
             print(selection)
 
     # If selection did not change from original value, then there is no match
     if selection == "":
-
         donors.append((response_name, []))
 
     # Ask for donation amount; add donation amount to associated donation list
@@ -51,7 +50,14 @@ def thank_you():
 
 
 def report():
-    print("==. Generate a Report ==\n")
+    print("== Generate a Report ==\n")
+
+    for i in range (len(donors)):
+        name = donor[i][0]
+        total_given = sum(donor[i][1])
+        total_count = len(donors[i][1])
+        avg_given = total_given / total_count
+
 
 
 

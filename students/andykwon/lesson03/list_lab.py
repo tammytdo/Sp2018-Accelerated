@@ -35,3 +35,5 @@ for i in range (len(fruit)):
     if fruit[i][0] == "P":
 
         print(fruit[i])
+
+# Series 2
