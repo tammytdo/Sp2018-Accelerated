@@ -8,6 +8,7 @@ simple mail program for non profit
 import sys
 import os
 import pathlib
+import datetime
 
 donors = [('Iron Man', [100000, 50000, 1000]),
           ('Thor', [50, 25, 100]),
@@ -82,11 +83,12 @@ existing donors.  (type 'quit' at any time to return to the main menu)''')
     your generous donation of $%.2f.\n
     Taking advantage of our kitten matching partner, with these added funds we
     will be able to provide {k} kitten(s) to well deserving little girls all
-    over the world including hard to reach places like Antacrtica and
+    over the world including hard to reach places like Antarctica and
     Tacoma, WA!\n\n
         Sincerely,
         Your Friends at AFAK
     ''' % donor_donation)
+    return
 
 
 def report():
@@ -130,13 +132,27 @@ def letters_to_all():
     os.system('clear')
     # create 'letters' directory if one does not exist
     pathlib.Path('letters').mkdir(exist_ok=True)
+    # set the datetime format variable
+    dt_format = '.%m-%d-%Y'
     # iterate over donors data and create files for each donor
     for x in donors:
         donor = x[0]
         donations = round(sum(x[1]), 2)
-        letter_text = f'Hi there {donor}!\n\nThanks for the ${donations:,}'
+        # compute the number of donated kittens at $5.00 per kitten with a
+        # matching donation of * 2
+        k = (donations/5 * 2)
+        letter_text = f'''Dear {donor},
+         We at the Avengers Fund-a-Kitten Initiative would like to thank you
+    for your generous donation of $%.2f.\n
+    Taking advantage of our kitten matching partner, with these added funds we
+    will be able to provide {k} kittens to well deserving little girls all
+    over the world including hard to reach places like Antarctica and
+    Tacoma, WA!\n\n
+        Sincerely,
+        Your Friends at AFAK''' % donations
         # set the file path using pathlib
-        p = pathlib.Path('letters/' + donor)
+        p = pathlib.Path('letters/' + donor +
+                         datetime.datetime.now().strftime(dt_format) + '.txt')
         with open(p, 'w') as outfile:
             outfile.write(letter_text)
     print('All the letters have been composed and can be found in the '
