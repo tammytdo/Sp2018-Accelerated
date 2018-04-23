@@ -4,12 +4,13 @@ simple mailroom program for a non profit
 
 import sys
 
-donors = [("Donor A", [1, 2, 4, 5]),
-          ("Donor B", [14, 5]),
-          ("Donor C", [1, 5, 90]),
+donors = [("Sir Isaac Newton", [1, 2, 4, 5000.98]),
+          ("Zach de la Rocha", [14, 5,19000.33]),
+          ("Space Ghost", [1, 5, 90, 76.45]),
           ]
 
 print(donors)
+
 
 def thank_you():
     """
@@ -43,35 +44,58 @@ def thank_you():
 
     for item in donors:
         if response_name in item:
-           donors[donors.index(item)][1].append(response_donation)
-
-
-    print(donors)
+            donors[donors.index(item)][1].append(float(response_donation))
 
 
 def report():
+
     print("== Generate a Report ==\n")
 
-    for i in range (len(donors)):
-        name = donor[i][0]
-        total_given = sum(donor[i][1])
+    name_length = 0
+    given_length = 0
+    count_length = 0
+    avg_length = 0
+    report_list = []
+
+    for i in range(len(donors)):
+        name = donors[i][0]
+        total_given = sum(donors[i][1])
         total_count = len(donors[i][1])
-        avg_given = total_given / total_count
+        avg_given = "%.2f" % (total_given / total_count)
 
+        report_list.extend((name, total_given, total_count, avg_given))
 
+        header = "Donor Name " + " " * (10) + "| Total Given " + "| Num Gifts " + "| Average Gift "
+        divider = "_" * len(header)
 
+        # To print the header and dividing line of the table
+        if i == 0:
+            print(header)
+            print(divider)
+
+        # Space calculations to ensure there is appropriate amounts of " " for alignment
+        name_space = 22 - len(name)
+        total_given_space = 11 - len(str(total_given))
+        total_count_space = 12 - len(str(total_count))
+        avg_given_space = 12 - len(str(avg_given))
+
+        # Print the results with formatting
+        print(name + " " * name_space, end='')
+        print("$" + " " * total_given_space + str(total_given), end='')
+        print(" " * total_count_space + str(total_count) + "  ", end='')
+        print("$" + " " * avg_given_space + str(avg_given))
 
 def quit():
     print("Are you sure you want to quit?\n"
-          "1) Yes, quit"
-          "2) No, don't quit")
+          "1) Yes, quit\n"
+          "2) No, don't quit\n")
 
     response = input(">")
 
     if response == "1":
         sys.exit()
     elif response == "2":
-        mainloop()
+        return
 
 
 def mainloop():
@@ -100,10 +124,5 @@ def mainloop():
             continue
 
 
-
-
-
-
 if __name__ == "__main__":
     mainloop()
-
