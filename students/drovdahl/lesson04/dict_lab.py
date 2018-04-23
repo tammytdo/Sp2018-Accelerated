@@ -37,6 +37,7 @@ s2 = set()
 s3 = set()
 s4 = set()
 
+
 def dict_1():
     # create the dict and add values
     print('Function - dict_1')
@@ -56,7 +57,7 @@ def dict_1():
     # check for key - 'cake'
     print('Is \'cake\' in d1? : ' + str('cake' in d1))
     # check for 'Mango'
-    print('Is \'Mango\' a value in d1? : ' + str('Mango' in d1.values()) + '\n')
+    print('Is \'Mango\' a value in d1? :' + str('Mango' in d1.values()) + '\n')
     return
 
 
