@@ -79,6 +79,40 @@ while del_fruit in fruits:
 
 print(fruits)
 
+# Series 3
+# Again, using the list from series 1:
 
+fruits = ['Apples', 'Pears', 'Oranges', 'Peaches']
 
+# Ask the user for input displaying a line like “Do you like apples?” for each fruit in the list (making the fruit all lowercase).
+# For each “no”, delete that fruit from the list.
+# For any answer that is not “yes” or “no”, prompt the user to answer with one of those two values (a while loop is good here)
+# Display the list.
 
+for fruit in fruits[:]: # iterate over a copy of the sequence you want to mutate
+    response = input('Do you like {}? '.format(fruit.lower()))
+    while response not in ['yes', 'Yes', 'Y', 'y', 'no', 'No', 'N', 'n']:
+        print('Invalid response. Please enter "yes" or "no".')
+        response = input('Do you like {}? '.format(fruit.lower()))
+    if response in ['no', 'No', 'N', 'n']:
+        fruits.remove(fruit) # mutate the list
+
+print('Fruits you like:')
+print(fruits)
+
+# Series 4
+# Once more, using the list from series 1:
+fruits = ['Apples', 'Pears', 'Oranges', 'Peaches']
+# Make a copy of the list and reverse the letters in each fruit in the copy.
+copy_fruits = fruits[:]
+
+for fruit in copy_fruits[:]:
+    copy_fruits.remove(fruit)
+    copy_fruits.append(fruit[-1:].upper() + fruit[:-1][::-1].lower())
+
+# Delete the last item of the original list. Display the original list and the copy.
+
+del fruits[-1:]
+
+print(fruits)
+print(copy_fruits)
