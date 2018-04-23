@@ -29,7 +29,6 @@ def thank_you():
     response_donation = input(">>")
 
     if response_name in donors:
-
         donors[response_name].append(response_donation)
     else:
         donors[response_name] = []
