@@ -4,13 +4,10 @@ simple mailroom program for a non profit
 
 import sys
 
-donors = [("Sir Isaac Newton", [1, 2, 4, 5000.98]),
-          ("Zach de la Rocha", [14, 5,19000.33]),
+donors = [("Sir Isaac Newton", [100.38, 2, 4, 5000.98]),
+          ("Zach de la Rocha", [1490.32, 5,19000.33]),
           ("Space Ghost", [1, 5, 90, 76.45]),
           ]
-
-print(donors)
-
 
 def thank_you():
     """
