@@ -9,9 +9,6 @@ donors = {'Sir Isaac Newton': [100.38, 2, 4, 5000.98],
           'Space Ghost': [1, 5, 90, 76.45]
           }
 
-print(donors)
-
-
 def thank_you():
     """
     Get into the thank you note generation portion of the program
@@ -79,6 +76,21 @@ def report():
         print(" " * total_count_space + str(total_count) + "  ", end='')
         print("$" + " " * avg_given_space + str(avg_given))
 
+def letters():
+
+    print("== Send letters to everyone ==")
+
+    for key_name in donors:
+        file = open("Letter for " + key_name + ".txt", "w")
+
+        letter = ("Dear " + key_name + ",\n\n" +
+                 "Thank you for your very kind donation of $" + "%.2f" % sum(donors[key_name]) + ".\n\n" +
+                 "It will be put to very good use.\n\n" +
+                 "Sincerely,\n\n" + "-The Team")
+
+        file.write(letter)
+
+        file.close()
 
 def quit():
     print("Are you sure you want to quit?\n"
@@ -102,11 +114,12 @@ def mainloop():
         print("what do you want to do?")
         print("1) thank you\n"
               "2) report\n"
-              "3) quit\n")
+              "3) Send letters to everyone\n"
+              "4) quit\n")
 
         response = input(">>")
 
-        if response not in ("1", "2", "3"):
+        if response not in ("1", "2", "3", "4"):
             print("Not a valid response")
         elif response == "1":
             thank_you()
@@ -115,6 +128,9 @@ def mainloop():
             report()
             continue
         elif response == "3":
+            letters()
+            continue
+        elif response == "4":
             quit()
             continue
 
