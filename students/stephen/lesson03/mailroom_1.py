@@ -77,7 +77,7 @@ def enter_name(name, amount):
     print()
     mainloop()
 
-def average(tup):
+def avg_tup(tup):
     return sum(tup[1]) / len(tup[1])
 
 def sum_tup(tup):
@@ -89,7 +89,7 @@ def report():
     sorted_donors = donors[:]
     sorted_donors.sort(key=sum_tup, reverse=True)
     for d in sorted_donors:
-        print('{:26s} ${:>11.2f}  {:>10d}  ${:>11.2f}'.format(d[0], sum(d[1]), len(d[1]), average(d)))
+        print('{:26s} ${:>11.2f}  {:>10d}  ${:>11.2f}'.format(d[0], sum(d[1]), len(d[1]), avg_tup(d)))
     print()
     mainloop()
 
