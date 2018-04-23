@@ -51,16 +51,16 @@ list of existing donors.
         donor = input('>> ')
         if donor.lower() == 'quit':
             return
-# collect the donation amount
+    # collect the donation amount
     donor_donation = input('What is the donation amount? \n >> ')
-# normallize the donation amount
+    # normallize the donation amount
     donor_donation = donor_donation.replace('$', '').replace(',', '')
     donor_donation = float(donor_donation)
-# iterate through the donors list to see if the donor already exists
-# if the donor already exists, append the new donation amount to the existing
-# list
-# if the donor is not matched, add a new donor/donation amount entry to the
-# donors list
+    # iterate through the donors list to see if the donor already exists
+    # if the donor already exists, append the new donation amount to the
+    # existing list
+    # if the donor is not matched, add a new donor/donation amount entry to the
+    # donors list
     x = 0
     name_match = False
     for name in donors:
@@ -94,36 +94,26 @@ def report():
     The end result will be tabular (values in each column should align with
     those above and below)
     '''
+    global donors
     os.system('clear')
     # print top row
-    print('Donor Name                | Total Given | Num Gifts | Average Gift',
-          '\n' + ('-' * 66))
-    # length of first cell
-    a1 = ' ' * 28
-    # length of second and forth cell
-    a2 = ' ' * 11
-    # length of third cell(first half)
-    a3_1 = ' ' * 7
-    # length of third cell(second half)
-    a3_2 = ' ' * 7
-    # length of forth cell
-    # a5 = ' ' * 11
+    a = 'Donor Name'
+    b = 'Total Given'
+    c = 'Num Gifts'
+    d = 'Average Gift'
+    print(f'{a: <20}|{b:^13}|{c:^13}|{d:^15}')
+    # print bar
+    a = b = c = d = '-'
+    print(f'{a:-<20}-{b:-<13}-{c:-<13}-{d:-<15}')
+    # print donor specific rows
     for x in donors:
-        donor = x[0]
-        gift_total = round(sum(x[1]), 2)
-        gift_number = len(x[1])
-        gift_average = round((sum(x[1])/len(x[1])), 2)
-        # assign the output of the first cell
-        c1 = donor + a1[len(donor):]
-        # assign the value of the second cell
-        c2 = '$' + a2[0:-(len(str(gift_total)))] + str(gift_total)
-        # assign the value of the third cell
-        c3 = a3_1[0:-(len(str(gift_number)))] + str(gift_number) + a3_2
-        # assign the value of the forth cell
-        c4 = '$' + a2[0:-(len(str(gift_average)))] + str(gift_average)
-        # print the row
-        print(c1 + c2 + c3 + c4)
+        a = x[0]
+        b = round(sum(x[1]), 2)
+        c = len(x[1])
+        d = round((sum(x[1])/len(x[1])), 2)
+        print(f'{a: <20} ${b: >12} {c:^13} ${d: >14}')
     print('\n\n')
+    return
 
 
 def quit():
@@ -150,15 +140,12 @@ Welcome to Mailroom\n''')
         if response not in ('1', '2', '3', 'quit'):
             os.system('clear')
             print('not a valid repsonse, type "1, 2, or 3"\n')
-            continue
         elif response == '1':
             os.system('clear')
             thankyou()
-            continue
         elif response == '2':
             os.system('clear')
             report()
-            continue
         elif response == '3' or 'quit':
             quit()
 

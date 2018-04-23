@@ -4,7 +4,6 @@
 '''
 Perform a number of string formatting exercises
 '''
-import os
 
 
 def task_1():
@@ -50,7 +49,7 @@ def task_4(seq):
     '02 27 2017 04 30'
     '''
     print('\n\n')
-    print(f'{seq[3]:0>2d} {seq[4]} {seq[2]} {seq[0]:0>2d} {seq[1]}')
+    print(f'{seq[3]:0>2d} {seq[4]:0>2d} {seq[2]} {seq[0]:0>2d} {seq[1]:0>2d}')
 
 
 def task_5():
@@ -71,6 +70,7 @@ def task_5():
     # change the fruit to uppercase and add %20 to the weight
     print(f'The weight of an {f1.upper()} is {w1 * 1.2} and the weight of a '
           f'{f2.upper()} is {w2 * 1.2}')
+
 
 def task_6():
     '''
@@ -93,7 +93,6 @@ def task_6():
 
 
 if __name__ == "__main__":
-    # os.system('clear')
     task_1()
     task_2()
     task_3((1, 2, 3, 4, 5, 6))

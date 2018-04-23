@@ -61,21 +61,21 @@ def remove_every_other(seq):
 
 def between_the_4s(seq):
     '''
-    This function removes the first and last items as well as every other item
-    in between
+    This function removes the first and last 4 items as well as every other
+    item in between
     It works with tuples, lists, and string sequences
     '''
     # process for tuples
     while type(seq) is tuple:
         new_seq = list(seq)
-        new_seq2 = new_seq[5:-4:2]
+        new_seq2 = new_seq[4:-4:2]
         return tuple(new_seq2)
     # process for lists
     while type(seq) is list:
-        new_seq = seq[5:-4:2].copy()
+        new_seq = seq[4:-4:2].copy()
         return new_seq
     # process for string sequences
-    new_seq = seq[5:-4:2]
+    new_seq = seq[4:-4:2]
     return new_seq
 
 
@@ -135,9 +135,9 @@ assert(first_last_flip(a_string)) == 'ghis is a really really long strinh'
 assert(remove_every_other(a_tuple)) == (2, 13, 5, 18, 9, 88)
 assert(remove_every_other(a_list)) == [2, 13, 5, 18, 9, 88]
 assert(remove_every_other(a_string)) == 'ti saral elyln tig'
-assert(between_the_4s(a_tuple)) == (32, 6)
-assert(between_the_4s(a_list)) == [32, 6]
-assert(between_the_4s(a_string)) == 'i  elyral ogs'
+assert(between_the_4s(a_tuple)) == (5, 18)
+assert(between_the_4s(a_list)) == [5, 18]
+assert(between_the_4s(a_string)) == ' saral elyln t'
 assert(reverse(a_tuple)) == (60, 88, 1, 9, 6, 18, 32, 5, 12, 13, 54, 2)
 assert(reverse(a_list)) == [60, 88, 1, 9, 6, 18, 32, 5, 12, 13, 54, 2]
 assert(reverse(a_string)) == 'gnirts gnol yllaer yllaer a si siht'

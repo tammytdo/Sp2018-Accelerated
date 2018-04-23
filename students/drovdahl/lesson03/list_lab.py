@@ -5,7 +5,7 @@
 Modify a series of lists using a number of functions
 '''
 import os
-list = ['Apples', 'Pears', 'Oranges', 'Peaches']
+list0 = ['Apples', 'Pears', 'Oranges', 'Peaches']
 lists1 = []
 lists2 = []
 lists3 = []
@@ -13,9 +13,9 @@ lists4 = []
 
 
 def series1():
-    global list
+    global list0
     global lists1
-    lists1 = list[:]
+    lists1 = list0[:]
     print('Starting Series 1\n'
           'Here is the current list of fruits:', '\n\n', lists1, '\n')
     # add a fruit to the end of the list
@@ -89,9 +89,9 @@ def series2():
 
 
 def series3():
-    global list
+    global list0
     global lists3
-    lists3 = list[:]
+    lists3 = list0[:]
     os.system('clear')
     print('Starting Series 3\n'
           'Here is the current list of fruits:', '\n\n', lists3, '\n\n')
@@ -110,17 +110,15 @@ def series3():
 
 
 def series4():
-    global list
+    global list0
     global lists4
-    lists4 = list[:]
+    lists4 = list0[:]
     os.system('clear')
     print('Starting Series 4\n'
           'Here is the current list of fruits:\n\n', lists4, '\n\n')
-    lists4_copy = lists4[:]
-    i = 0
+    lists4_copy = []
     for fruit in lists4:
-        lists4_copy[i] = fruit[::-1]
-        i += 1
+        lists4_copy.append(fruit[::-1])
     print('We\'ve just reversed the letters in every fruit in your list...\n')
     response = input("Hit 'Enter' to continue >>")
     os.system('clear')
