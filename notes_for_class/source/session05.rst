@@ -12,16 +12,9 @@ A collection of notes to go over in class, to keep things organized.
 Lightning Talks
 ===============
 
-Marlon M Estrada
+Ornob Siddiquee
 
-Ali Dehghani
-
-David K Kan
-
-Evgeny S Uvarov
-
-Srikanth Thadigol Reddappa
-
+Andrew Wall
 
 
 Issues that came up during the week.
@@ -56,6 +49,7 @@ sorting
 
 What is the "key" thing? how do you make one?
 
+
 Minor Issues
 ------------
 
@@ -70,4 +64,52 @@ similarly:
 loops through the keys. So no need for:
 
 ``for k in dict.keys():``
+
+
+Getting an arbitrary key from a dict
+------------------------------------
+
+See ``arbitrary_key.py`` in `examples/session05`
+
+Review of last week's assignments
+=================================
+
+Mailroom review
+---------------
+
+Anyone up for a review?
+
+Trigrams review
+---------------
+
+Anyone want to look at theirs?
+
+
+Lightning Talks
+===============
+
+Ornob Siddiquee
+
+Andrew Wall
+
+New Assignments
+===============
+
+Comprehensions
+--------------
+
+It turns out the Comprehensions lab was not in Canvas!
+
+It is now. But let's take a few mintues to go through it in class:
+
+https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/comprehensions_lab.html
+
+Exceptions
+----------
+
+Exceptions take a little while to "wrap your head around".
+
+Shall we do the Excercise together?
+
+https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/except_exercise.html
 
