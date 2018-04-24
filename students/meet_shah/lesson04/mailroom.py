@@ -15,6 +15,7 @@ def thank_you():
     while True:
         new_response = input("Enter a command. Your options are [list, <donor name>, q(quit),]>>")
         if new_response == "list":
+            print("Here's a list of our donors:")
             for donor, _ in donors.items():
                 print(donor)
         elif new_response in ['q','quit']:
@@ -33,7 +34,7 @@ def thank_you():
 
 
 def print_report(t):
-    return '{:20}{:>15}{:>16}{:>15}'.format(*t)
+    return '{:20}{:>20}{:>12}{:>14}'.format(*t)
 
 
 def report():
@@ -50,6 +51,8 @@ def report():
         num_donations = donors[donor]
         num_donations = len(donations)
         average_donations = total_donation * 1.0 / num_donations
+        average_donations = "${:,.2f}".format(average_donations)
+        total_donation = "${:,.2f}".format(total_donation)
         print(print_report((donor, total_donation, num_donations, average_donations)))
 
 def send_letters():
