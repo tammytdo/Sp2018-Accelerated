@@ -33,7 +33,7 @@ def second_loop():
         elif ans == "b":
             second_loop()
         elif ans[0] == "g":
-            return
+            mainloop()
 
 
 
