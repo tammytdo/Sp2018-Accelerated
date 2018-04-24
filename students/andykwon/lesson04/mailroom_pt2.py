@@ -8,7 +8,7 @@ import sys
 
 donors = {'Sir Isaac Newton': [100.38, 2, 4, 5000.98],
           'Zach de la Rocha': [1000.76, 5, 235.90, 50.76],
-          'Space Ghost': [1, 5, 90, 76.45]
+          'Space Ghost': [1, 5, 900000, 76.45]
           }
 
 
@@ -39,55 +39,48 @@ def thank_you():
     elif response == "2":
         print(donors)
 
-    elif response =="3":
+    elif response == "3":
         return
 
-
     # Can the above if/else be replaced with setdefault?? look into it...
+
+
+def donations(keys):
+    return keys[1]
+
 
 def report():
     """
     prints a report of the donors and their contributions
     """
-
     print("== Generate a Report ==\n")
 
-    name_length = 0
-    given_length = 0
-    count_length = 0
-    avg_length = 0
+    report = []
+    report_data = []
 
-    # printing the header and divider
-    header = "Donor Name " + " " * (10) + "| Total Given " + "| Num Gifts " + "| Average Gift "
+    header = ("{:<25s} | {:^15s} | {:^10s} | {:15s}".format(
+        "Donor Name", "Total Given", "Num Gifts", "Average Gift"))
     divider = "_" * len(header)
 
-    print(header)
-    print(divider)
+    report.append(header)
+    report.append(divider)
 
-    # Calculations and printing
     for key_name in donors:
         name = key_name
         total_given = sum(donors[key_name])
         total_count = len(donors[key_name])
-        avg_given = "%.2f" % (total_given / total_count)
+        avg_given = total_given / total_count
+        report_data.append((name, total_given, total_count, avg_given))
 
-        header = "{:<25}".format("Donor Name") +
-                 "{:>15}".format("Total Given") +
-                 "{:>15}".format("Num Gifts") +
-                 "{:>15}".format("Average Gift")
+    # Sort with respect to "Total Given" value.
+    report_data.sort(key=donations, reverse=True)
 
+    # Adding the data into report with formatting
+    for data in report_data:
+        report.append("{:25s}   ${:14.2f}   {:10d}   ${:11.2f}".format(* data))
 
-        # # Space calculations to ensure there is appropriate amounts of " " for alignment
-        # name_space = 22 - len(name)
-        # total_given_space = 11 - len(str(total_given))
-        # total_count_space = 12 - len(str(total_count))
-        # avg_given_space = 12 - len(str(avg_given))
-
-        # # Print the results with formatting
-        # print(name + " " * name_space, end='')
-        # print("$" + " " * total_given_space + str(total_given), end='')
-        # print(" " * total_count_space + str(total_count) + "  ", end='')
-        # print("$" + " " * avg_given_space + str(avg_given))
+    print("\n".join(report))
+    return "\n".join(report)
 
 
 def letters():
