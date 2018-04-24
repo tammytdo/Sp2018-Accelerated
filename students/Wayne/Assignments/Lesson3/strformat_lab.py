@@ -108,6 +108,12 @@ print(new_atuple)
 # the  fruit in upper case, and the weight 20% higher (that is 1.2 times
 # higher).
 
+lst = ['oranges', 1.3, 'lemons', 1.1]
+
+displaylst = f'the weight of: unpack.{lst}'
+
+print(displaylst)
+
 
 
 
@@ -121,6 +127,22 @@ print(new_atuple)
 # Write some Python code to print a table of several rows, each with a name,
 #  an age and a cost. Make sure some of the costs are in the hundreds and
 # thousands to test your alignment specifiers.
+
+name_db = [("steve", [45, 10000]),
+           ("karl", [25, 450000]),
+           ("larry", [83, 10000000]),
+           ]
+
+print(name_db)
+
+print("{:25s} | {:2s} | {:11s}".format("Name", "Age", "Cost"))
+
+
+for row in name_db: 
+    print("{:25s}  {:2s}  {:11s}".format(*row)
+
+
+
 
 # And for an extra task, given a tuple with 10 consecutive numbers, can
 # you work how to quickly print the tuple in columns that are 5 charaters
