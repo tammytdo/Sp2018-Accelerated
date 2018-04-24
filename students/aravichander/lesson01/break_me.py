@@ -1,8 +1,8 @@
-def typeerror():
-	x = 4
-	y = "Hello"
-	z = x + y
-typeerror()
+# def typeerror():
+	# x = 4
+	# y = "Hello"
+	# z = x + y
+# typeerror()
 
 
 # def attributeerror():

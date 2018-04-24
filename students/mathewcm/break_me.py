@@ -8,7 +8,7 @@
 #    if a > b
 
 def test4():
-   raise AttributeError
+   raise AttributeErrorg
 
 # test1()
 # test2()
