@@ -9,13 +9,16 @@ datas = [['William Gates III',  653784.39, 2],
          ['Jeff Bezos', 877.33, 1],
          ['Paul Allen', 708.42, 3]]
 
-'''make a donors' name list'''
-donors = []
-for data in datas:
-    donors.append(data[0])
+#make a donors' name list
+def donors_name_list():
+    donors = []
+    for data in datas:
+        donors.append(data[0])
+    return donors
 
-'''find if donor is already in the datas, if not add the name to the datas'''
-def find_donor(donor):
+
+def find_donor(donor,donors):
+    '''find if donor is already in the datas, if not add the name to the datas'''
     donor = donor.rstrip().title()
     if donor in donors:
         return donor
@@ -29,24 +32,22 @@ def upgrade_datas(donor):
         if donor == data[0]:
             data[1] += amount
             data[2] += 1
-            result = data
     return amount
 
 def letter(donor, amount):
     print('''Dear {}
-        Thank you for your generous donation of ${:.2f}.
-        We very appreciate your contribution.
-        Team R '''.format(donor, amount))
+    Thank you for your generous donation of ${:.2f}.
+    We very appreciate your contribution.
+    Team R '''.format(donor, amount))
 
 
 def thank_you():
     name = input("Enter donor's name or type 'list' to see all donors ").title()
     if name.lower() == 'list':
-        print(donors)
+        print(donors_name_list())
     else:
-        am = upgrade_datas(find_donor(name))
+        am = upgrade_datas(find_donor(name,donors_name_list()))
         letter(name, am)
-
         #letter(name, amount)
     print('\n<return to main menu>\n')
 
@@ -62,6 +63,7 @@ def report():
     for data in datas:
         row = '{:20}|{:20.2f}|{:10}|{:20.2f}|'.format(data[0],data[1],data[2],(data[1]/data[2]))
         print(row)
+    print('\n<return to main menu>\n')
 
 
 def quit():
@@ -71,7 +73,6 @@ def quit():
 def mainloop():
     print('welcome to Mailroom')
 
-    response = ''
     while True:
         print('\nwhat do you want to do?')
         print('1) than you\n'

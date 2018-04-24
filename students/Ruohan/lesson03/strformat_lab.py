@@ -44,7 +44,7 @@ print(task_five(e_list, 1.2))
 #task six
 print('==============task six=================')
 def task_six(tuple):
-    table = 'name:{:10}, age:{:8}, cost:{:8}'.format(*tuple)
+    table = 'name:{:10}, age:{:8}, cost: {:8}'.format(*tuple)
     return table
 tuple6 = ('Ruohan','28','$300')
 tuple7 = ('David', '23','$6789')

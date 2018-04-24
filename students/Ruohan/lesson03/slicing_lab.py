@@ -16,9 +16,7 @@ assert exchange_first_last(a_tuple) == (19, 34, 44, 27, 56, 4, 12)
 
 def every_other_removed(seq):
     '''return sequence with other item removed'''
-
-    if len(seq) > 1:
-        a_new_sequence = seq[::2]
+    a_new_sequence = seq[::2]
     return a_new_sequence
 assert every_other_removed(a_string) == 'ti sRoa'
 assert every_other_removed(a_tuple) == (12, 44, 56, 19)
@@ -27,10 +25,7 @@ assert every_other_removed(a_tuple) == (12, 44, 56, 19)
 def first_last4_removed(seq):
     '''return sequence with the first and last 4 items removed,
     and every other item in between'''
-    if len(seq) > 4:
-        a_new_sequence = seq[1:-4]
-    else:
-        a_new_sequence = []
+    a_new_sequence = seq[1:-4]
     return a_new_sequence
 assert first_last4_removed(a_string) == 'his is Ru'
 assert first_last4_removed(a_tuple) == (34, 44)
