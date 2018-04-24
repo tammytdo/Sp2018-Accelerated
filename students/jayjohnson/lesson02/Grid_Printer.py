@@ -146,6 +146,6 @@ def print_grid2(c,n):
     for i in range( n ):
         print('|' + "   "*n + '|')
     print('+' + " - "*n + '+')
-    #cant figure out how to print multiple boxes
+    #could not get multiple boxes working
 
 print_grid2(0,3)

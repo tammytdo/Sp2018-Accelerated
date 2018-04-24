@@ -46,10 +46,10 @@ def main_menu_selection():
     """
     action = input(dedent('''
       Choose an action:
-      't' - Send a Thank You
-      'r' - Create a Report
-      'l' - Send letters to everyone
-      'q' - Quit
+      '1' - Send a Thank You
+      '2' - Create a Report
+      '3' - Send letters to everyone
+      '4' - Quit
       > '''))
     return action.strip()
 
@@ -172,13 +172,13 @@ if __name__ == "__main__":
     running = True
     while running:
         selection = main_menu_selection()
-        if selection == "t":
+        if selection == "1":
             send_thank_you()
-        elif selection == "r":
+        elif selection == "2":
             print_donor_report()
-        elif selection == "l":
+        elif selection == "3":
             print_letters()
-        elif selection == "q":
+        elif selection == "4":
             running = False
         else:
             print("error: menu selection is invalid!")
