@@ -57,7 +57,7 @@ def send_letters():
         filename = donor.replace(" ", "_") + ".txt"
         with open(filename, "w") as infile:
             infile.write("Dear {},\n\n".format(donor))
-            infile.write("\tThank you for your generous donation of {}\n\n".format(sum(donations)))
+            infile.write("\tThank you for your generous donation of {}\n\n".format(donations[-1]))
             infile.write("\tIt will be put to very good use.\n\n")
             infile.write("\t\t\t\t\t   Sincerely, \n\t\t\t\t\t   The Team\n")
 
