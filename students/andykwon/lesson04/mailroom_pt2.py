@@ -1,3 +1,5 @@
+
+
 """
 simple mailroom program for a non profit
 """
@@ -9,33 +11,39 @@ donors = {'Sir Isaac Newton': [100.38, 2, 4, 5000.98],
           'Space Ghost': [1, 5, 90, 76.45]
           }
 
+
 def thank_you():
     """
     Get into the thank you note generation portion of the program
     """
     selection = ""
 
-    print("== Send a Thank You ==\n")
-    print("Please enter the name of the person you would like to send a Thank You to."
-          "(type 'list' if you would like a list of the donor names\n")
+    print("== Send a Thank You ==\n\n")
+    print("1) Add a new donation (creates new donor profile if a new name is entered.\n"
+          "2) Display a list of the donors.\n"
+          "3) Quit\n")
 
-    response_name = input(">>")
+    response = input(">>")
 
-    if response_name == "list":
+    if response == "1":
+        response_name = input(">>")
+
+        response_donation = input(">>")
+
+        if response_name in donors:
+            donors[response_name].append(response_donation)
+        else:
+            donors[response_name] = []
+            donors[response_name].append(float(response_donation))
+
+    elif response == "2":
         print(donors)
 
-    # Checks to see if donor exists. If yes, adds to donor's donations. Else, create new donor and donation list.
-    print("Please enter the donation amount:\n")
-    response_donation = input(">>")
+    elif response =="3":
+        return
 
-    if response_name in donors:
-        donors[response_name].append(response_donation)
-    else:
-        donors[response_name] = []
-        donors[response_name].append(float(response_donation))
 
-    print(donors)
-
+    # Can the above if/else be replaced with setdefault?? look into it...
 
 def report():
     """
@@ -63,33 +71,42 @@ def report():
         total_count = len(donors[key_name])
         avg_given = "%.2f" % (total_given / total_count)
 
-        # Space calculations to ensure there is appropriate amounts of " " for alignment
-        name_space = 22 - len(name)
-        total_given_space = 11 - len(str(total_given))
-        total_count_space = 12 - len(str(total_count))
-        avg_given_space = 12 - len(str(avg_given))
+        header = "{:<25}".format("Donor Name") +
+                 "{:>15}".format("Total Given") +
+                 "{:>15}".format("Num Gifts") +
+                 "{:>15}".format("Average Gift")
 
-        # Print the results with formatting
-        print(name + " " * name_space, end='')
-        print("$" + " " * total_given_space + str(total_given), end='')
-        print(" " * total_count_space + str(total_count) + "  ", end='')
-        print("$" + " " * avg_given_space + str(avg_given))
+
+        # # Space calculations to ensure there is appropriate amounts of " " for alignment
+        # name_space = 22 - len(name)
+        # total_given_space = 11 - len(str(total_given))
+        # total_count_space = 12 - len(str(total_count))
+        # avg_given_space = 12 - len(str(avg_given))
+
+        # # Print the results with formatting
+        # print(name + " " * name_space, end='')
+        # print("$" + " " * total_given_space + str(total_given), end='')
+        # print(" " * total_count_space + str(total_count) + "  ", end='')
+        # print("$" + " " * avg_given_space + str(avg_given))
+
 
 def letters():
 
     print("== Send letters to everyone ==")
 
     for key_name in donors:
-        file = open("Letter for " + key_name + ".txt", "w")
+        file = open("Letter_for_" + key_name + ".txt", "w")
 
         letter = ("Dear " + key_name + ",\n\n" +
-                 "Thank you for your very kind donation of $" + "%.2f" % sum(donors[key_name]) + ".\n\n" +
-                 "It will be put to very good use.\n\n" +
-                 "Sincerely,\n\n" + "-The Team")
+                  "Thank you for your recent donation of $" +
+                  "%.2f" % donors[key_name][-1] + ".\n\n" +
+                  "It will be put to very good use.\n\n" +
+                  "Sincerely,\n\n" + "-The Team")
 
         file.write(letter)
 
         file.close()
+
 
 def quit():
     print("Are you sure you want to quit?\n"
