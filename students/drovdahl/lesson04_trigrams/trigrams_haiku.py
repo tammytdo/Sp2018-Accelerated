@@ -69,7 +69,7 @@ def make_new_text2(trigram):
     e = ('.', '?', '!')
     pair = random.choice(list(trigram.keys()))
     while True:
-        if not pair[0].isupper():
+        if not pair[0].istitle():
             pair = random.choice(list(trigram.keys()))
         else:
             break
