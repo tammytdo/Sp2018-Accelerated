@@ -8,23 +8,21 @@ old_datas = [['William Gates III',  653784.39, 2],
          ['Jeff Bezos', 877.33, 1],
          ['Paul Allen', 708.42, 3]]
 
-# make a new data structure for part2
-datas = []
-
-for i in old_datas:
+# make a new data structure for part3 with comprehension
+def data_element(i):
     dic = {}
     dic.setdefault('name', i[0])
     dic.setdefault('donation_amount', i[1])
-    dic.setdefault('donation_times',i[2])
+    dic.setdefault('donation_times', i[2])
     dic.setdefault('recent_donation')
-    datas.append(dic)
+    return dic
+
+datas = [data_element (i) for i in old_datas]
 
 
 #make a donors' name list
 def donors_name_list():
-    donors = []
-    for data in datas:
-        donors.append(data['name'])
+    donors = [data['name'] for data in datas]
     return donors
 
 
@@ -40,10 +38,14 @@ def find_donor(donor,donors):
 
 def upgrade_datas(donor):
     # upgrade donors' total donation amount, donation times and recent donation amount
-    amount = float(input('Enter donation amount: '))
+    amount = input('Enter donation amount: ')
+    try:
+        amount = float(amount)
+    except ValueError:
+        print('error: donation amount is invalid\n')
     for data in datas:
         if donor == data.get('name'):
-            data['donation_amount'] +=  amount
+            data['donation_amount'] += amount
             data['donation_times'] += 1
             data.setdefault('recent_donation', amount)
     return datas
