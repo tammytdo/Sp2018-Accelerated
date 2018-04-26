@@ -9,12 +9,13 @@ Simple Mailroom Program for a nonprofit
 import sys
 
 # Create a data object to store donor information
-donors = [('Jeff Bezos', [50, 100, 56]),
-          ('Mark Zuckerberg', [45, 105, 349, 101, 78]),
-          ('Paul Allen', [10, 50, 400, 400]),
-          ('Elon Musk', [16, 68, 170, 425]),
-          ('Richard Branson', [25, 90, 124, 300])
-          ]
+donors = {
+    'Jeff Bezos': [50, 100, 56],
+    'Mark Zuckerberg': [45, 105, 349, 101, 78],
+    'Paul Allen': [10, 50, 400, 400],
+    'Elon Musk': [16, 68, 170, 425],
+    'Richard Branson': [25, 90, 124, 300]
+}
 
 
 def names():
@@ -26,71 +27,61 @@ def names():
         names.append(tup[0])
     return names
 
-
-
-# Sending a Thank You
-# If the user (you) selects ‘Send a Thank You’, prompt for a Full Name.
-# If the user types ‘list’, show them a list of the donor names and re-prompt
-# If the user types a name not in the list, add that name to the data structure and use it.
-# If the user types a name in the list, use it.
-# Once a name has been selected, prompt for a donation amount.
-# Turn the amount into a number – it is OK at this point for the program to crash if someone types a bogus amount.
-# Once an amount has been given, add that amount to the donation history of the selected user.
-# Finally, use string formatting to compose an email thanking the donor for their generous donation.
-# Print the email to the terminal and return to the original prompt.
-
 def gen_letter(donor):
-    return "Dear {:s},\nWe greatly appreciate your generous donation of ${:,.2f}.\nThank you,\nThe Team".format(donor[0], donor[1])
+    return "Dear {:s},\n\nWe greatly appreciate your generous donation of ${:,.2f}.\n\nThank you,\nThe Team".format(donor[0], donor[1])
 
 def write_letters_to_disk():
     """
     Generate one letter for each donor and write to disk
     """
-    for donor in donors:
-        donor = (donor[0], donor[1][-1])
+    for n, d in donors.items():
+        print('Generating letter to {:s}'.format(n))
+        donor = (n, d[-1])
         letter = gen_letter(donor)
-        filename = donor[0].replace(' ', '_') + '.txt'
+        filename = n.replace(' ', '_') + '.txt'
         with open(filename, 'w') as outfile:
             outfile.write(letter)
+    print()
+    return
+
+def enter_name(name, amount):
+    amount = float(amount)
+    donors.setdefault(name, []).append(amount)
+    print(gen_letter([name, amount]))
+    print()
+
+def get_name_donation():
+    print('\nEnter the full name of the recipient:')
+    ty_name = input('>> ')
+    print('Enter a donation amount:')
+    ty_amount = input('>> ')
+    print()
+    enter_name(ty_name, ty_amount)
+
+def donor_list():
+    print('\nDonors:')
+    for name in donors:
+        print(name)
+    print()
 
 def thank_you():
     print()
     print('You have chosen Send a Thank You')
     ty_choice = ''
-    while True:
+    switch_func_dict = {
+        '1': get_name_donation,
+        '2': donor_list
+    }
+    while ty_choice != '3':
         print('1) Enter the full name of the recipient\n2) See a list of donor names\n3) Return to the Main Menu')
         ty_choice = input('>> ')
-        if ty_choice not in ('1', '2', '3'):
-                print('Not a valid response. Type 1, 2, or 3\n')
-                continue
-        elif ty_choice == '1':
-            print()
-            print('Enter the full name of the recipient:')
-            ty_name = input('>> ')
-            print('Enter a donation amount:')
-            ty_amount = input('>> ')
-            print()
-            enter_name(ty_name, ty_amount)
-        elif ty_choice == '2':
-            print()
-            print('Donors:')
-            for name in names():
-                print(name)
-            print()
-            continue
-        elif ty_choice == '3':
-            print()
-            return
-
-def enter_name(name, amount):
-    amount = float(amount)
-    if name in names():
-        donors[names().index(name)][1].append(amount)
-    else:
-        donors.append((name, [amount]))
-    print(gen_letter([name, amount]))
-    print()
+        try:
+            switch_func_dict.get(ty_choice)()
+        except TypeError:
+            print('Not a valid response. Type 1, 2, or 3\n')
+        continue
     return
+        
 
 def avg_tup(tup):
     return sum(tup[1]) / len(tup[1])
@@ -100,8 +91,8 @@ def sum_tup(tup):
 
 def report():
     print('Donor Name                | Total Given | Num Gifts | Average Gift')
-    print('------------------------------------------------------------------')
-    sorted_donors = donors[:]
+    print('-' * 66)
+    sorted_donors = list(donors.items())
     sorted_donors.sort(key=sum_tup, reverse=True)
     report_rows = []
     for d in sorted_donors:
@@ -115,23 +106,22 @@ def quit():
 def mainloop():
     print('Welcome to Mailroom')
     response = ''
-    while True:
+    switch_dict = {
+        '1': thank_you,
+        '2': report,
+        '3': write_letters_to_disk,
+        '4': quit
+    }
+    while response != '4':
         print('What do you want to do?')
         print('1) Send a Thank You\n2) Create a Report\n3) Send letters to everyone\n4) Quit')
         response = input('>> ')
-        print('Response was: ', response)
-        print()
-        if response not in ('1', '2', '3', '4'):
+        # print('Response was: {:s}\n'.format(response))
+        try:
+            switch_dict.get(response)()
+        except TypeError:
             print('Not a valid response. Type 1, 2, 3, or 4\n')
-            continue
-        elif response == '1':
-            thank_you()
-        elif response == '2':
-            report()
-        elif response == '3':
-            write_letters_to_disk()
-        elif response == '4':
-            quit()
+        continue
 
 
 if __name__ == '__main__':
