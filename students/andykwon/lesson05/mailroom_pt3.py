@@ -46,7 +46,10 @@ def thank_you():
                 print("That was not a valid input.\n")
                 continue
 
-            if response_name in donors:
+            # comp_names = [name.upper() for name in donors]
+            # print(comp_names)
+
+            if response_name.upper() in donors:
                 donors[response_name].append(response_donation)
                 continue
             else:
@@ -58,6 +61,7 @@ def thank_you():
             print("\n")
             for name in donors:
                 print(name)
+
             continue
 
         elif response == "3":
@@ -128,7 +132,7 @@ def quit():
 
         print("Are you sure you want to quit?\n"
               "1) Yes, quit\n"
-              "2) No, don't quit\n")
+              "2) Back\n")
 
         response = input(">")
 
@@ -166,8 +170,6 @@ def mainloop():
         except ValueError:
             print("invalid input\n")
 
-        # if response not in ("1", "2", "3", "4"):
-        #     print("Not a valid response")
         if response == "1":
             thank_you()
             continue
