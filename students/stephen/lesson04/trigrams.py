@@ -29,6 +29,7 @@ part 3: use those trigrams to create new text
 
 # print(words)
 
+import random
 
 def parse_file(filename):
     """
@@ -36,8 +37,12 @@ def parse_file(filename):
     """
     with open(filename) as infile:
         words = []  # start with empty list
+        for i in range(60):
+            infile.readline()
         for line in infile:
-            print(line)
+            if line.startswith("End of the Project Gutenberg"):
+                break
+            # print(line)
             words.extend(line.split())
     return words
 
@@ -52,19 +57,26 @@ def build_trigram(words):
         pair = (first, second)
         tris.setdefault(pair, []).append(third)
         # if you want a unique list of words after the pairs, use a set
-        # if pair in tris:
-        #     list_of_followers = tris[pair]
-        # else:
-        #     list_of_followers = tris[pair] = []
-        # list_of_followers.append(third)
-        # if pair in tris:
-        #     tris[pair].append(third)
-        # else:
-        #     tris[pair] = third
-    # print(tris)
     return tris
+
+def make_new_text(trigram, length=1000):
+    pair = random.choice(list(trigram.keys()))
+    sentence = []
+    sentence.extend(pair)
+    while not (len(sentence) >= length and sentence[-1][-1] == '.'):
+        followers = trigram[pair]
+        sentence.append(random.choice(followers))
+        pair = tuple(sentence[-2:])
+    new_text = ''
+    for word in sentence:
+        new_text += word + ' '
+    new_text = new_text[:-1]
+    new_text = new_text[0].capitalize() + new_text[1:]
+    return new_text
 
 
 if __name__ == "__main__":
-    words = parse_file("sherlock_small.txt")
+    words = parse_file("sherlock.txt")
     trigram = build_trigram(words)
+    new_text = make_new_text(trigram, 500)
+    print(new_text)
