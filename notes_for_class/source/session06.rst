@@ -26,13 +26,15 @@ Issues that came up during the week.
 Getting an arbitrary key from a dict
 ------------------------------------
 
-See ``arbitrary_key.py`` in `examples/session04`
+See ``arbitrary_key.py`` in `examples/session05`
 
 
 dict as switch -- how do you leave the loop?
 --------------------------------------------
 
-Let's look at Eowyn's solution...
+Let's look at a particularly nifty solution:
+
+``solutions/Lesson05/mailroom_dict_as_switch``
 
 
 globals??
@@ -49,11 +51,6 @@ a number of you have been putting code in the global (module) namespace:
        the_dict = something()
 
 What's wrong with this?
-
-More on keyword arguments:
---------------------------
-
-:ref:`keyword_only_arguments`
 
 
 
