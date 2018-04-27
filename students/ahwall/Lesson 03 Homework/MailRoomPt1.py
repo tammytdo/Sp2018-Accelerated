@@ -42,7 +42,7 @@ How much was their donate?  ")
                         print(ty_letter, "\b's donation has been added to \
                               the Donor Report...Creating 'Thank you email'")
                         i = 1
-                        letter(ty_letter, DonationVal)
+                        One_letter(ty_letter, DonationVal)
                         mainloop()
                         break
                     else:
@@ -60,12 +60,12 @@ How much was their donate?  ")
                 print(ty_letter, "and their donation have been added to the \
                       Donor Report...Creating 'Thank you email'")
                 i = 1
-                letter(ty_letter, DonationVal)
+                One_letter(ty_letter, DonationVal)
                 mainloop()
                 break  # Works
 
 
-def letter(donor, donation):
+def One_letter(donor, donation):
     print()
     print("Dear {};\n\n\t Thank you for your generous donation of ${:.2f}.\n\n \
 \tSincerely,\n\n \tThe Python Project\n".format(donor, donation))  # Works
@@ -109,5 +109,3 @@ def mainloop():
 
 if __name__ == "__name__":
     mainloop()
-    # thank_you()
-    # letter()
