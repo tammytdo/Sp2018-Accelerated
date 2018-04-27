@@ -50,9 +50,11 @@ langs = ['java', 'c', 'python']
 try:
     more_joke = more_fun(langs[1])
     morer_joke = more_fun(langs[-1])
-    last_joke = last_fun()
+
 except SyntaxError:
     print(more_joke)
+finally:
+    last_fun()
 
 
 
