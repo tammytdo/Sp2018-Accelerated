@@ -11,6 +11,10 @@ donors = [('Donor A', [50, 100, 25, 100]),
           ('Donor C', [300])
           ]
 
+def list_donors():
+    for (donor, amounts) in donors:
+        print(donor)
+
 def thank_you():
     #create list of donor names
     donor_name = []
@@ -23,9 +27,9 @@ def thank_you():
               '3. Quit\n')
 
         response = input('>> ')
-        if response = '1':
-            print('List of donors:\n', donor_name, '\n')
-        elif response = '2':
+        if response == '1':
+            list_donors()
+        elif response == '2':
             print('Enter a name')
 
             name = input('>> ')
@@ -33,18 +37,21 @@ def thank_you():
                 print('Enter an amount')
                 amount = int(input('>> '))
                 for (donor, amounts) in donors:
-                    if name = donor:
+                    if name == donor:
                         amounts.append(amount)
             else:
                 print('Enter an amount')
                 amount = int(input('>> '))
                 donors.append((name, [amount]))
             print('{},\n\nThank you so much for you contribution of {}.'.format(name, amount))
-        elif response = '3':
-            quit()
+        elif response == '3':
+            break
+    return
+
 
 def totaldonations(donations):
     return donations[1]
+
 
 def report():
     report = []
@@ -60,32 +67,44 @@ def report():
               ' $', ' '*(12 - len(str(avg))), avg #print avg
              )
 
-def letter():
-    for (donor, amounts) in donors:
-        outfile = open(donor + '.txt', 'w')
-        outfile.write('Dear {},\n\n'.format(donor)
-                      'Thank you for you donations of {}\n\n'.format(sum(amounts))
-                      'Sincerly,\n-Me'
-                      )
-        outfile.close()
 
-def mainloop():
-    print('Welcome to the mailroom')
+def gen_letter(donor):
+    name = donor[0]
+    amounts = donor[1]
+    letter = ('Dear {},\n\n'
+              'Thank you for your recent donation of {}\n\n'
+              'Sincerly,\n-Me'.format(name, amounts[-1])
+              )
+    return letter
+
+
+def write_letters_to_disk():
+    """generate one letter for each donor and write to disk"""
+    for donor in donors:
+        letter = gen_letter(donor)
+        filename = donor[0] + ".txt"
+        with open(filename, 'w') as outfile:
+            outfile.write(letter)
+
 
 def quit():
     sys.exit()
+
+
+def mainloop():
+    print('Welcome to the mailroom')
 
     response = ''
     while True:
         print('What do you want to do?')
         print('1. Thank You\n'
               '2. Report\n'
-              '3. Send Out Letters'
+              '3. Send Out Letters\n'
               '4. Quit\n')
         response = input('>> ')
 
-        if response not in ('1', '2', '3'):
-            print('Not a valid input: type 1, 2, or 3')
+        if response not in ('1', '2', '3', '4'):
+            print('Not a valid input: type 1, 2, 3, or 4')
             continue
         elif response == '1':
             thank_you()
@@ -94,11 +113,16 @@ def quit():
             report()
             continue
         elif response == '3':
-            letter()
+            write_letters_to_disk()
             continue
         elif response == '4':
             quit()
             continue
 
-if __name__ == '__main__'
+
+if __name__ == '__main__':
     mainloop()
+    #let = gen_letter(('Fred', [10, 100, 50]))
+    #print(let)
+    # write_letters_to_disk()
+    # thank_you()
