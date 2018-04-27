@@ -23,6 +23,7 @@ Meet Shah
 Issues that came up during the week.
 ====================================
 
+
 Getting an arbitrary key from a dict
 ------------------------------------
 
@@ -40,7 +41,7 @@ Let's look at a particularly nifty solution:
 globals??
 ---------
 
-a number of you have been putting code in the global (module) namespace:
+a number of folks have been putting code in the global (module) namespace:
 
 .. code-block:: python
 
@@ -51,6 +52,46 @@ a number of you have been putting code in the global (module) namespace:
        the_dict = something()
 
 What's wrong with this?
+
+Any Questions about the homework -- or anything?
+------------------------------------------------
+
+?????
+
+Break and Lightning talks:
+
+
+Ryan Drovdahl
+
+Meet Shah
+
+
+Testing?
+--------
+
+Did you'all do the testing exercise with a coding bat example?
+
+We could do one now.
+
+Or...
+
+Advanced Argument Passing
+-------------------------
+
+All this ``*arg``, ``**kwargs`` stuff a bit confusing?
+
+Let's explore it a bit.
+
+AND -- we'll use TDD to do it.
+
+Exercise here:
+
+https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/args_kwargs_lab.html
+
+
+
+
+
 
 
 
