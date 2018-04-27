@@ -1,6 +1,6 @@
 
 def fibonacci(n):
-'''Return the nth value in the fibonacci series.'''
+    '''Return the nth value in the fibonacci series.'''
     if n == 1:
         return 0
     if n == 2:
@@ -12,7 +12,7 @@ def fibonacci(n):
 
 
 def lucas(n):
-'''Returns the nth value in the lucas numbers series'''
+    '''Returns the nth value in the lucas numbers series'''
     if n == 1:
         return 2
     if n == 2:
@@ -23,7 +23,7 @@ def lucas(n):
 
 
 def sum_series(n, x=0, y=1):
-'''Returns the nth value in the series'''
+    '''Returns the nth value in the series'''
     if n == 1:
         return x
     if n == 2:

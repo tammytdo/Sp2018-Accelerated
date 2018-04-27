@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import sys
 '''
 Goal:
@@ -12,8 +13,8 @@ It should have a data structure that holds a list of your donors and a history o
 the amounts they have donated. This structure should be populated at first with at \
 least five donors, with between 1 and 3 donations each.
 '''
-DATA_STRUCTURE = [('Jeff Bezos', [200, 500, 1000]), \
-                    ('Bill Gates', [1000]), \
+DATA_STRUCTURE = [('Jeff Bezos', [200, 500, 1000]),
+                    ('Bill Gates', [1000]),
                     ('Steve Jobs', [20, 50, 100])]
 
 #PROGRAM_OPTIONS = ['Send a Thank You', 'Create a Report', 'Send letters to everyone', 'quit']
@@ -120,15 +121,16 @@ def create_a_report():
     print('Menu: Create a Report')
     top_row = ('Donor Name', 'Total Given', 'Num Gifts', 'Average Gift')
     format_header = '{:<30} | {:<15} | {:<10} | {:<15}\n'
-    format_data = '{:<30} $ {:<15.2f}   {:<10} $ {:<15.2f}\n'
+    format_data = '{:<30} {:>15}    {:^10} $ {:<15.2f}\n'
     format_string = format_header.format(*top_row)
+    report = [format_string]
     for item in DATA_STRUCTURE:
         name = item[0]
         total_given = sum(item[1])
         num_gifts = len(item[1])
         avg_gift = sum(item[1]) / num_gifts
-        format_string += format_data.format(name, total_given, num_gifts, avg_gift)
-    print(format_string)
+        report.append(format_data.format(name, "${:,.2f}".format(total_given), num_gifts, avg_gift))
+    print("".join(report))
 
 def send_letters(data_structure=DATA_STRUCTURE[:]):
     '''
@@ -160,8 +162,10 @@ def send_letters(data_structure=DATA_STRUCTURE[:]):
                           '${donation:.2f}\n\nIt will be put to very good use.\n\n'
                           '{:' '<15}Sincerely, \n\n{:' '<15}-The Team'.format(' ', ' ', **entry,))
 
-PROGRAM_OPTIONS_DICT = {'Send a Thank You': thank_you, 'Create a Report': create_a_report, \
-'Send Letters to Everyone': send_letters, 'quit': sys.exit}
+PROGRAM_OPTIONS_DICT = {'Send a Thank You': thank_you,
+                        'Create a Report': create_a_report,
+                        'Send Letters to Everyone': send_letters,
+                        'quit': sys.exit}
 
 if __name__ == '__main__':
     menu(PROGRAM_OPTIONS_DICT)
