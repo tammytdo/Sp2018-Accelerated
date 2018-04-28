@@ -23,9 +23,9 @@ donors database.
 
 
 def find_donor_db():
-    return{'dave grohl': ("Dave Grohl", [999,999.99, 45.63]),
-           'billy joe armstrong': ("Billy Joe Armstrong", [15,000, 2,222]),
-           'rivers cuomo': ("Rivers Cuomo", [1994.96, 2,100,000]),
+    return{'dave grohl': ("Dave Grohl", [999999.99, 45.63]),
+           'billy joe armstrong': ("Billy Joe Armstrong", [15000, 2222]),
+           'rivers cuomo': ("Rivers Cuomo", [1994.96, 2100000]),
            }
 
 # ----------------------------------------------------------------------------
@@ -94,6 +94,7 @@ def accept_donation(name):
         print(thankyou)
 
 # ----------------------------------------------------------------------------
+#
 # The following function creates a sort key for the donor db. Allows the user
 # to sort by name.
 #
@@ -149,11 +150,58 @@ def thankyou():
         if donationinput == 'menu':
             return
 
-# Building reporting function
+
+# ----------------------------------------------------------------------------
+#
+# Builds the donor report and displays the name, total given, number of gifts
+# and the average gift donated by the donor.
+#
+# ----------------------------------------------------------------------------
 
 
-def report():
-    print("This is the report function\n")
+def donor_report():
+
+    report_rows = []
+    for (name, donation_amt) in donor_db.values():
+        total_donations = sum(donation_amt)
+        num_donations = len(donation_amt)
+        avg_donation = total_donations / num_donations
+        report_rows.append((name, total_donations, num_donations, avg_donation))
+
+    report_rows.sort(key=sort_key)
+    report = []
+    report.append("{:25s} | {:11s} | {:9s} | {:12s}".format("Donor Name",
+                                                            "Total Donated",
+                                                            "Num gifts",
+                                                            "Average Donation"))
+    report.append("_" * 66)
+    for row in report_rows:
+        report.append("{:25s}   ${:10.2f}   ${:9d}   ${:11.2f}".format(*row))
+    return "\n".join(report)
+
+# ----------------------------------------------------------------------------
+#
+# Save letters to disk
+#
+# ----------------------------------------------------------------------------
+
+
+def save_letters_to_disk():
+    for donor in donor_db.values():
+        letter = thankyou(donor)
+        filename = donor[0].replace(" ", "_") + ".txt"
+        print("creating letter to:", donor[0])
+        open(filename, 'w').write(letter)
+
+# ----------------------------------------------------------------------------
+#
+# Prints the donor report
+#
+# ----------------------------------------------------------------------------
+
+
+def print_donor_report():
+    print(donor_report)
 
 
 # ----------------------------------------------------------------------------
@@ -186,6 +234,6 @@ if __name__ == "__main__":
         elif response == '1':
             thankyou()
         elif response == '2':
-            report()
+            donor_report()
         elif response == '3':
             quit()
