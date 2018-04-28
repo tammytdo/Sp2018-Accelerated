@@ -1,8 +1,8 @@
 <!--The is the learning journal for Mathew Martin taking Python CWE Accelerated course at the University of Washington Spring 2018-->
 
-# Learning Journal for Python
+# Learning Journal for Python CWE Spring(sprint)2018
 
-### Mathew C. Martin / UWPCE Spring 2018
+#### Mathew C. Martin / UWPCE Spring 2018
 
 This journal is intended for reference. It is not intended to be authoritative or a replacement for the published docs. I will attempt to provide sourcing information as best I can but much of the material is taken from open source and creative commons available for free online and from course materials provided for educational purposes and contained within the curriculum posted.
 
@@ -37,7 +37,7 @@ Dictionaries give you fast lookup of arbitrary search.
 "may I" => ["wish"]
 "I might"
 ```
-### solutions to trigrams
+#### solutions to trigrams
 ```
 sample = """Now is the time for all good men to come to the aid of the country"""
 
@@ -59,7 +59,7 @@ def build_trigram(words):
 if __name__ == "__main__"
     trigram = build_trigram(words)
 ```
-## 18.04.23: Lesson 05
+### 18.04.23: Lesson 05
 
 <!-- function to write files to disk -->
 ```
@@ -86,9 +86,9 @@ else:
 finally:
   print("This always runs")
 ```
-## 18.04.25
+### 18.04.25
 
-### All the “set” operations from math class…
+#### All the “set” operations from math class…
 
 - s.isdisjoint(other)
 - s.issubset(other)
@@ -111,7 +111,7 @@ Life's challenges weigh heavily and the struggle if nothing else keeps the mind 
 
 ### 18.04.25.18:56
 
-## Common Idioms
+#### Common Idioms
 
 ```
 for line in open('secrets.txt'):
@@ -126,8 +126,8 @@ while True:
         break
     do_something_with_line()
 ```
-## File Methods
-### Commonly Used File Methods:
+### File Methods
+#### Commonly Used File Methods:
 
 - f.read()
 - f.readline()  
@@ -151,7 +151,7 @@ In [68]: for f in pth.iterdir():
 junk2.txt
 junkfile.txt
 ```
-## And it has a really nifty way to join paths, by overloading the “division” operator:
+### And it has a really nifty way to join paths, by overloading the “division” operator:
 ```
 In [49]: p = pathlib.Path.home()  # create a path to the user home dir.
 
@@ -163,4 +163,18 @@ Out[51]: PosixPath('/Users/Chris/a_dir/one_more/a_filename')
 ```
 (OS Path Module Docs)[https://docs.python.org/3/library/pathlib.html]
 
-# 18.4.26.18:40
+### 18.4.28.10:00
+
+Saturday morning and all is quiet on the NW front. The weather has us boxed in pining for the 70 degree days not long absent. Wrestling the Zen that is Python, a struggle of both mind and muscle.
+
+Sorting information manually has always been something I loathed, not enough patience to ever find satisfaction in that enterprise. However, loaded to bear with effective tools, it is something I can find instant pleasure. Looking forward to understanding how to implement logic and computer processing power in a practical manner. I've worked as an archivist and administrator and can see how important and powerful these tools in coordinating just about any modern endeavor.
+
+### 18.4.28.10:10
+
+#### Assignment: Mailroom, Part 2
+
+Update mailroom program to do the following:
+
+- Use dicts where appropriate
+- See if you can use a dict to switch between the users selections. See Using a Dictionary to switch (Using a Dictionary to switch)[https://uwpce-pythoncert.github.io/PythonCertDevel/modules/DictionaryAsSwitch.html#dict-as-switch]
+- Try to use a dict and the .format() method to do the letter as one big template rather than building up a big string in parts.
