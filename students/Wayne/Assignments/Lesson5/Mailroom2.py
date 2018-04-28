@@ -57,9 +57,10 @@ def search_donor_db(name):
 
 
 def list_donors():
-    print("Donors:\n")
-    for donor in donors:
-        print(donor[0])
+    listing = ("Donors:")
+    for donor in donor_db.values():
+        listing.append(donor[0])
+    return "\n".join(listing)
 
 # ----------------------------------------------------------------------------
 #
@@ -143,7 +144,6 @@ def quit():
 # Creates the main function for the Mailroom2.py exercise
 #
 # ----------------------------------------------------------------------------
-
 
 
 if __name__ == "__main__":
