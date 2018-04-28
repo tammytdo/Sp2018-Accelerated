@@ -40,7 +40,7 @@ How much was their donate?  ")
                         vallist.append(DonationVal)
                         print()
                         print(ty_letter, "\b's donation has been added to \
-                              the Donor Report...Creating 'Thank you email'")
+the Donor Report...Creating 'Thank you email'")
                         i = 1
                         One_letter(ty_letter, DonationVal)
                         mainloop()
@@ -58,7 +58,7 @@ How much was their donate?  ")
                 donors.append(Don_Val)
                 print()
                 print(ty_letter, "and their donation have been added to the \
-                      Donor Report...Creating 'Thank you email'")
+Donor Report...Creating 'Thank you email'")
                 i = 1
                 One_letter(ty_letter, DonationVal)
                 mainloop()
