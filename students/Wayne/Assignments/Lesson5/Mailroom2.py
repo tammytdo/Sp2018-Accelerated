@@ -10,6 +10,11 @@ import math
 from textwrap import dedent
 
 
+"""
+The following section of code pertain to the building and manipulation of the
+donors database.
+"""
+
 # ----------------------------------------------------------------------------
 #
 # Built a sample database and put it into a dict format
@@ -62,8 +67,33 @@ def list_donors():
         listing.append(donor[0])
     return "\n".join(listing)
 
+
 # ----------------------------------------------------------------------------
 #
+# The following function adds a new donation amount into the database
+#
+# ----------------------------------------------------------------------------
+
+
+def accept_donation(name):
+    while True:
+        donation_msg = input("Enter your desired donation amount"
+                             "or 'menu' to exit)>").strip()
+        if donation_msg == "menu":
+            return
+        else:
+            donation_amt = float(donation_msg)
+            break
+
+    donor = search_donor_db(name)
+    if donor is None:
+        donor = add_new_donor(name)
+
+        donor[1].append(donation_amt)
+
+        print(thankyou)
+
+# ----------------------------------------------------------------------------
 # The following function creates a sort key for the donor db. Allows the user
 # to sort by name.
 #
@@ -74,40 +104,10 @@ def sort_key(item):
     return item[1]
 
 
-# ----------------------------------------------------------------------------
-#
-# The following function creates a sort key for the donor db. Allows the user
-# to sort by name.
-#
-# ----------------------------------------------------------------------------
-
-
-def thankyou():
-    while True:
-        name = input("Enter the donor's name or a list of donor's"
-                     "names to see all donors (or type 'menu'"
-                     "to exit)>").strip()
-        if name == 'list':
-            list_donors()
-        elif name == 'menu':
-            return
-        else:
-            break
-
-# creates loop for donation amount input
-
-    while True:
-        donationinput = input("Enter the amount donated "
-                              "(or 'menu' to exit)>").strip()
-        if donationinput == 'menu':
-            return
-
-# Building reporting function
-
-
-def report():
-    print("This is the report function\n")
-
+"""
+The following section of the code pertaions to the operational side of the
+mail room application.
+"""
 
 # ----------------------------------------------------------------------------
 #
@@ -127,6 +127,33 @@ def mainloop():
 
         > """))
     return mainmenuinput.strip()
+
+
+def thankyou():
+    while True:
+        name = input("Enter the donor's name or a list of donor's"
+                     "names to see all donors (or type 'menu'"
+                     "to exit)>").strip()
+        if name == 'list':
+            print(list_donors())
+        elif name == 'menu':
+            return
+        else:
+            break
+
+# creates loop for donation amount input
+
+    while True:
+        donationinput = input("Enter the amount donated "
+                              "(or 'menu' to exit)>").strip()
+        if donationinput == 'menu':
+            return
+
+# Building reporting function
+
+
+def report():
+    print("This is the report function\n")
 
 
 # ----------------------------------------------------------------------------
