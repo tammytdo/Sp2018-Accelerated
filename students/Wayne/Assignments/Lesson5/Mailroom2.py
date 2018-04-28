@@ -38,13 +38,47 @@ def add_new_donor(name):
     donor_db[name.lower()] = donor
     return donor
 
+# ----------------------------------------------------------------------------
+#
+# The following function uses the dictionary key to search the donor database
+#
+# ----------------------------------------------------------------------------
 
+
+def search_donor_db(name):
+    key = name.strip().lower()
+    return donor_db.get(key)
+
+# ----------------------------------------------------------------------------
+#
+# The following function creates a list of donors from the database
+#
+# ----------------------------------------------------------------------------
 
 
 def list_donors():
     print("Donors:\n")
     for donor in donors:
         print(donor[0])
+
+# ----------------------------------------------------------------------------
+#
+# The following function creates a sort key for the donor db. Allows the user
+# to sort by name.
+#
+# ----------------------------------------------------------------------------
+
+
+def sort_key(item):
+    return item[1]
+
+
+# ----------------------------------------------------------------------------
+#
+# The following function creates a sort key for the donor db. Allows the user
+# to sort by name.
+#
+# ----------------------------------------------------------------------------
 
 
 def thankyou():
@@ -73,11 +107,12 @@ def thankyou():
 def report():
     print("This is the report function\n")
 
-# Builds the quit function to exit the application
 
-
-def quit():
-    sys.exit()
+# ----------------------------------------------------------------------------
+#
+# Mainloop
+#
+# ----------------------------------------------------------------------------
 
 
 def mainloop():
@@ -91,6 +126,24 @@ def mainloop():
 
         > """))
     return mainmenuinput.strip()
+
+
+# ----------------------------------------------------------------------------
+#
+# quits the program when prompted in the menu
+#
+# ----------------------------------------------------------------------------
+
+
+def quit():
+    sys.exit()
+
+# ----------------------------------------------------------------------------
+#
+# Creates the main function for the Mailroom2.py exercise
+#
+# ----------------------------------------------------------------------------
+
 
 
 if __name__ == "__main__":
