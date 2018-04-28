@@ -5,9 +5,16 @@ Simple mailroom program for a non profit
 # Start with interactive loop
 
 import sys
-import math 
+import math
 
 from textwrap import dedent
+
+
+# ----------------------------------------------------------------------------
+#
+# Built a sample database and put it into a dict format
+#
+# ----------------------------------------------------------------------------
 
 
 def find_donor_db():
@@ -16,16 +23,22 @@ def find_donor_db():
            'rivers cuomo': ("Rivers Cuomo", [1994.96, 2,100,000]),
            }
 
+# ----------------------------------------------------------------------------
+#
+# The following function adds a new donor to the db. The function below uses
+# .lower() to convert all of the donor names into a single case to allow for
+# an easier sorting method of the dict.
+#
+# ----------------------------------------------------------------------------
 
 
-donors = [("Donor A", [50, 100, 24, 100]),
-          ("Donor B", [525, 10, 23]),
-          ("Donor C", [50]),
-          ]
+def add_new_donor(name):
+    name = name.strip()
+    donor = (name, [])
+    donor_db[name.lower()] = donor
+    return donor
 
-"""
-#Building Donor List
-"""
+
 
 
 def list_donors():
@@ -81,6 +94,9 @@ def mainloop():
 
 
 if __name__ == "__main__":
+
+    donor_db = find_donor_db()
+
     running = True
     while running:
         response = mainloop()
@@ -93,6 +109,3 @@ if __name__ == "__main__":
             report()
         elif response == '3':
             quit()
-
-    def find_donor_db():
-        
