@@ -184,3 +184,25 @@ Update mailroom program to do the following:
 
 ### 18.4.28.14:35
 Mailroom.py refactor with dict switch testing successful att
+
+
+### 18.4.28.16:29
+
+Bigstring handy trick from video:
+
+```
+from random import SystemRandom
+from string import ascii_letters as letters
+
+bigstring = ''.join(SystemRandom().choice(letters) for _ in range(999))
+
+bigstring
+Out[24]: 'hVQZXTvmrHLhKIdUUpEHhfEWaNWafRvLgwsaEQkjyHUOthMJzsJCopxRUKHoLrMXSPJHEwITVnPMbafHUjIEmpRoTcQfadngGrURUzYqSvjRJrUhDDUNbRYfVNlHehdmilqQihLUUytNmhVxelaOjMFbnHInnqsmbasZToGjXsteTNoGGmNVGhVPkZfvKXXcibiKkXmenxXUEeZOGVkOZjOfHNKTMDAFDwHvFhrWpiocXBVskJEFTGGRMTdQkvOKsdObFQSMKrOaPexzmhpsvfbUgyIZbnrMvSsOjRmJsvUYAgTnWJeSYBhQlsHEZWWPSlnKSPwEwyLoqQhOfvgTgbiEsIVYOwlYAfoesNBMpNlksCQEbjFCcQTGktpXIuGzUhvHGhhhMTfFUnjXLLKCIzxuOAmLrYBEpfpgRdGjtPhnkyLUHJFNFnCzSwNKwWkYtoTFmegseQlEUGXpKfegyzxfJnPsICHnRcWGakjOAsrWdlyjmOiQkdKUmOmqcgWADDqrNhZRusxFkDizxUntzQQJFUAnYxTUxHAhMEaEfyqOUnrlBsfolOwSbRYMnvsTovDktJSUdXkeMEdiHuisaEInhOHTHhacCVehoWzuXIUUEqwXabcuCHgYzgyhjYGJAumWrkSUXEmkuexrTXkfCGxvnZCdqYMnZqlANlXmZXeXEHqRjSojeSayaTdamvdFMkJIiWmTkXPwwuPhBkdBfieQmumbKhlxvsdmdsHfnGhiTvHKxJxgAEdtwXkbdsadwFuiEwKxrHlMUVVBieRYYjBfLTddVOCPKUrGKzNQXxGTMYiqmbWCwFLWEzcjkZSSHkXpOvCrNkdwDEoeJlSKfTkgiNCAwuhkShFJRFAgbNCYJWQAGWzNcWaiXcLoVkhIvuIJujiIvuoxFRGozYFsbPGppNwmYLLVGEweKTWtNJXtetZSHgQrOSosoddVrMblOXaORwdCVKXQIJiCRatZFiRbRZZuLgVmCLjTvYW'
+
+my_dict = dict.fromkeys(bigstring, 0)
+
+for letter in bigstring:
+    my_dict[letter] += 1
+
+
+my_dict
