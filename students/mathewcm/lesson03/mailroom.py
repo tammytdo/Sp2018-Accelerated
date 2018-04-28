@@ -33,13 +33,6 @@ DONORS = dict(zip(donors, donations))
 del donors
 del donations
 
-def thank_you():
-    print("This is a thank_you function")
-
-
-def report():
-    print("This is a report function")
-
 def quit():
     sys.exit()
     
@@ -86,8 +79,38 @@ def print_report(list_data):
     print(report_body_config(list_data))
     
 
+# Donations and thank you functions
 
-    
+
+def collect_donor_input():
+    """ Get name and donation amount to add to DONORS"""
+    fullname = input("Enter a donor name (new or existing):\n")
+    fullname = remove_inputquotes(fullname)
+    amount = float(input("Donation amount: "))
+    return (fullname, amount)
+
+def retrieve_donations(fullname):
+    """ if donors exists, return donations, otherwise return None"""
+    if fullname in DONORS:
+        return DONORS[fullname]
+
+def add_donation(fullname, amount):
+    DONORS.setdefault(fullname, []).append(amount)
+
+def update_donors():
+    """
+    Add new donation to donors: if new donor, add to DONOR.
+    Print a thank you note for the donation.
+    """
+    (fullname, amount) = collect_donor_input()
+    add_donation(fullname, amount)
+    print(generate_letter(fullname))
+
+
+
+
+
+  
 
 
 
