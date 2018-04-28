@@ -178,3 +178,9 @@ Update mailroom program to do the following:
 - Use dicts where appropriate
 - See if you can use a dict to switch between the users selections. See Using a Dictionary to switch (Using a Dictionary to switch)[https://uwpce-pythoncert.github.io/PythonCertDevel/modules/DictionaryAsSwitch.html#dict-as-switch]
 - Try to use a dict and the .format() method to do the letter as one big template rather than building up a big string in parts.
+
+
+<!-- Look up Open() syntax... f.write(create_letter(donor)) -->
+
+### 18.4.28.14:35
+Mailroom.py refactor with dict switch testing successful att
