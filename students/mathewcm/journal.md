@@ -204,7 +204,10 @@ my_dict = dict.fromkeys(bigstring, 0)
 for letter in bigstring:
     my_dict[letter] += 1
 ```
-### (IPython Tips & Tricks)[http://ipython.readthedocs.io/en/stable/interactive/tips.html]
+
+### IPython
+
+(IPython Tips & Tricks)[http://ipython.readthedocs.io/en/stable/interactive/tips.html]
 
 #### Help in IPython
 
@@ -214,3 +217,38 @@ Any built-in, method or attribute followed by a "?" gives a brief description in
 
 #### Embed IPython in your programs
 A few lines of code are enough to load a complete IPython inside your own programs, giving you the ability to work with your data interactively after automatic processing has been completed. See the embedding section.
+
+### Dictionary Comprehensions or "dict comps"
+
+```
+new_dict = { key: value for variable in a_sequence}
+
+names = ['fred', 'John', 'MARY']
+ids = [1, 2, 3]
+d = dict(zip(names,ids))
+
+d
+Out[53]: {'John': 2, 'MARY': 3, 'fred': 1}
+
+d = {id: name for id, name in zip(ids, names) if name != 'MARY'}
+
+d
+Out[55]: {1: 'fred', 2: 'John'}
+```
+
+### Collections module
+
+(Python Docs on collections module)[https://docs.python.org/3/library/collections.html]
+
+- namedtuple(): factory function for creating tuple subclasses with named fields
+- deque: list-like container with fast appends and pops on either end
+- Counter: dict subclass for counting hashable objects
+- OrderedDict: dict subclass that remembers the order entries were added
+- defaultdict: dict subclass that calls a factory function to supply missing values
+- ChainMap: dict-like class for creating a single view of multiple mappings
+
+- UserDict: wrapper around dictionary objects for easier dict subclassing
+- UserList: wrapper around list objects for easier list subclassing
+- UserString: wrapper around string objects for easier string subclassing
+
+(Collections module overview)[https://pymotw.com/3/collections/]
