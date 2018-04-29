@@ -91,7 +91,7 @@ def accept_donation(name):
 
         donor[1].append(donation_amt)
 
-        print(thankyou)
+        print(thank_you_message())
 
 # ----------------------------------------------------------------------------
 #
@@ -124,13 +124,14 @@ def mainloop():
 
         (1) - Send a Thank You Letter
         (2) - Build a Report
-        (3) - Quit
+        (3) - Send letters to all donors
+        (4) - Quit
 
         > """))
     return mainmenuinput.strip()
 
 
-def thankyou():
+def thank_you_message():
     while True:
         name = input("Enter the donor's name or a list of donor's"
                      "names to see all donors (or type 'menu'"
@@ -140,7 +141,7 @@ def thankyou():
         elif name == 'menu':
             return
         else:
-            break
+            accept_donation(name)
 
 # creates loop for donation amount input
 
@@ -150,6 +151,23 @@ def thankyou():
         if donationinput == 'menu':
             return
 
+# ----------------------------------------------------------------------------
+#
+# Makes a standardized letter template that passes through the donor name and
+# and the amount donated
+#
+# ----------------------------------------------------------------------------
+
+def write_letter(donor):
+
+    return dedent('''Dear {0:s},
+
+        Thank you for your kind doation of ${1:.2f}.
+        We will make sure that it is put to very good use.
+
+                                    Sincerely,
+                                        - The American Cancer Society)
+        '''.format(donor[0], donor[1][-1]))
 
 # ----------------------------------------------------------------------------
 #
@@ -188,7 +206,7 @@ def donor_report():
 
 def save_letters_to_disk():
     for donor in donor_db.values():
-        letter = thankyou(donor)
+        letter = write_letter(donor)
         filename = donor[0].replace(" ", "_") + ".txt"
         print("creating letter to:", donor[0])
         open(filename, 'w').write(letter)
@@ -201,7 +219,7 @@ def save_letters_to_disk():
 
 
 def print_donor_report():
-    print(donor_report)
+    print(donor_report())
 
 
 # ----------------------------------------------------------------------------
@@ -225,22 +243,14 @@ if __name__ == "__main__":
 
     donor_db = find_donor_db()
 
-    mainlist_dict = {"1": thankyou,
+    mainlist_dict = {"1": thank_you_message,
                      "2": print_donor_report,
                      "3": save_letters_to_disk,
                      "4": quit}
 
-
-
-    running = True
-    while running:
-        response = mainloop()
-        if response not in ('1', '2', '3'):
-            print("Not a Valid Response, input 1, 2, or 3")
-            continue
-        elif response == '1':
-            thankyou()
-        elif response == '2':
-            donor_report()
-        elif response == '3':
-            quit()
+    while True:
+        action = mainloop()
+        try:
+            mainlist_dict[action]()
+        except KeyError:
+            print("error: menu selection is invalid!")
