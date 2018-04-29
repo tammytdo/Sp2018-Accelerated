@@ -252,3 +252,134 @@ Out[55]: {1: 'fred', 2: 'John'}
 - UserString: wrapper around string objects for easier string subclassing
 
 (Collections module overview)[https://pymotw.com/3/collections/]
+
+### defaultdict()
+
+```
+from collections import defaultdict
+
+dd = defaultdict(list)
+dd['this'].append(23)
+dd
+Out[60]: defaultdict(list, {'this': [23]})
+dd['this'].append(4)
+dd['this'].append(4)
+dd
+Out[63]: defaultdict(list, {'this': [23, 4, 4]})
+dd['that'].append(4)
+dd
+Out[65]: defaultdict(list, {'that': [4], 'this': [23, 4, 4]})
+dd['those'].append(8)
+dd
+Out[67]: defaultdict(list, {'that': [4], 'this': [23, 4, 4], 'those': [8]})
+dd['those'].append(16)
+dd['those'].append(32)
+dd['those'].pop()
+Out[70]: 32
+dd
+Out[71]: defaultdict(list, {'that': [4], 'this': [23, 4, 4], 'those': [8, 16]})
+```
+Nice!!! "...you’ll get a dict that will automatically put an empty list in when the key isn’t there yet." ~ PythonCert 4.0
+
+### 18.4.29.9:32  Comprehensions Lab
+```
+feast = ['lambs', 'sloths', 'orangutans',
+          'breakfast cereals', 'fruit bats']
+
+comprehension = [delicacy.capitalize() for delicacy in feast]
+
+```
+#### What is the output?
+```
+comprehension[0]
+{'Lambs'}
+
+comprehension[2]
+{'Orangutans'}
+```
+#### Close!
+```
+feast = ['Lamn', 'sloths', 'orangutans', 'breakfast cereal', 'fruit bats']
+comprehension = [delicacy.capitalize() for delicacy in feast]
+comprehension[1]
+Out[74]: 'Sloths'
+comprehension[0]
+Out[75]: 'Lamn'
+comprehension[2]
+Out[76]: 'Orangutans'
+feast[0] = 'lamb'
+feast
+Out[78]: ['lamb', 'sloths', 'orangutans', 'breakfast cereal', 'fruit bats']
+comprehension = [delicacy.capitalize() for delicacy in feast]
+comprehension[0]
+Out[80]: 'Lamb'
+comprehension[2]
+Out[81]: 'Orangutans'
+comp = [delicacy for delicacy in feast if len(delicacy) > 6]
+comp[1]
+Out[83]: 'breakfast cereal'
+comp[0]
+Out[84]: 'orangutans'
+comp[3]
+Traceback (most recent call last):
+  File "<ipython-input-85-224dba9f58bc>", line 1, in <module>
+    comp[3]
+IndexError: list index out of range
+```
+### Filtering lists with list comprehensions
+```
+len(feast)
+Out[86]: 5
+len(comp)
+Out[87]: 3
+```
+### Unpacking tuples in list Comprehensions
+```
+list_of_tuples = [(1, 'lumberjack'), (2, 'inquisition'), (4, 'spam')]
+comprehension = [ skit * number for number, skit in list_of_tuples]
+
+comprehension[0]
+Out[90]: 'lumberjack'
+
+comprehension[2]
+Out[91]: 'spamspamspamspam'
+```
+I got the first right but thought it was 8*spam for the second not 4 * spam. I mulitplied by the index... ???
+```
+len(comprehension[2])
+Out[92]: 16
+```
+Missed the len()...
+
+### Double list Comprehensions
+```
+eggs = ['poached egg', 'fried egg']
+meats = ['lite spam', 'ham spam', 'fried spam']
+comprehension = [ '{0} and {1}'.format(egg, meat) for egg in eggs for meat in meats]
+len(comprehension)
+Out[98]: 6
+comprehension[0]
+Out[99]: 'poached egg and lite spam'
+comprehension = { c for c in 'aabbbcccc'}
+comprehension
+Out[101]: {'a', 'b', 'c'}
+```
+### Set comprehensions
+<!-- sets are immutable requiring a unique key which only one can exist in any given sequence.-->
+```
+comprehension = { c for c in 'aabbbcccc'}
+comprehension
+Out[101]: {'a', 'b', 'c'}
+```
+
+### Dictionary Comprehensions
+```
+dict_of_weapons = {'first': 'fear',
+                    'second': 'surprise',
+                    'third': 'ruthless efficiency',
+                    'forth': 'fanatical devotion',
+                    'fifth': None}
+
+dict_comprehension = {k.upper(): weapon for k, weapon in dict_of_weapons.items() if weapon}
+```
+What is the output?
