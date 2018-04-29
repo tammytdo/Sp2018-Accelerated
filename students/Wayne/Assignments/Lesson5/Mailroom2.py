@@ -225,6 +225,13 @@ if __name__ == "__main__":
 
     donor_db = find_donor_db()
 
+    mainlist_dict = {"1": thankyou,
+                     "2": print_donor_report,
+                     "3": save_letters_to_disk,
+                     "4": quit}
+
+
+
     running = True
     while running:
         response = mainloop()
