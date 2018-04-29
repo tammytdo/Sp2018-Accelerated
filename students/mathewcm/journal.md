@@ -203,6 +203,14 @@ my_dict = dict.fromkeys(bigstring, 0)
 
 for letter in bigstring:
     my_dict[letter] += 1
+```
+### (IPython Tips & Tricks)[http://ipython.readthedocs.io/en/stable/interactive/tips.html]
 
+#### Help in IPython
 
-my_dict
+Any built-in, method or attribute followed by a "?" gives a brief description in IPython.
+
+ For windows-based systems, the default aliases are ‘copy’, ‘ddir’, ‘echo’, ‘ls’, ‘ldir’, ‘mkdir’, ‘ren’, and ‘rmdir’.
+
+#### Embed IPython in your programs
+A few lines of code are enough to load a complete IPython inside your own programs, giving you the ability to work with your data interactively after automatic processing has been completed. See the embedding section.
