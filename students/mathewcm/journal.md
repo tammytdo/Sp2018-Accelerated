@@ -417,3 +417,222 @@ Simple usage:
         unittest.main()
 ```
 (Further information is available in the bundled documentation, and from)[http://docs.python.org/library/unittest.html]
+
+## Lesson 07
+
+### 18.4.30.13:00
+
+### Object Oriented Programming
+
+(Programming Paradigms)[https://en.wikipedia.org/wiki/Programming_paradigm]
+
+It can be officially noted that I finally have attained "class".
+```
+class C:
+    pass
+
+type(C)
+Out[58]: type
+
+issubclass(C, object)
+Out[59]: True
+
+print(C)
+<class '__main__.C'>
+
+dir(C)
+Out[61]:
+['__class__',
+ '__delattr__',
+ '__dict__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '__weakref__']
+
+print(C.dir())
+Traceback (most recent call last):
+
+  File "<ipython-input-62-712969ace520>", line 1, in <module>
+    print(C.dir())
+
+AttributeError: type object 'C' has no attribute 'dir'
+
+print(C.__hash__)
+<slot wrapper '__hash__' of 'object' objects>
+
+print(C.__main__)
+Traceback (most recent call last):
+
+  File "<ipython-input-64-f258886a611d>", line 1, in <module>
+    print(C.__main__)
+
+AttributeError: type object 'C' has no attribute '__main__'
+
+print(C.__dict__)
+{'__module__': '__main__', '__dict__': <attribute '__dict__' of 'C' objects>, '__weakref__': <attribute '__weakref__' of 'C' objects>, '__doc__': None}
+
+```
+<!-- Cool!!! I found where __main__ is kept just dundering around.-->
+```
+print(C.__module__)
+__main__
+
+print(C.__weakref__)
+<attribute '__weakref__' of 'C' objects>
+
+__setattr__?
+Object `__setattr__` not found.
+
+C.__setattr__?
+Signature:      C.__setattr__(self, name, value, /)
+Call signature: C.__setattr__(*args, **kwargs)
+Type:           wrapper_descriptor
+String form:    <slot wrapper '__setattr__' of 'object' objects>
+Docstring:      Implement setattr(self, name, value).
+
+```
+
+```
+class Point:
+    x = 1
+    y = 2
+
+Point
+Out[73]: __main__.Point
+
+p = Point
+p = Point()
+p
+Out[76]: <__main__.Point at 0x27c479ce630>
+p.x
+Out[77]: 1
+p.y
+Out[78]: 2
+run simple_classes
+p.x is: 3
+p.y is: 4
+4
+red
+4
+red
+blue
+
+import simple_classes
+p.x is: 3
+p.y is: 4
+4
+red
+4
+red
+blue
+
+Circle
+Out[81]: __main__.Circle
+
+Rect
+Out[82]: __main__.Rect
+
+Rect(5, 7)
+Out[83]: <__main__.Rect at 0x27c47c010b8>
+
+Rect
+Out[84]: __main__.Rect
+
+class Point(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+Point(x, y)
+Traceback (most recent call last):
+
+  File "<ipython-input-86-474e6b1ccaa2>", line 1, in <module>
+    Point(x, y)
+
+NameError: name 'x' is not defined
+
+Point(4, 5)
+Out[87]: <__main__.Point at 0x27c47c01f98>
+
+p = Point(3,4)
+p
+Out[89]: <__main__.Point at 0x27c479a3630>
+m = Point(4, 5)
+m
+Out[91]: <__main__.Point at 0x27c47987b00>
+print("p.x is:", p.x)
+p.x is: 3
+print("m.x is:", m.x)
+m.x is: 4
+class Point:
+    def a_func(self, x, y)
+  File "<ipython-input-94-c15cada14c1e>", line 2
+    def a_func(self, x, y)
+                          ^
+SyntaxError: invalid syntax
+
+class Point:
+    size = 4
+    color = "red"
+
+def get_color(self):
+    return self.color
+
+p3.get_color()
+Out[97]: 'red'
+
+class C:
+    x = [1,2,3]
+    def __init__(self):
+        self.y = [4,5,6]
+
+c1 = C()
+c2 = C()
+c1.x is c2.x
+Out[112]: True
+
+c1.y is c2.y
+Out[113]: False
+```
+### Typical Methods
+```
+class Circle:
+    color = 'red'
+    def __init__(self, diameter):
+        self.diameter = diameter
+
+class Circle:
+    color = 'red'
+    def __init__(self, diameter):
+        self.diameter = diameter
+
+class Circle:
+    color = 'red'
+    def __init__(self, diameter):
+        self.diameter = diameter
+    def expand(self, factor=2):
+        self.diameter = self.diameter * factor
+```
+## Subclassing and Inheritance
+
+### Inheritance
