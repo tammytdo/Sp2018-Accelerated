@@ -383,3 +383,37 @@ dict_of_weapons = {'first': 'fear',
 dict_comprehension = {k.upper(): weapon for k, weapon in dict_of_weapons.items() if weapon}
 ```
 What is the output?
+```
+[a for a in dir(str) if a[0] != "_"]
+```
+### Unit testing
+```
+unittest?
+Type:        module
+String form: <module 'unittest' from 'd:\\Anaconda3\\lib\\unittest\\__init__.py'>
+File:        d:\anaconda3\lib\unittest\__init__.py
+Docstring:  
+Python unit testing framework, based on Erich Gamma's JUnit and Kent Beck's
+Smalltalk testing framework (used with permission).
+
+This module contains the core framework classes that form the basis of
+specific test cases and suites (TestCase, TestSuite etc.), and also a
+text-based utility class for running the tests and reporting the results
+ (TextTestRunner).
+
+Simple usage:
+
+    import unittest
+
+    class IntegerArithmeticTestCase(unittest.TestCase):
+        def testAdd(self):  # test method names begin with 'test'
+            self.assertEqual((1 + 2), 3)
+            self.assertEqual(0 + 1, 1)
+        def testMultiply(self):
+            self.assertEqual((0 * 10), 0)
+            self.assertEqual((5 * 8), 40)
+
+    if __name__ == '__main__':
+        unittest.main()
+```
+(Further information is available in the bundled documentation, and from)[http://docs.python.org/library/unittest.html]
