@@ -30,12 +30,39 @@ def thank_you():
     run_loop(options_dict, menu_string)
 
 
+def input_loop_for_add_donation():
+
+    while True:
+        print("Please enter the amount donated:\n")
+        input_amount = check_if_number(input(">>"))
+
+        if input_amount:
+            return input_amount
+
+
+def check_if_number(response):
+
+    try:
+        donation_amount = float(response)
+        return donation_amount
+    except ValueError:
+        print("invalid input")
+        return False
+
+
+
 def add_donation():
 
     print("Please enter the name of the donor:\n")
     donor_name = input(">>")
-    print("Please enter the amount " + donor_name + " donated:\n")
-    donation_amount = float(input(">>"))
+
+    donation_amount = input_loop_for_add_donation()
+    
+    # while True:
+    #     print("Please enter the amount " + donor_name + " donated:\n")
+    #     entered_amount = input(">>")
+    #     donation_amount = check_if_number(entered_amount)
+
 
     add_donation_info(donor_name, donation_amount)
 
