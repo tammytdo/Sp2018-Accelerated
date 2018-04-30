@@ -5,8 +5,6 @@ Test script for mailroom_4
 '''
 import mailroom_4 as mailroom
 from pathlib import Path
-# import sys
-# import os
 import datetime
 
 donors_dict = {'Iron Man': [100000, 50000, 1000],
