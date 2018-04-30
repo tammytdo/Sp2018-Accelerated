@@ -71,6 +71,9 @@ def test_selection_happy():
 
 
 def thank_you():
+    """
+    for test_selection_happy() 
+    """
     return "happy"
 
 

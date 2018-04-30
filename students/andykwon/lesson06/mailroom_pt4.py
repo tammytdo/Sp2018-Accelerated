@@ -50,19 +50,17 @@ def check_if_number(response):
         return False
 
 
-
 def add_donation():
 
     print("Please enter the name of the donor:\n")
     donor_name = input(">>")
 
     donation_amount = input_loop_for_add_donation()
-    
+
     # while True:
     #     print("Please enter the amount " + donor_name + " donated:\n")
     #     entered_amount = input(">>")
     #     donation_amount = check_if_number(entered_amount)
-
 
     add_donation_info(donor_name, donation_amount)
 
