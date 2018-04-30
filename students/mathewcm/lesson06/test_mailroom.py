@@ -17,8 +17,6 @@ def test_notget_donations():
     result = mailroom.retrieve_donations('Mathew Martin')
     assert result is None
 
-
  
-    
 
     
