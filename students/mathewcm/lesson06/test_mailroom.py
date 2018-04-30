@@ -17,6 +17,22 @@ def test_notget_donations():
     result = mailroom.retrieve_donations('Mathew Martin')
     assert result is None
 
- 
+# def add_donation(fullname, amount):
+#    DONORS.setdefault(fullname, []).append(amount)
 
-    
+
+def test_add_donation():
+    result = mailroom.add_donation('Ed Shingles', amount=25)
+    assert result is None
+
+"""
+This Mailroom includes some exception testing already for the selection main loop 
+functionality.
+
+def select_action(arg_dict, ans):
+    try:
+        return arg_dict[ans]()
+    except (KeyError):
+        return False
+"""
+
