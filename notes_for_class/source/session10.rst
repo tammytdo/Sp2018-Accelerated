@@ -7,16 +7,14 @@
 Notes for Session 10
 ####################
 
+5/10/2018
+
 A collection of notes to go over in class, to keep things organized.
 
 Lightning Talks
 ===============
 
-Hiroyuki Takechi
-
-Jacob Olsby
-
-Larry Beausoleil
+Anyone missed their chance?
 
 
 Issues that came up during the week.
@@ -33,7 +31,7 @@ It is a good idea to make a property to access information in your class that re
   def maxdonation(self):
       return max(self.donations)
 
-This way, client code can get the maximum donation without knowing, or caring how the donations are stored in the class.
+This way, client code can get the maximum donation without knowing, or caring, how the donations are stored in the class.
 
 However, there is no need to create a property to "hide" something that is already part of the public API:
 
@@ -47,6 +45,7 @@ There is no point to this -- ``a_donor.name`` is expected to be a string -- so i
 
 You *do* want to use properties to "hide" implementation details -- but the name attribute being a string is part of the API, not an implementation detail.
 
+
 Anything else from OO mailroom?
 -------------------------------
 
@@ -54,33 +53,42 @@ Anything else from OO mailroom?
 The Next Class
 ==============
 
-Next quarter, we'll finish up the core of the Python language, then go into depth on some of the more advanced features of the language. Finally, we'll do a bit with using Python with other tools, such as databases.
+Next quarter, you'll finish up the core of the Python language, then go into depth on some of the more advanced features of the language. Finally, we'll do a bit with using Python with other tools, such as databases.
 
-Here's a Tentative Outline:
+Here's an Outline:
 
 Functional Programming 2
 ------------------------
 
+* Comprehensions
+* Lambda
 * Iterators and Iterables
+* Generators
 * Itertools
-* Functools
 
 
 Functional Programming 3
 ------------------------
 
 * Closures and Currying
-* Generators
-* Coroutines
+* Itertools
+* Functools
 
 Advanced Python Language Constructs
 -----------------------------------
 
 * Decorators
 * Context Managers
+* Recursion
 
-* Meta Programming
-* Meta Classes
+Metaprogramming
+---------------
+
+* Namespaces
+* Introspection
+* Metaclasses
+* Class Decorators
+
 
 Debugging & Logging
 -------------------
@@ -92,15 +100,14 @@ Advanced Testing
 ----------------
 * Linting
 * Coverage
+* The unittest Module
 * Fixtures
 * Mocking
 
 Relational Databases
 --------------------
 * SQL
-* ORMs
-  * Normalization
-  * Schema
+* ORMs: PeeWee
 * Sqlite
 * Postgresql
 
@@ -129,34 +136,12 @@ Concurrency & Async Programming
 * Threading and Multiprocessing
 * Message Queues
 * Async
-* Celery
 
-
-Functional Programming
-======================
-
-The readings were a little, shall we say, sparse.
-
-So I'll go over them now.
-
-lambda
-------
-
-map, filter, reduce
--------------------
-
-Want to try it with mailroom?
-
-:ref:`exercise_mailroom_fp`
 
 End of Quarter:
 ===============
 
 We will review PRs through Sunday.
-
-I will hold office hours one last time this Sunday as well.
-
-**Anyone up for Celebratory Beer?**
 
 
 
