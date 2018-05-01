@@ -5,9 +5,9 @@ simple mailroom program for a non profit
 """
 import sys
 
-donors = [("Donor A", [50, 100, 25, 100]),
-          ("Donor B", [50, 100, 25, 100]),
-          ("Donor C", [50, 100, 25, 100]),
+donors = [("Britney Spears", [50, 100, 25, 100]),
+          ("Christina Aguilera", [50, 100, 25, 100]),
+          ("Mandy Moore", [50, 100, 25, 100]),
           ]
 
 
