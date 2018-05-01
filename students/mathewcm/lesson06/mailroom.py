@@ -28,15 +28,22 @@ def return_to_menu():
 
 
 def create_donors_report():
-    [name, total, number, avg] = [[], [], [], []]
-    for x in DONORS:
-        name.append(x)
-        total.append(sum(DONORS[x]))
-        number.append(len(DONORS[x]))
-        avg.append(total[-1] / number[-1])
-    donors_report = list(zip(name, total, number, avg))
-    donors_report = sorted(
-            donors_report, key=lambda y: int(y[1]), reverse=True)
+    name, total, number, avg = [], [], [], []
+    donor_info = []
+    for n, don in DONORS.items():
+        total = sum(don)
+        donors_report.append((n,
+                      sum(don),
+                      len(don),
+                      (total[-1] / number[-1]),
+                      ))
+#        name.append(n)
+#        total.append(sum(don))
+#        number.append(len(don))
+#        avg.append(total[-1] / number[-1])
+    donors_report = sort(key=lambda y: y[1], reverse=True)
+#    donors_report = sorted(zip(
+#            donors_report, key=lambda y: y[1], reverse=True))
     return donors_report
 
 def config_donors_report():
