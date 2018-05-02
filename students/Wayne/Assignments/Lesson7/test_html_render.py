@@ -30,6 +30,7 @@ def render_result(element, ind=""):
 # Step 1
 ########
 
+
 def test_init():
     """
     This only tests that it can be initialized with and without
@@ -76,24 +77,24 @@ def test_render_element():
     assert file_contents.endswith("</html>")
 
 
-
-
 # ########
 # # Step 2
 # ########
 
 
-# # tests for the new tags
-# def test_html():
-#     e = Html("this is some text")
-#     e.append("and this is some more text")
+# tests for the new tags
 
-#     file_contents = render_result(e).strip()
 
-#     assert("this is some text") in file_contents
-#     assert("and this is some more text") in file_contents
-#     print(file_contents)
-#     assert file_contents.endswith("</html>")
+def test_html():
+    e = Html("this is some text")
+    e.append("and this is some more text")
+
+    file_contents = render_result(e).strip()
+
+    assert("this is some text") in file_contents
+    assert("and this is some more text") in file_contents
+    print(file_contents)
+    assert file_contents.endswith("</html>")
 
 
 # def test_body():

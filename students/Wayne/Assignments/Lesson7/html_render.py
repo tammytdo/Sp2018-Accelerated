@@ -19,9 +19,8 @@ class Element:
     def append(self, new_content):
         self.content.append(new_content)
 
-
     def open_Tag(self):
-        return f"<{self.tag}>
+        return f"<{self.tag}>"
 
     def render(self, out_file):
         out_file.write(f"<{self.tag}>\n")
@@ -63,5 +62,5 @@ class Body(Element):
 class Head(Element):
     tag = "Head"
 
-class Title(OneLineTag):
-    tag = "Title"
+#class Title(OneLineTag):
+#    tag = "Title"
