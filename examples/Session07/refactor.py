@@ -18,5 +18,5 @@ def pack(don):
 def create_donors_report(DONORS):
     donor_report = sorted([pack(don) for don in DONORS.items()],
                           key=lambda y: y[1], reverse=True)
+    print(donor_report)
     return donor_report
-
