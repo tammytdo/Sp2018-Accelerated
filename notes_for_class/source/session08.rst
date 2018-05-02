@@ -11,15 +11,15 @@ Notes for Session 08
 
 A collection of notes to go over in class, to keep things organized.
 
-Lightning Talks
-===============
+Lightning Talks (last)
+======================
 
 Jay Johnson
 
 Tammy Do
 
-Issues that came up during the week.
-====================================
+Issues that came up during the week. (by Chris)
+===============================================
 
 What to test? And how?
 ----------------------
@@ -89,6 +89,36 @@ Lightning Talks
 Circle class....
 
 
+Hosung's Notes
+==============
 
+Announcements
+-------------
 
+Office hours: 2:30pm-4:30pm, Foster Library (Paccar Hall) Study Room #9
 
+Online participation: https://washington.zoom.us/my/pythonxl
+
+Grading, PR feedback
+--------------------
+
+How's it going? I've been trying to provide feedback on PRs and enter grades, but I'm finding it hard to keep track of grades from PRs, because sometimes new commits start piling up on an old PR. Your feedback welcome (if any). I personally think everyone's working very hard, so this shouldn't be a big concern. If you'd like our feedback on some specific parts, please do let us know by email separately or clearly indicate that in your PR submission comment.
+
+Opportunity: LEAP
+-----------------
+
+Cohort 10 applications is now open just in time: http://www.industryexplorers.com/
+
+Python classes: Special methods & protocols
+-------------------------------------------
+
+A lot of this topic is closely related to the operator overloading feature that's available in other languages like C++ and C#. A favorite example for the topic is to implement fraction (rational number) arithmetics, like making ``1/2+1/3=5/6`` possible, instead of ``1/2+1/3=0.8333333333``. Python already offers the Fraction class in the fractions module, but let's pretend it's not available and implement ourselves.
+
+Initial Fraction class definition: ``examples/Session08/fraction.py``
+
+Initial fraction test code:  ``examples/Session08/test_fraction.py``
+
+Python static vs. class methods
+-------------------------------
+
+Coming from Java/C++, this was always confusing to me. Now I think I understand this better, and I may share my understanding and realization with class. Let's go over the static/class methods materials: https://uwpce-pythoncert.github.io/PythonCertDevel/modules/StaticAndClassMethods.html
