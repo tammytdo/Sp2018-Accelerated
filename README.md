@@ -1,4 +1,4 @@
-You can find the sessionnotes rendered here:
+You can find the session notes rendered here:
 
 https://uwpce-pythoncert-classrepos.github.io/Sp2018-Accelerated/
 

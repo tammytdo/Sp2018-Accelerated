@@ -54,7 +54,7 @@ print(random.choice(list(tiny.keys())))
 # complicate your code. This is why dict.keys() does not return a list (in py3):
 print("type of keys():", type(tiny.keys()))
 
-# the dict_Keys type is an "iterable" -- something you can iterate through with a for loop:
+# the dict_keys type is an "iterable" -- something you can iterate through with a for loop:
 for key in tiny.keys():
     print(key)
 
@@ -143,6 +143,6 @@ for i, key in enumerate(tiny.keys()):
         break
 print("A random key:", key)
 
-# this is a bit better than crating the whole list and calling choice() on it,
+# this is a bit better than creating the whole list and calling choice() on it,
 # as it will, on average, only use half the keys
 

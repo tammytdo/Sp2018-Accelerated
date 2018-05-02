@@ -7,19 +7,16 @@
 Notes for Session 08
 ####################
 
+5/3/2018
+
 A collection of notes to go over in class, to keep things organized.
 
 Lightning Talks
 ===============
 
-John Navitsky
+Jay Johnson
 
-Matthew Sachio Maeda
-
-Morgan Heinemann
-
-Let's take a look at the past lightning talks list -- make sure we haven't missed anyone.
-
+Tammy Do
 
 Issues that came up during the week.
 ====================================
