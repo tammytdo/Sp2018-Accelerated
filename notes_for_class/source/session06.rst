@@ -7,51 +7,41 @@
 Notes for Session 06
 ####################
 
+4/26/2018
+
 A collection of notes to go over in class, to keep things organized.
 
 Lightning Talks
 ===============
 
-Marlon M Estrada
+Ryan Drovdahl
 
-Ali Dehghani
+Meet Shah
 
-Alinafe Matenda
-
-Daniel W Kuchan
-
-Kathryn Egan
-
-Feedback
-========
-
-We got the results of the feedback survey last week.
-
-We really do read the comments and try to improve the class as we go.
-
-So Thanks!
-
-And you'll get another chance at the end of class, which we also appreciate.
 
 
 Issues that came up during the week.
 ====================================
 
+
 Getting an arbitrary key from a dict
 ------------------------------------
 
-See ``arbitrary_key.py`` in `solutions/session04`
+See ``arbitrary_key.py`` in `examples/session05`
+
 
 dict as switch -- how do you leave the loop?
 --------------------------------------------
 
-Let's look at Eowyn's solution...
+Let's look at a particularly nifty solution:
+
+``solutions/Lesson05/mailroom_dict_as_switch``
 
 
 globals??
 ---------
 
-a number of you have been putting code in the global (module) namespace:
+a number of folks have been putting code in the global (module) namespace:
 
 .. code-block:: python
 
@@ -63,10 +53,45 @@ a number of you have been putting code in the global (module) namespace:
 
 What's wrong with this?
 
-More on keyword arguments:
---------------------------
+Any Questions about the homework -- or anything?
+------------------------------------------------
 
-:ref:`keyword_only_arguments`
+?????
+
+Break and Lightning talks:
+
+
+Ryan Drovdahl
+
+Meet Shah
+
+
+Testing?
+--------
+
+Did you'all do the testing exercise with a coding bat example?
+
+We could do one now.
+
+Or...
+
+Advanced Argument Passing
+-------------------------
+
+All this ``*arg``, ``**kwargs`` stuff a bit confusing?
+
+Let's explore it a bit.
+
+AND -- we'll use TDD to do it.
+
+Exercise here:
+
+https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/args_kwargs_lab.html
+
+
+
+
+
 
 
 
