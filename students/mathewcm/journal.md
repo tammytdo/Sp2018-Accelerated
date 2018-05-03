@@ -637,4 +637,551 @@ class Circle:
 
 ### Inheritance
 
-### 18.4.30.18:00
+### 18.5.1.15:20 Class and Instance Attributes
+
+Notes for Python Attributes - Scope video
+
+(Video)[https://canvas.uw.edu/courses/1197533/pages/lesson-07-content?module_item_id=8240379)] 
+```
+class C:
+    this = 5
+    def __init__(self, that):
+        self.that = that
+  
+c1
+Traceback (most recent call last):
+
+  File "<ipython-input-10-5348681b35c2>", line 1, in <module>
+    c1
+
+NameError: name 'c1' is not defined
+
+c1 = C(10)
+c2 = C(20)
+
+c1 is c2
+Out[13]: False
+
+c1.this
+Out[14]: 5
+
+c2.that
+Out[15]: 20
+
+c1.that
+Out[16]: 10
+
+C.this = 45
+
+c1.this
+Out[18]: 45
+
+c2.this
+Out[19]: 45
+
+c1.this = 56
+
+c1.this
+Out[21]: 56
+
+c2.this
+Out[22]: 45
+
+class C: 
+    this = []
+    def __init__(self, that):
+        self.that = [that]
+        
+c1 = C(10)
+
+c2 = C(20)
+
+c1.that.append(45)
+
+c1.that
+Out[28]: [10, 45]
+
+c2.that
+Out[29]: [20]
+
+c1.this
+Out[30]: []
+
+c2.this
+Out[31]: []
+
+c1.this.append(68)
+
+c1.this
+Out[33]: [68]
+
+c2.this
+Out[34]: [68]
+
+class C:
+    this = []
+    
+class C:
+    this = []
+    def __init__(self, that):
+        self.that = [that]
+    def mutable(self, val):
+        self.this.append(val)
+        self.that.append(val)
+        
+c1 = C(10)
+
+c2 = C(20)
+
+c1.mutate(99)
+Traceback (most recent call last):
+
+  File "<ipython-input-39-413f783e5d77>", line 1, in <module>
+    c1.mutate(99)
+
+AttributeError: 'C' object has no attribute 'mutate'
+
+class C:
+    this = []
+    
+    def __init__(self, that):
+        self.that = [that]
+    
+    def mutable(self, val):
+        self.this.append(val)
+        self.that.append(val)
+        
+c1 = C(10)
+
+c2 = C(20)
+
+class C:
+    this = []
+    
+    def __init__(self, that):
+        self.that = [that]
+    
+    def mutate(self, val):
+        self.this.append(val)
+        self.that.append(val)
+        
+c1 = C(10)
+
+c2 = C(20)
+
+c1.mutute(99)
+Traceback (most recent call last):
+
+  File "<ipython-input-46-193784b1d93e>", line 1, in <module>
+    c1.mutute(99)
+
+AttributeError: 'C' object has no attribute 'mutute'
+
+class C:
+    this = []
+    
+    def __init__(self, that):
+        self.that = [that]
+    
+    def mutate(self, val):
+        self.this.append(val)
+        self.that.append(val)    
+
+c1 = C(10)
+
+c2 = C(20)
+
+c1.mutate(99)
+
+c1.this
+Out[51]: [99]
+
+c1.that
+Out[52]: [10, 99]
+
+vars(c2)
+Out[53]: {'that': [20]}
+
+vars(c1)
+Out[54]: {'that': [10, 99]}
+
+c1.this = []
+
+vars(c1)
+Out[56]: {'that': [10, 99], 'this': []}
+
+c2.this
+Out[57]: [99]
+
+class B(C):
+    pass
+b = B(99)
+
+.this
+Out[59]: [99]
+
+vars(c2)
+Out[60]: {'that': [20]}
+
+vars(c1)
+Out[61]: {'that': [10, 99], 'this': []}
+
+### Points out the difference in rebinding a name versus mutating an object in place.
+
+class B(C):
+    pass
+
+b = B(34)
+
+b.this
+Out[65]: [99]
+
+b.that
+Out[66]: [34]
+
+b.this.append(77)
+
+c2.this
+Out[68]: [99, 77]
+
+class C:
+    this = []
+    
+    def __init__(self, that):
+        self.that = [that]
+    
+    def mutate(self, val):
+        self.this.append(val)
+        self.that.append(val)
+        
+
+class C:
+    this = []
+    
+    def __init__(self, that):
+        self.that = [that]
+    
+    def mutate(self, val):
+        self.this.append(val)
+        self.that.append(val)
+
+class C:
+    this = []
+    
+    def __init__(self, that):
+        print(type(self))
+        self.that = [that]
+    
+    def mutate(self, val):
+        self.this.append(val)
+        self.that.append(val)
+        
+class B(C):
+    pass
+
+b = B(77)
+<class '__main__.B'>
+
+c = C(88)
+<class '__main__.C'>
+
+class B(C):
+    this = []
+
+# B overrides class C attributes
+
+b1 = B(22)
+<class '__main__.B'>
+
+b.this
+Out[78]: []
+
+b2 = B(44)
+<class '__main__.B'>
+
+c1 = C(33)
+<class '__main__.C'>
+
+c2 = C77)
+  File "<ipython-input-81-2d6cf2451f0c>", line 1
+    c2 = C77)
+            ^
+SyntaxError: invalid syntax
+
+c2 = C77
+Traceback (most recent call last):
+
+  File "<ipython-input-82-087dd32a1ea5>", line 1, in <module>
+    c2 = C77
+
+NameError: name 'C77' is not defined
+
+c2 = C(77)
+<class '__main__.C'>
+
+b2.this
+Out[84]: []
+
+b2 = B(44)
+<class '__main__.B'>
+
+c1.this
+Out[86]: []
+```
+
+
+
+### IPython Keyboard Shortcuts
+
+Shortcut	Action
+Shift-Enter	run cell
+Ctrl-Enter	run cell in-place
+Alt-Enter	run cell, insert below
+Ctrl-m x	cut cell
+Ctrl-m c	copy cell
+Ctrl-m v	paste cell
+Ctrl-m d	delete cell
+Ctrl-m z	undo last cell deletion
+Ctrl-m –	split cell
+Ctrl-m a	insert cell above
+Ctrl-m b	insert cell below
+Ctrl-m o	toggle output
+Ctrl-m O	toggle output scroll
+Ctrl-m l	toggle line numbers
+Ctrl-m s	save notebook
+Ctrl-m j	move cell down
+Ctrl-m k	move cell up
+Ctrl-m y	code cell
+Ctrl-m m	markdown cell
+Ctrl-m t	raw cell
+Ctrl-m 1-6	heading 1-6 cell
+Ctrl-m p	select previous
+Ctrl-m n	select next
+Ctrl-m i	interrupt kernel
+Ctrl-m .	restart kernel
+Ctrl-m h	show keyboard shortcuts
+[sheepish] The keyboard shortcuts are available under the Help menu. [/sheepish]
+
+### Anaconda Spyder3 Keyboard Shortcuts
+
+#### Spyder Keyboard Shortcuts for the Editor under Windows
+##### Conventional (more or less) Keyboard Shortcuts
+
+- Home Go to start of line
+- End Go to end of line
+- Left Arrow Go to previous character
+- Right Arrow Go to next character
+- Up Arrow Go up to previous line
+- Down Arrow Go down to next line
+- Ctrl + Left Arrow Go to start of previous word
+- Ctrl + Right Arrow Go to start of next word
+- Ctrl + Up Arrow (or Ctrl + Home) Go to start of document
+- Ctrl + Down Arrow (or Ctrl + End) Go to end of document
+- Ctrl + O Open file
+- Ctrl + N Open new file
+- Ctrl + Backspace Delete to beginning of previous word
+- Ctrl + Delete Delete to beginning of next word
+- Ctrl + A Select all
+- Ctrl + C Copy selection
+- Ctrl + S Save current file
+- Ctrl + Shift + S Save current file as
+- Ctrl + Alt + S Save all open files
+- Delete Delete selection or current character
+- Ctrl + X Cut selection
+- Ctrl + V Paste clipboard contents
+- Ctrl + Z Undo last action
+- Ctrl + Shift + Z Redo last action
+- Ctrl + Q Quit Spyder
+
+#####Keyboard Shortcuts for Navigation
+- Ctrl + L Go to line
+- Ctrl + Tab Go to previous file
+- Ctrl + Shift + Tab Go to next file
+- Ctrl + Shift + T Go to (i.e., open) last closed file
+- Ctrl + P Go to (i.e., switch to and open) file …
+- Ctrl + Alt + Left Arrow Go to previous cursor location
+- Ctrl + Alt + Right Arrow Go to next cursor location
+- Ctrl + Alt + Shift + Left Arrow Go to last edit location
+- Ctrl + G Go to definition
+
+##### Keyboard Shortcuts for Zooming and Commenting
+- Ctrl + + (or Ctrl + =) Zoom in
+- Ctrl + - Zoom out
+- Ctrl + 0 Zoom reset
+- Ctrl + 1 Toggle comment selection (or line)
+- Ctrl + 4 Insert block comment
+- Ctrl + 5 Uncomment block comment
+
+##### Keyboard Shortcuts for Search and Replace
+- Ctrl + F Find text
+- F3 Find next
+- Shift + F3 Find previous
+- Ctrl + R Replace text
+
+##### Keyboard Shortcuts for Moving, Copying, Duplicating, Deleting
+- Alt + Down Arrow Move line down
+- Alt + Up Arrow Move line up
+- Ctrl + D Delete line
+- Ctrl + Alt + Down Arrow Copy line
+- Ctrl + Alt + Up Arrow Duplicate line
+
+##### Miscellaneous Keyboard Shortcuts
+- Tab Indent selected line(s)
+- Shift + Tab Unindent selected line(s)
+- Ctrl + U Transform to lowercase
+- Ctrl + Shift + U Transform to uppercase
+- Ctrl + W (or Ctrl + F4) Close file
+- Ctrl + Shift + W Close all
+- Ctrl + Space Code completion
+- Ctrl + I Inspect current object
+- Meta + K Kill to end of line
+- Meta + U Kill to start of line
+- Meta + Shift + Y Rotate 
+- Meta + Y Yank
+
+##### Keyboard Shortcuts for Executing Code
+- F5 Run file (complete program)
+- F6 Re-run last script
+- Ctrl + F6 Configure …
+- F9 Run selection (or current line)
+- F10 Profile
+- Ctrl + Enter Run cell
+- Shift + Enter Run cell and advance
+- F8 Run static code analysis
+- Ctrl + T Open an iPython console
+- Ctrl + . Restart kernel
+
+##### Keyboard Shortcuts for Debugging Code
+- F12 Breakpoint
+- Shift + F12 Conditional breakpoint
+- Ctrl + F5 Debug
+- Ctrl + F10 Step
+- Ctrl + F11 Step into
+- Ctrl + Shift + F11 Step return
+- Ctrl + F12 Continue
+- Ctrl + Shift + F12 Stop
+
+##### Keyboard Shortcuts for Interface Adjustment and Layouts
+- Ctrl + Shift + E Editor pane
+- Ctrl + Shift + C Python console pane
+- Ctrl + Shift + I iPython console pane
+- Ctrl + Shift + V Variable explorer pane
+- Ctrl + Shift + H Help pane
+- Ctrl + Shift + X File explorer pane
+- Ctrl + Shift + O (or Ctrl + Alt + O) Outline pane (show/hide)
+- Ctrl + Shift + P Project explorer pane
+- Ctrl + Shift + F Find in files pane
+- Ctrl + Shift + L History log pane
+- Ctrl + Shift + B Breakpoints pane
+- Ctrl + Shift + D Online help pane
+- Ctrl + Shift + F4 Close current pane
+- Ctrl + Shift + F5 Lock panes
+- Ctrl + Alt + Shift + M Maximize current pane
+- Ctrl + Alt + Shift + P Preferences
+- F11 Full screen mode
+- Alt + Shift + T Toolbars (hide/show)
+- Alt + Shift + PageUp Use previous layout
+- Alt + Shift + PageDown Use next layout
+- Alt + Shift + S Save current layout
+- Alt + Shift + P Layout preferences
+- 
+(Source .pdf)[http://cs.smu.ca/~porter/csc/227/SpyderKeyboardShortcutsEditor.pdf]
+
+
+### Python's Class Development Toolkit
+
+#### Agile Methodology
+- Out with waterfall: Design Code Test Ship
+- In with: Tight iterations
+- Let little bits of design, coding and testing inform later bits of design, coding and testing
+- The core idea is iterate and adapt quickly
+- MVP Minimum Value Product
+- Add Commit Push
+
+##### Initialize instance variables
+
+- __init__ isn't a constructor. It's job is to initialize the instance variables.
+- Regular methods have "self" as first argument.
+
+##### Class variables for shared data
+
+- Don't use floating point numbers for a version.
+- Minimum viable product: Ship it!
+
+```
+class Circle:
+    'An advanced circle analytic toolkit'
+
+    version = '0.1'         # class variable
+    
+    def __init__(self, radius):
+        self.radius = radius            # instance variable
+
+    def area(self):
+        'Perform quadrature on a shape of uniform radius'
+        return 3.14 * self.radius ** 2.0
+    
+    c = Circle(10)
+    print('Circuituous version', Circle.version)
+   
+    print('A circle of radius', c.radius)
+    print('has an area of', c.area())
+    print()
+```
+   <!-- Instruction in Python 2.7 to difficult to refactor on the fly -->
+    
+##### Stop writing classes by Jack Diederich
+    
+```
+import this
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+- Simple is better than complex.
+Complex is better than complicated.
+- Flat is better than nested.
+Sparse is better than dense.
+- Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+- If the implementation is hard to explain, it's a bad idea.
+- If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+
+Jack highlighted the bulleted points above
+```
+
+##### Obfuscated Function Call
+
+```
+class Greeting(object):
+    def __init__(self, greeting='hello'):
+        self.greeting = greeting
+
+    def greet(self, name):
+        return '%s! %s' % (self.greeting, name)
+
+greeting = Greeting('hola')
+print greeting.greet('bob')
+```
+        
+##### Additional Reading Lesson 07
+    
+(Instantiating Classes)[http://www.diveintopython3.net/iterators.html#defining-classes]
+
+### 18.5.1.21:47
+
+Completed all the intro to OO materials.
+
+
+
+    
+```

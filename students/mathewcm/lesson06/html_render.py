@@ -19,3 +19,20 @@ class Element:
     def render(self, out_file):
         tag = self.tag
         out_file.write("just something as a place holder...")
+
+class P:
+    tag = "p"
+    cur_ind = "    "
+    
+class BODY:
+    tag = "body"
+    cur_ind = "    "
+    
+class TITLE:
+    tag = "title"
+    cur_ind = "    "
+
+class HEAD:
+    tag = "head"
+    cur_ind = "    "
+    
