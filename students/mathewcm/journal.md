@@ -641,13 +641,13 @@ class Circle:
 
 Notes for Python Attributes - Scope video
 
-(Video)[https://canvas.uw.edu/courses/1197533/pages/lesson-07-content?module_item_id=8240379)] 
+(Video)[https://canvas.uw.edu/courses/1197533/pages/lesson-07-content?module_item_id=8240379)]
 ```
 class C:
     this = 5
     def __init__(self, that):
         self.that = that
-  
+
 c1
 Traceback (most recent call last):
 
@@ -687,11 +687,11 @@ Out[21]: 56
 c2.this
 Out[22]: 45
 
-class C: 
+class C:
     this = []
     def __init__(self, that):
         self.that = [that]
-        
+
 c1 = C(10)
 
 c2 = C(20)
@@ -720,7 +720,7 @@ Out[34]: [68]
 
 class C:
     this = []
-    
+
 class C:
     this = []
     def __init__(self, that):
@@ -728,7 +728,7 @@ class C:
     def mutable(self, val):
         self.this.append(val)
         self.that.append(val)
-        
+
 c1 = C(10)
 
 c2 = C(20)
@@ -743,28 +743,28 @@ AttributeError: 'C' object has no attribute 'mutate'
 
 class C:
     this = []
-    
+
     def __init__(self, that):
         self.that = [that]
-    
+
     def mutable(self, val):
         self.this.append(val)
         self.that.append(val)
-        
+
 c1 = C(10)
 
 c2 = C(20)
 
 class C:
     this = []
-    
+
     def __init__(self, that):
         self.that = [that]
-    
+
     def mutate(self, val):
         self.this.append(val)
         self.that.append(val)
-        
+
 c1 = C(10)
 
 c2 = C(20)
@@ -779,10 +779,10 @@ AttributeError: 'C' object has no attribute 'mutute'
 
 class C:
     this = []
-    
+
     def __init__(self, that):
         self.that = [that]
-    
+
     def mutate(self, val):
         self.this.append(val)
         self.that.append(val)    
@@ -846,36 +846,36 @@ Out[68]: [99, 77]
 
 class C:
     this = []
-    
-    def __init__(self, that):
-        self.that = [that]
-    
-    def mutate(self, val):
-        self.this.append(val)
-        self.that.append(val)
-        
 
-class C:
-    this = []
-    
     def __init__(self, that):
         self.that = [that]
-    
+
     def mutate(self, val):
         self.this.append(val)
         self.that.append(val)
 
+
 class C:
     this = []
-    
+
+    def __init__(self, that):
+        self.that = [that]
+
+    def mutate(self, val):
+        self.this.append(val)
+        self.that.append(val)
+
+class C:
+    this = []
+
     def __init__(self, that):
         print(type(self))
         self.that = [that]
-    
+
     def mutate(self, val):
         self.this.append(val)
         self.that.append(val)
-        
+
 class B(C):
     pass
 
@@ -967,31 +967,31 @@ Ctrl-m h	show keyboard shortcuts
 #### Spyder Keyboard Shortcuts for the Editor under Windows
 ##### Conventional (more or less) Keyboard Shortcuts
 
-- Home Go to start of line
-- End Go to end of line
-- Left Arrow Go to previous character
-- Right Arrow Go to next character
-- Up Arrow Go up to previous line
-- Down Arrow Go down to next line
-- Ctrl + Left Arrow Go to start of previous word
-- Ctrl + Right Arrow Go to start of next word
-- Ctrl + Up Arrow (or Ctrl + Home) Go to start of document
-- Ctrl + Down Arrow (or Ctrl + End) Go to end of document
-- Ctrl + O Open file
-- Ctrl + N Open new file
-- Ctrl + Backspace Delete to beginning of previous word
-- Ctrl + Delete Delete to beginning of next word
-- Ctrl + A Select all
-- Ctrl + C Copy selection
-- Ctrl + S Save current file
-- Ctrl + Shift + S Save current file as
-- Ctrl + Alt + S Save all open files
-- Delete Delete selection or current character
-- Ctrl + X Cut selection
-- Ctrl + V Paste clipboard contents
-- Ctrl + Z Undo last action
-- Ctrl + Shift + Z Redo last action
-- Ctrl + Q Quit Spyder
+- Home: Go to start of line
+- End: Go to end of line
+- Left: Arrow Go to previous character
+- Right: Arrow Go to next character
+- Up Arrow: Go up to previous line
+- Down Arrow: Go down to next line
+- Ctrl + Left Arrow: Go to start of previous word
+- Ctrl + Right Arrow: Go to start of next word
+- Ctrl + Up Arrow (or Ctrl + Home): Go to start of document
+- Ctrl + Down Arrow (or Ctrl + End): Go to end of document
+- Ctrl + O: Open file
+- Ctrl + N: Open new file
+- Ctrl + Backspace: Delete to beginning of previous word
+- Ctrl + Delete: Delete to beginning of next word
+- Ctrl + A: Select all
+- Ctrl + C: Copy selection
+- Ctrl + S: Save current file
+- Ctrl + Shift + S: Save current file as
+- Ctrl + Alt + S: Save all open files
+- Delete: Delete selection or current character
+- Ctrl + X: Cut selection
+- Ctrl + V: Paste clipboard contents
+- Ctrl + Z: Undo last action
+- Ctrl + Shift + Z: Redo last action
+- Ctrl + Q Quit: Spyder
 
 #####Keyboard Shortcuts for Navigation
 - Ctrl + L Go to line
@@ -1036,7 +1036,7 @@ Ctrl-m h	show keyboard shortcuts
 - Ctrl + I Inspect current object
 - Meta + K Kill to end of line
 - Meta + U Kill to start of line
-- Meta + Shift + Y Rotate 
+- Meta + Shift + Y Rotate
 - Meta + Y Yank
 
 ##### Keyboard Shortcuts for Executing Code
@@ -1084,7 +1084,7 @@ Ctrl-m h	show keyboard shortcuts
 - Alt + Shift + PageDown Use next layout
 - Alt + Shift + S Save current layout
 - Alt + Shift + P Layout preferences
-- 
+-
 (Source .pdf)[http://cs.smu.ca/~porter/csc/227/SpyderKeyboardShortcutsEditor.pdf]
 
 
@@ -1113,25 +1113,25 @@ class Circle:
     'An advanced circle analytic toolkit'
 
     version = '0.1'         # class variable
-    
+
     def __init__(self, radius):
         self.radius = radius            # instance variable
 
     def area(self):
         'Perform quadrature on a shape of uniform radius'
         return 3.14 * self.radius ** 2.0
-    
+
     c = Circle(10)
     print('Circuituous version', Circle.version)
-   
+
     print('A circle of radius', c.radius)
     print('has an area of', c.area())
     print()
 ```
    <!-- Instruction in Python 2.7 to difficult to refactor on the fly -->
-    
+
 ##### Stop writing classes by Jack Diederich
-    
+
 ```
 import this
 The Zen of Python, by Tim Peters
@@ -1172,16 +1172,18 @@ class Greeting(object):
 greeting = Greeting('hola')
 print greeting.greet('bob')
 ```
-        
+
 ##### Additional Reading Lesson 07
-    
+
 (Instantiating Classes)[http://www.diveintopython3.net/iterators.html#defining-classes]
 
 ### 18.5.1.21:47
 
 Completed all the intro to OO materials.
 
+### HTML Rendering Excercise
+
+Challenge is to render elements nested in other elements
 
 
-    
 ```
