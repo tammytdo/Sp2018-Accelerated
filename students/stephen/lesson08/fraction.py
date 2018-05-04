@@ -17,6 +17,12 @@ class Fraction:
             # normalization
             num *= -1
             denom *= -1
+        d_num = [x for x in range(1, abs(num) + 1) if (num % x) == 0]
+        d_denom = [x for x in range(1, abs(denom) + 1) if (denom % x) == 0]
+        gcd = max([x for x in d_denom if x in d_num])
+        if gcd > 1:
+            num = num // gcd
+            denom = denom // gcd
         self.num = num
         self.denom = denom
 

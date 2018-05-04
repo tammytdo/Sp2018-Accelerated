@@ -28,4 +28,5 @@ def test_fraction_lt():
 
 def test_fraction_add():
     assert Fraction(1, 2) + Fraction(2, 3) == Fraction(7, 6)
+    # Fraction(1, 2).__add_(Fraction(2, 3)) == Fraction(7, 6)
     assert str(Fraction(1, 3) + Fraction(1, 6)) == '1/2'
