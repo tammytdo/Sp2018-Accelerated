@@ -44,12 +44,11 @@ else:
 # parameters. (pun intended)
 
 langs = ['java', 'c', 'python']
-
 try:
     more_joke = more_fun(langs[0])
 except IndexError:
     more_joke = more_fun(langs[1])
 else:
-    more_fun(langs[2])
+    more_joke = more_fun(langs[2])
 finally:
     last_fun()

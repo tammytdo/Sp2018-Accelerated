@@ -17,7 +17,9 @@ first_try = ['spam', 'cheese', 'mr death']
 try:
     joke = fun(first_try[0])
 except NameError:
-    joke = fun(first_try[1])
+    print('Ni!')
+else:
+    print(joke)
 
 # Here is a try/except block. Add an else that prints not_joke
 try:
@@ -46,10 +48,28 @@ else:
 langs = ['java', 'c', 'python']
 
 try:
-    more_joke = more_fun(langs[0])
-except IndexError:
     more_joke = more_fun(langs[1])
-else:
-    more_fun(langs[2])
+    morer_joke = more_fun(langs[-1])
+
+except SyntaxError:
+    print(more_joke)
 finally:
     last_fun()
+
+
+
+
+# try:
+#     more_joke = more_fun(langs[1])
+# except IndexError:
+#     print("don't grovel. I hate it when they grovel.")
+# else:
+#     print(more_joke)
+
+# try:
+#     last_joke = last_fun(last_fun)
+# except TypeError:
+#     print("I hate it when they avert their eyes.")
+# else: 
+#     print("Coconut")
+
