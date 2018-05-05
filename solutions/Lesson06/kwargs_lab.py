@@ -21,7 +21,7 @@ colors_manual() takes generic arguments, but processes it as if it had keyworkd 
 
 """
 
-# from collections import OrderedDict
+from collections import OrderedDict
 
 
 def colors(fore_color='red',
@@ -74,50 +74,50 @@ def call_colors(*args, **kwargs):
     return args, kwargs
 
 
-# def colors_manual(*args, **kwargs):
-#     """
-#     This example to show you how much work you need to do to do this by hand!
+def colors_manual(*args, **kwargs):
+    """
+    This example to show you how much work you need to do to do this by hand!
 
-#     This passes all the same tests as the colors function above:
-#       with a LOT more code!
-#     """
-#     # putting this in a tuple, as order is important
-#     #  could also use an ordereddict
-#     default_colors = OrderedDict((('fore_color', 'red'),
-#                                   ('back_color', 'blue'),
-#                                   ('link_color', 'green'),
-#                                   ('visited_color', 'cyan'),
-#                                   ))
-#     for key in kwargs:
-#         if key not in default_colors:
-#             msg = "colors_manual() got an unexpected keyword argument: {}".format(key)
-#             raise TypeError
+    This passes all the same tests as the colors function above:
+      with a LOT more code!
+    """
+    # putting this in a tuple, as order is important
+    #  could also use an ordereddict
+    default_colors = OrderedDict((('fore_color', 'red'),
+                                  ('back_color', 'blue'),
+                                  ('link_color', 'green'),
+                                  ('visited_color', 'cyan'),
+                                  ))
+    for key in kwargs:
+        if key not in default_colors:
+            msg = "colors_manual() got an unexpected keyword argument: {}".format(key)
+            raise TypeError
 
-#     all_args = {}
-#     # unpack the args tuple:
-#     for i, key in enumerate(default_colors.keys()):
-#         try:
-#             all_args[key] = args[i]
-#         except IndexError:  # This will get raised when the tuple is exausted
-#             break
+    all_args = {}
+    # unpack the args tuple:
+    for i, key in enumerate(default_colors.keys()):
+        try:
+            all_args[key] = args[i]
+        except IndexError:  # This will get raised when the tuple is exausted
+            break
 
-#     for key, color in default_colors.items():
-#         if key in all_args:  # it's already been set
-#             if key in kwargs:  # it's a duplicate
-#                 msg = "colors_manual() got multiple values for argument '{}'".format(key)
-#                 raise TypeError(msg)
-#         elif key in kwargs:
-#             # set it from the kwargs dict
-#             all_args[key] = kwargs[key]
-#         else:
-#             # set it to the default
-#             all_args[key] = color
+    for key, color in default_colors.items():
+        if key in all_args:  # it's already been set
+            if key in kwargs:  # it's a duplicate
+                msg = "colors_manual() got multiple values for argument '{}'".format(key)
+                raise TypeError(msg)
+        elif key in kwargs:
+            # set it from the kwargs dict
+            all_args[key] = kwargs[key]
+        else:
+            # set it to the default
+            all_args[key] = color
 
-#     output = ("The colors are:\n"
-#               "  foreground: {fore_color}\n"
-#               "  background: {back_color}\n"
-#               "  link: {link_color}\n"
-#               "  visited: {visited_color}")
-#     output = output.format(**all_args)
+    output = ("The colors are:\n"
+              "  foreground: {fore_color}\n"
+              "  background: {back_color}\n"
+              "  link: {link_color}\n"
+              "  visited: {visited_color}")
+    output = output.format(**all_args)
 
-#     return output
+    return output

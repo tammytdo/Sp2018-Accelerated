@@ -7,22 +7,21 @@
 Notes for Session 09
 ####################
 
+
+
 A collection of notes to go over in class, to keep things organized.
+
 
 Lightning Talks
 ===============
 
-James Takata
-
-Katherine Marguerite Anderson
-
-Matthew D Briggs
-
-[Make sure you've got the right adapter....]
+Anyone missed their chance?
 
 
 Issues that came up during the week.
 ====================================
+
+
 
 "private" attributes and dunders
 --------------------------------
@@ -30,6 +29,7 @@ Issues that came up during the week.
 ``_something`` vs ``__something`` vs ``__something__``
 
 Let's talk about that...
+
 
 Adding parameters to a subclass __init__
 ----------------------------------------
@@ -52,7 +52,8 @@ And this lets you use ``*args`` and ``**kwargs`` to pass along the usual ones.
             self.newpar2 = newpar2
             super().__init__(*args, **kwarg)
 
-Example: html_render Anchor tag:
+**Example:** html_render Anchor tag:
+
 
 .. code-block:: python
 
@@ -68,7 +69,8 @@ Example: html_render Anchor tag:
 
 This becomes particularly important with ``super()`` and subclassing...
 
-which we will get more into today.
+Which we will get more into today.
+
 
 Any other html_render questions?
 --------------------------------
@@ -76,11 +78,9 @@ Any other html_render questions?
 Lightning Talks
 ===============
 
-James Takata
+Jay Johnson
 
-Katherine Marguerite Anderson
-
-Matthew D Briggs
+Tammy Do
 
 
 New Topics
@@ -107,6 +107,7 @@ Let's look at that with my Circle solution:
 ``IntroPython-2017/solutions/Session08/circle.py``
 
 (and answer any other questions about Circle, while we are at it)
+
 
 multiple inheritance and super()
 --------------------------------

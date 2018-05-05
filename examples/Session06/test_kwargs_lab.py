@@ -94,3 +94,4 @@ def test_tuple_dict():
     assert 'background: purple' in result
     assert 'link: purple' in result
     assert 'visited: magenta' in result
+
