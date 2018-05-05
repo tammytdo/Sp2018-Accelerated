@@ -1185,5 +1185,85 @@ Completed all the intro to OO materials.
 
 Challenge is to render elements nested in other elements
 
+- Office Hours online and in Paccar Hall Study Room #9 2:30pm - 4:30pm Sunday May 6th.
 
+#### Test_fraction.py notes
+
+1+2 = +(1, 2)
+
+def __eq__(self, other):
+  return self.num * other.denom == self.denom * other.num
+
+__ne__ ???
+
+#### Use case for comparing positive fractions
 ```
+def __init__(self, num, denom):
+    if denom == 0:
+      raise ZeroDivisionError
+    if not isinstance(num, int) or not isinstance
+
+def test_fraction_lt():
+    assert Fraction(1, 2) < Fraction(2, 3) # Fraction(1,2).__lt__(Fraction(2,3))
+    assert Fraction(1, -2) < Fraction(2, 3)
+
+    if denom < 0:
+        num *= -1
+        denom *= -1
+    self.num
+
+def __str(self):
+    return str(self.num) + "/" + str(self.denom)
+
+def __lt__(self, other):
+  self.num * other.denom < self.denom * other.num
+
+def test_fraction_add():
+    assert Fraction(1,2) + Fraction(2,3) == Fraction(7,6)
+    # Fraction(1,2.__add__)
+    assert str(Fractions(1,3) + Fraction(1,6)) == '1/2'
+
+def __add__(self, other):
+    num = self.num + other.denom < self.denom * other.number
+    denom = self.denom * other.denom
+    return Fraction(num, denom)
+```
+#### At the constructor is the best time to do normalization: Add GCD algorithm to the constructor to get all tests to pass.
+
+class Base:
+    def __init__(self):
+        print(type(self))
+
+class Derived(Base):
+    def __init__(self):
+        super().__init__()
+        print(type(self))
+
+d = Derived()
+<class '__main__.Derived'>
+<class '__main__.Base'>
+
+
+#### Python static vs. class Methods
+```
+class StaticAdder:
+    @staticmethod
+    def add(a, b):
+        return a + b
+
+StaticAdder.add(3,6)
+```
+No highly used!
+
+#### Class methods
+
+class Classy:
+    x = 2
+    @classmethod
+    def a_class_method(cls, y):
+        print("in a class method: ", cls)
+        return y ** cls.x
+
+Classy.a_class_method(4)
+
+#### Alternative Constructors *** Know this methods
