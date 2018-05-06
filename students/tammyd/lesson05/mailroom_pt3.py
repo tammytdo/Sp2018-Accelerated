@@ -29,18 +29,27 @@ def main_menu():
       "R - Create a Report\n"
       "Q - Quit the Program"
       )
+
+    menu_dict = {"T": thank_you, 
+                 "L": letters_to_everyone, 
+                 "R": create_report, 
+                 "Q": quit_program
+                 }
+
     while True:
         menu_selection = input("\nChoose a letter:  ")
         menu_selection = menu_selection.upper().strip()
         try:
-            if menu_selection == "T":
-                thank_you()
-            elif menu_selection == "L":
-                letters_to_everyone()
-            elif menu_selection == "R":
-                create_report()
-            elif menu_selection == "Q":
-                quit_program()
+            return menu_dict[menu_selection]()
+
+            # if menu_selection == "T":
+            #     thank_you()
+            # elif menu_selection == "L":
+            #     letters_to_everyone()
+            # elif menu_selection == "R":
+            #     create_report()
+            # elif menu_selection == "Q":
+            #     quit_program()
         #why is my exception not being raised here when I make an invalid entry?
         except (KeyError):
             print("Invalid response -- select T, R, or Q \n")

@@ -8,11 +8,11 @@ Mailroom program for a non profit
 
 import sys
 
-donor_db = {"britney spears": ("Britney Spears", [50.99, 100.99, 2000.99]),
+donor_db = {"britney spears": ("Britney Spears", [50.99, 100.99, 1000.99]),
             "christina aguilera": ("Christina Aguilera", [50.99, 100.99, 2000.99]),
-            "mandy moore": ("Mandy Moore", [50.99, 100.99, 2000.99]),
-            "jessica simpson": ("Jessica Simpson", [50.99, 100.99, 2000.99]),
-            "queen bey": ("Queen Bey", [50.99, 100.99, 2000.99]),
+            "mandy moore": ("Mandy Moore", [50.99, 100.99, 3000.99]),
+            "jessica simpson": ("Jessica Simpson", [50.99, 100.99, 4000.99]),
+            "queen bey": ("Queen Bey", [50.99, 100.99, 5000.99]),
             }
 
 
@@ -29,13 +29,9 @@ def main_menu():
       "R - Create a Report\n"
       "Q - Quit the Program"
       )
-    menu_selection = input("\nChoose a letter:  ")
-    menu_selection = menu_selection.upper().strip()
-    select_menu(menu_selection)
-
-
-def select_menu(menu_selection):
     while True:
+        menu_selection = input("\nChoose a letter:  ")
+        menu_selection = menu_selection.upper().strip()
         if menu_selection == "T":
             thank_you()
         elif menu_selection == "L":
@@ -45,7 +41,6 @@ def select_menu(menu_selection):
         elif menu_selection == "Q":
             quit_program()
         else:
-            #how do I get out of an infinite loop here?
             print("Invalid response -- select T, R, or Q \n")
 
 
@@ -102,11 +97,10 @@ def ty_letter(donor_name, donor_amount):
 
 
 def letters_to_everyone():
-#how can I format the output of the letter?
     for donor_name in donor_db.values():
         letter = (f"\nDear {donor_name[0]},\n\n\tYour donation of ${donor_name[1][-1]} will make a great difference to a young learner at the coding academy. Thank you.\n\n\nSincerely,\nAn Academy Student\n")
         filename = donor_name[0].replace(" ", "_") + ".txt"
-        print("writting letter to:", donor_name[0])
+        print("Adressed to:", donor_name[0])
         open(filename, 'w').write(letter)
         print(letter)
         print("--------------------------------\n\n")
