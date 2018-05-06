@@ -80,7 +80,7 @@ def test_alt_constructor():
 
 
 # Step 6: 
-def test_print():
+def test_str():
     """
     Test that printing a Circle class object prints the string
     that is in __str__ 
@@ -89,6 +89,15 @@ def test_print():
     s = str(c)
 
     assert s == "Circle with radius: 4"
+
+
+def test_repr():
+    """
+    Test for __repr__ dunder
+    """
+    c = Circle(4)
+
+    assert repr(c) == 'Circle(4)'
 
 
 # Step 7:
