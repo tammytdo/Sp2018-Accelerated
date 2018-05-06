@@ -19,12 +19,12 @@ donors = {
     'Richard Branson': [25, 90, 124, 300]
 }
 
-def gen_letter(donor):
+def gen_letter(name, amount):
     """
     Takes the donor iterable and returns a string that is a formatted thank you note
     with the donor's name and last donation amount.
     """
-    return "Dear {:s},\n\nWe greatly appreciate your generous donation of ${:,.2f}.\n\nThank you,\nThe Team".format(donor[0], donor[1])
+    return "Dear {:s},\n\nWe greatly appreciate your generous donation of ${:,.2f}.\n\nThank you,\nThe Team".format(name, amount)
 
 def filename(name):
     'Return a txt file name based on the donor name and using underscores instead of spaces'
@@ -36,8 +36,7 @@ def write_letters_to_disk(dict=donors):
     """
     for n, d in dict.items():
         print('Generating letter to {:s}'.format(n))
-        donor = (n, d[-1])
-        letter = gen_letter(donor)
+        letter = gen_letter(n, d[-1])
         with open(filename(n), 'w') as outfile:
             outfile.write(letter)
     print()
@@ -58,7 +57,7 @@ def enter_name(name, amount):
         else:
             ex = 1
     add_donation(name, amount)
-    print(gen_letter([name, amount]))
+    print(gen_letter(name, amount))
     print()
 
 def get_name_donation():
@@ -69,11 +68,15 @@ def get_name_donation():
     print()
     enter_name(ty_name, ty_amount)
 
-def donor_list():
+def donor_list(dict=donors):
+    name_list = []
+    for name in dict:
+        name_list.append(name + '\n')
+    return ''.join(name_list)
+
+def print_donor_list():
     print('\nDonors:')
-    for name in donors:
-        print(name)
-    print()
+    print(donor_list())
 
 def thank_you():
     print()
@@ -81,7 +84,7 @@ def thank_you():
     ty_choice = ''
     switch_func_dict = {
         '1': get_name_donation,
-        '2': donor_list
+        '2': print_donor_list
     }
     while ty_choice != '3':
         print('1) Enter the full name of the recipient\n2) See a list of donor names\n3) Return to the Main Menu')
