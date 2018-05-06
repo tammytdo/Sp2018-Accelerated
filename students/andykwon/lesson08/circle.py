@@ -57,15 +57,3 @@ class Circle():
     @classmethod
     def from_diameter(class_object, d = None):
         return class_object(d / 2)
-
-    # def radius(self):
-
-    #     return self.r
-
-    # def diameter(self):
-
-    #     return self.r * 2
-
-    # def area(self):
-
-    #     return math.pi * self.r**2

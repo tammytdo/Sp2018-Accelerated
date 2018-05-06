@@ -86,8 +86,9 @@ def test_print():
     that is in __str__ 
     """
     c = Circle(4)
-    # Not sure yet on how to test a print...
-    # assert print(c) == "Circle with radius: 4"
+    s = str(c)
+
+    assert s == "Circle with radius: 4"
 
 
 # Step 7:
@@ -147,6 +148,15 @@ def test_equal_to():
     assert result2 is False
 
 
+def test_list():
+    """
+    Test that a list of Circles gets sorted properly, according
+    to its radius
+    """
 
+    circles = [Circle(2), Circle(4), Circle(1), Circle(3)]
+    sorted_circles = sorted(circles)
+
+    assert sorted_circles == [Circle(1), Circle(2), Circle(3), Circle(4)]
 
 
