@@ -15,6 +15,9 @@ donor_db = {"britney spears": ("Britney Spears", [50.99, 100.99, 1000.99]),
             "queen bey": ("Queen Bey", [50.99, 100.99, 5000.99]),
             }
 
+def donor_database():
+    return donor_db
+
 
 def mainloop():
     print("Welcome to the Mailroom \n")
@@ -40,6 +43,7 @@ def main_menu():
         menu_selection = input("\nChoose a letter:  ")
         menu_selection = menu_selection.upper().strip()
         try:
+            #can you remind me how the () here works?
             return menu_dict[menu_selection]()
 
             # if menu_selection == "T":
@@ -50,6 +54,7 @@ def main_menu():
             #     create_report()
             # elif menu_selection == "Q":
             #     quit_program()
+
         #why is my exception not being raised here when I make an invalid entry?
         except (KeyError):
             print("Invalid response -- select T, R, or Q \n")
@@ -62,19 +67,31 @@ def main_menu():
 
 def thank_you():
     print("\nMenu: Send a Thank You\n")
+    thank_you_dict = {"list": donor_database,
+                      "menu": main_menu,
+                      "q": quit_program
+                      }
+
     while True:
         donor_name = input("Enter the donor's full name. \n-- or 'list' to see a list of donors, \n-- or 'menu' to return to the main menu: ").strip()
-        if donor_name.lower() == "list":
-            print("\nDonor database:")
-            for keys in donor_db:
-                print(keys.title())
-            print("\n")
-        elif donor_name.lower() == "menu":
-            return main_menu()
-        elif donor_name.lower() == "q":
-            return quit_program()
-        else:
-            break
+        donor_name = donor_name.lower()
+        try: 
+            return thank_you_dict[donor_name]()
+
+        # if donor_name == "list":
+        #     print("\nDonor database:")
+        #     for keys in donor_db:
+        #         print(keys.title())
+        #     print("\n")
+        # elif donor_name == "menu":
+        #     return main_menu()
+        # elif donor_name == "q":
+        #     return quit_program()
+        # else:
+        #     break
+        except KeyError:
+            print("Incorrect entry. Try again.")
+            return
     donation_amount(donor_name)
 
 
