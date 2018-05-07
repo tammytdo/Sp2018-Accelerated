@@ -1212,7 +1212,7 @@ def test_fraction_lt():
         denom *= -1
     self.num
 
-def __str(self):
+def __str__(self):
     return str(self.num) + "/" + str(self.denom)
 
 def __lt__(self, other):
