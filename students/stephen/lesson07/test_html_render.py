@@ -23,7 +23,7 @@ def render_result(element, ind=""):
     # so it can be used to test code that writes to a file, without
     # having to actually write to disk.
     outfile = io.StringIO()
-    element.render(outfile)
+    element.render(outfile, ind)
     return outfile.getvalue()
 
 ########
@@ -158,6 +158,7 @@ def test_body():
     assert file_contents.startswith("<body>")
     assert file_contents.endswith("</body>")
 
+
 def test_p():
     e = P("this is some text")
     e.append("and this is some more text")
@@ -169,6 +170,28 @@ def test_p():
 
     assert file_contents.startswith("<p>")
     assert file_contents.endswith("</p>")
+
+
+def test_onelinetag():
+    e = OneLineTag('This is on one line')
+    e.tag = 'oneline'
+    file_contents = render_result(e).strip()
+    print(file_contents)
+
+    assert '\n' not in file_contents
+    assert file_contents.startswith('<oneline>')
+    assert file_contents.endswith('</oneline>')
+
+
+def test_title():
+    e = Title('This is a title')
+    file_contents = render_result(e).strip()
+    print(file_contents)
+
+    assert '\n' not in file_contents
+    assert file_contents.startswith('<title>')
+    assert file_contents.endswith('</title>')
+
 
 def test_sub_element():
     """
@@ -194,16 +217,38 @@ def test_sub_element():
 
 # # test for style
 def test_style():
-    e = P("this is some text", style="text-align: center")
+    e = P("this is some text", style="text-align: center", id="another attribute")
     e.append("and this is some more text")
 
     file_contents = render_result(e).strip()
 
-    assert("this is some text") in file_contents
-    assert("and this is some more text") in file_contents
+    assert ("this is some text") in file_contents
+    assert ("and this is some more text") in file_contents
     print(file_contents)
-    assert file_contents.startswith('<p style="text-align: center">')
+    assert file_contents.startswith('<p style="text-align: center" id="another attribute">')
     assert file_contents.endswith("</p>")
+
+# # Test for SelfClosingTags
+def test_selfclosingtag():
+    e = SelfClosingTag()
+    with pytest.raises(TypeError):
+        e = Hr('This should throw an error')
+    e = Hr()
+    file_contents = render_result(e).strip()
+    print(file_contents)
+    assert ("<hr />") == file_contents
+    e = Br()
+    file_contents = render_result(e).strip()
+    print(file_contents)
+    assert ("<br />") == file_contents
+
+# # Test for a
+def test_a():
+    e = A("http://google.com", "link to google")
+    file_contents = render_result(e).strip()
+    print(file_contents)
+    assert ('<a href="http://google.com">link to google</a>') == file_contents
+
 
 
 # #####################
@@ -291,22 +336,3 @@ def test_style():
 ########
 
 # Add your tests here!
-def test_onelinetag():
-    e = OneLineTag('This is on one line')
-    e.tag = 'oneline'
-    file_contents = render_result(e).strip()
-    print(file_contents)
-
-    assert '\n' not in file_contents
-    assert file_contents.startswith('<oneline>')
-    assert file_contents.endswith('</oneline>')
-
-
-def test_title():
-    e = Title('This is a title')
-    file_contents = render_result(e).strip()
-    print(file_contents)
-
-    assert '\n' not in file_contents
-    assert file_contents.startswith('<title>')
-    assert file_contents.endswith('</title>')
