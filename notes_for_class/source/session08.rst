@@ -95,7 +95,7 @@ Hosung's Notes
 Announcements
 -------------
 
-Office hours: 2:30pm-4:30pm, Foster Library (Paccar Hall) Study Room #9
+Office hours: 2:30pm-4:30pm, Sunday, 5/6/2018, Foster Library (Paccar Hall) Study Room #9
 
 Online participation: https://washington.zoom.us/my/pythonxl
 
