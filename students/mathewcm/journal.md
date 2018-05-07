@@ -1267,3 +1267,105 @@ class Classy:
 Classy.a_class_method(4)
 
 #### Alternative Constructors *** Know this methods
+
+#### Super
+
+1) The method being called by super needs to exist
+2) Caller and the called need to have matching argument signatures
+3) Every occurance of the method needs to use Super
+
+```
+class A():
+    def __init__(self):
+        print("in A __init__ ")
+        print("self's class is:", self.__class__)
+        s = super().__init__()
+
+class B():
+    def __init__(self):
+        print("in B __init__ ")
+        print("self's class is:", self.__class__)
+        s = super().__init__()
+
+class C():
+    def __init__(self):
+        print("in C __init__ ")
+        print("self's class is:", self.__class__)
+        s = super().__init__()
+
+class D(C, B, A):
+    def __init__(self):
+        print("in D.__init__")
+        print("self's class is:", self.__class__)
+        super().__init__()
+
+
+print("D's MRO:")
+for c in D.__mro__:
+    print(c)
+
+D's MRO:
+<class '__main__.D'>
+<class '__main__.C'>
+<class '__main__.B'>
+<class '__main__.A'>
+<class 'object'>
+
+
+d = D()
+in D.__init__
+self's class is: <class '__main__.D'>
+in C __init__
+self's class is: <class '__main__.D'>
+in B __init__
+self's class is: <class '__main__.D'>
+in A __init__
+self's class is: <class '__main__.D'>
+
+super?
+Init signature: super(self, /, *args, **kwargs)
+Docstring:     
+super() -> same as super(__class__, <first argument>)
+super(type) -> unbound super object
+super(type, obj) -> bound super object; requires isinstance(obj, type)
+super(type, type2) -> bound super object; requires issubclass(type2, type)
+Typical use to call a cooperative superclass method:
+class C(B):
+    def meth(self, arg):
+        super().meth(arg)
+This works for class methods too:
+class C(B):
+    @classmethod
+    def cmeth(cls, arg):
+        super().cmeth(arg)
+Type:           type
+
+c = C()
+in C __init__
+self's class is: <class '__main__.C'>
+
+# Try an invalid relationship:
+
+super(D, c)
+Traceback (most recent call last):
+
+  File "<ipython-input-100-f817bbf8c6b4>", line 1, in <module>
+    super(D, c)
+
+TypeError: super(type, obj): obj must be an instance or subtype of type
+
+
+# This fails: C is not a subclass of D
+
+s_a = super(A, d)
+
+print(s_a)
+<super: <class 'A'>, <D object>>
+
+s_b = super(B, d)
+
+print(s_b)
+<super: <class 'B'>, <D object>>
+
+print(D.__mro__)
+(<class '__main__.D'>, <class '__main__.C'>, <class '__main__.B'>, <class '__main__.A'>, <class 'object'>)
