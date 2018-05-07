@@ -13,7 +13,7 @@ from html_render import *
 
 # utility function for testing render methods
 # needs to be used in multiple tests, so we write it once here.
-def render_result(element, ind=""):
+def render_result(element, cur_indent=0):
     """
     calls the element's render method, and returns what got rendered as a
     string
@@ -23,12 +23,13 @@ def render_result(element, ind=""):
     # so it can be used to test code that writes to a file, without
     # having to actually write to disk.
     outfile = io.StringIO()
-    element.render(outfile, ind)
+    element.render(outfile, cur_indent)
     return outfile.getvalue()
 
 ########
 # Step 1
 ########
+
 
 def test_init():
     """
@@ -374,3 +375,60 @@ def test_list():
     assert "This is item 1" in file_contents
     assert "</li>" in file_contents
     assert "This is item 2" in file_contents
+
+
+########
+# Step 8
+########
+
+# Testing for list
+def test_doctype():
+    page = Html()
+    head = Head()
+    page.append(head)
+    body = Body()
+    body.append(Title("Here is a title"))
+    body.append(Head("Here is a header"))
+    body.append(P("A simple paragraph of text"))
+    page.append(body)
+    page.append(Hr())
+    file_contents = render_result(page)
+    print(file_contents)  # so we can see it if the test fails
+    assert "<title>" in file_contents
+    assert "</title>" in file_contents
+    assert "<head>" in file_contents
+    assert "</head>" in file_contents
+    assert "<hr />" in file_contents
+    assert "</hr" not in file_contents
+    assert "<!DOCTYPE html>" in file_contents
+    assert "<html>" in file_contents
+    assert "</html>" in file_contents
+
+
+########
+# Step 9
+########
+
+# Testing for indentation
+
+def test_indent():
+    page = Html()
+    head = Head()
+    page.append(head)
+    body = Body()
+    body.append(Title("Here is a title"))
+    body.append(Head("Here is a header"))
+    body.append(P("A simple paragraph of text"))
+    page.append(body)
+    page.append(Hr())
+    file_contents = render_result(page)
+    print(file_contents)  # so we can see it if the test fails
+    assert "    <title>" in file_contents
+    assert "</title>" in file_contents
+    assert "        <head>" in file_contents
+    assert "        </head>" in file_contents
+    assert "    <hr />" in file_contents
+    assert "</hr" not in file_contents
+    assert "<!DOCTYPE html>" in file_contents
+    assert "<html>" in file_contents
+    assert "</html>" in file_contents

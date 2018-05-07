@@ -14,7 +14,7 @@ import html_render as hr
 
 
 # writing the file out:
-def render_page(page, filename, indent=None):
+def render_page(page, filename, cur_indent=None):
     """
     render the tree of elements
 
@@ -23,10 +23,10 @@ def render_page(page, filename, indent=None):
     """
 
     f = StringIO()
-    if indent is None:
+    if cur_indent is None:
         page.render(f)
     else:
-        page.render(f, indent)
+        page.render(f, cur_indent)
     print(f.getvalue())
     with open(filename, 'w') as outfile:
         outfile.write(f.getvalue())
@@ -188,21 +188,24 @@ def render_page(page, filename, indent=None):
 #
 # render_page(page, "test_html_output7.html")
 
-# # Step 8
+
+
+
+# # Step 9
 # ########
 
 page = hr.Html()
 
 
 head = hr.Head()
-head.append( hr.Meta(charset="UTF-8") )
+head.append(hr.Meta(charset="UTF-8"))
 head.append(hr.Title("PythonClass = Revision 1087:"))
 
 page.append(head)
 
 body = hr.Body()
 
-body.append( hr.H(2, "PythonClass - Example") )
+body.append(hr.H(2, "PythonClass - Example"))
 
 body.append(hr.P("Here is a paragraph of text -- there could be more of them, "
                  "but this is enough  to show that we can do some text",
@@ -226,4 +229,4 @@ body.append(list)
 
 page.append(body)
 
-render_page(page, "test_html_output8.html")
+render_page(page, "test_html_output9.html")

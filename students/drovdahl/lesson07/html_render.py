@@ -15,13 +15,14 @@ class Element(object):
     link_tag = False
     meta_tag = False
 
-    def __init__(self, content=None, style=None, id=None):
+    def __init__(self, content=None, style=None, id=None, indent=4):
         if content is None:
             self.content = []
         else:
             self.content = [content]
         self.style = style
         self.id = id
+        self.indent = indent
 
     def append(self, new_content):
         self.content.append(new_content)
@@ -37,22 +38,31 @@ class Element(object):
     def close_tag(self):
         return f'</{self.tag}>'
 
-    def render(self, out_file, ind=None):
+    def render(self, out_file, cur_indent=None):
         '''<tag>
            this is some text
            and this is some more text
            </tag>
         '''
-        out_file.write(self.open_tag() + '\n')
+        if cur_indent is not None:
+            render_indent = ' ' * self.indent * cur_indent
+        else:
+            render_indent = ''
+        out_file.write(str(render_indent) + self.open_tag() + '\n')
         self.style = None
         for line in self.content:
             if isinstance(line, str):
-                out_file.write(line)
+                out_file.write(str(render_indent + '    ') + line)
                 out_file.write('\n')
             else:
-                line.render(out_file)
+                if cur_indent is None:
+                    cur_indent = 1
+                else:
+                    cur_indent += 1
+                line.render(out_file, cur_indent)
+                cur_indent -= 1
         if self.close_tag_line is True:
-            out_file.write(self.close_tag() + '\n')
+            out_file.write(str(render_indent) + self.close_tag() + '\n')
         else:
             pass
 
@@ -78,19 +88,26 @@ class Head(Element):
 
 class OneLineTag(Element):
     '''<tag>this is some text and this is some more text</tag>'''
-    def render(self, out_file):
+
+    def render(self, out_file, cur_indent=None):
+        if cur_indent is not None:
+            render_indent = ' ' * self.indent * cur_indent
+        else:
+            render_indent = ''
+
         if self.link_tag is True:
-            out_file.write(f'<{self.tag} href="{self.link}">{self.content}'
+            out_file.write(str(render_indent) + f'<{self.tag} href="{self.link}">{self.content}'
                            f'{self.close_tag()}\n')
         elif self.meta_tag is True:
-            out_file.write(f'<{self.tag} charset="{self.charset}" />\n')
+            out_file.write(str(render_indent) + f'<{self.tag} charset="{self.charset}" />\n')
         else:
-            out_file.write(self.open_tag())
+
+            out_file.write(str(render_indent) + self.open_tag())
             for line in self.content:
                 if isinstance(line, str):
                     out_file.write(line)
                 else:
-                    line.render(out_file)
+                    line.render(out_file, cur_indent)
             if self.close_tag_line is True:
                 out_file.write(self.close_tag() + '\n')
             else:
@@ -115,18 +132,23 @@ class A(OneLineTag):
     tag = 'a'
     link_tag = True
 
-    def __init__(self, link, content, style=None):
+    def __init__(self, link, content=None, style=None, indent=4):
         self.link = link
-        self.content = content
         self.style = style
+        self.indent = indent
+        if content is None:
+            self.content = []
+        else:
+            self.content = [content]
 
 
 class Ul(Element):
     tag = 'ul'
 
-    def __init__(self, id=None, content=None, style=None):
+    def __init__(self, content=None, id=None, style=None, indent=4):
         self.id = id
         self.style = style
+        self.indent = indent
         if content is None:
             self.content = []
         else:
@@ -139,22 +161,24 @@ class Li(Element):
 
 class H(OneLineTag):
 
-    def __init__(self, header_level, content, id=None, style=None):
-        self.content = content
+    def __init__(self, header_level, content, id=None, style=None, indent=4):
+        self.content = "".join(content)
         self.style = style
         tag = 'h' + str(header_level)
         self.tag = tag
         self.id = id
+        self.indent = indent
 
 
 class Meta(OneLineTag):
     tag = 'meta'
     meta_tag = True
 
-    def __init__(self, charset=None, id=None, style=None, content=None):
+    def __init__(self, charset=None, id=None, style=None, content=None, indent=4):
         self.charset = charset
         self.id = id
         self.style = style
+        self.indent = indent
         if content is None:
             self.content = []
         else:
