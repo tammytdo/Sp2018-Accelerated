@@ -35,6 +35,3 @@ def test_letter():
     amount = 500
     mr.letter(donor, amount)
     assert mr.find_donor(donor)[donor] == amount
-
-def test_pack():
-    result = mr.pack()
