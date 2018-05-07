@@ -7,6 +7,7 @@ A class-based system for rendering html.
 
 # This is the framework for the base class
 class Element:
+    'Base Class for HTML Render'
     tag = 'html'
     ind = 0
 
@@ -21,6 +22,7 @@ class Element:
             self.attrs = None
 
     def append(self, new_content):
+        'Add content to Element'
         self.content.append(new_content)
 
     def add_newlines(self):
@@ -39,6 +41,8 @@ class Element:
             self.content.append('\n')
 
     def render(self, out_file, **kwargs):
+        '''Render content and attributes with proper level of indentation and newlines
+        '''
         self.add_newlines()
         if 'indent' in kwargs:
             indent = kwargs['indent']
@@ -64,6 +68,7 @@ class Element:
         return out_file
 
 class OneLineTag(Element):
+    'SubClass without newlines between content and kwargs'
     def render(self, out_file, **kwargs):
         if 'indent' in kwargs:
             indent = kwargs['indent']
@@ -85,6 +90,7 @@ class OneLineTag(Element):
         return out_file
 
 class SelfClosingTag(Element):
+    'SubClass without newlines and without closing tag'
     def __init__(self, **kwargs):
         if 'content' in kwargs:
             raise ValueError('content not allowed in self-closing tags')
