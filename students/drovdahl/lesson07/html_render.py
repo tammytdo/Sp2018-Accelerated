@@ -136,10 +136,7 @@ class A(OneLineTag):
         self.link = link
         self.style = style
         self.indent = indent
-        if content is None:
-            self.content = []
-        else:
-            self.content = [content]
+        self.content = content
 
 
 class Ul(Element):
