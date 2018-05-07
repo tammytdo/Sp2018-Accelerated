@@ -13,7 +13,7 @@ from html_render import *
 
 # utility function for testing render methods
 # needs to be used in multiple tests, so we write it once here.
-def render_result(element, ind=""):
+def render_result(element):
     """
     calls the element's render method, and returns what got rendered as a
     string
@@ -63,7 +63,7 @@ def test_render_element():
 
     # This uses the render_results utility above
     file_contents = render_result(e).strip()
-
+    print(file_contents)
     # making sure the content got in there.
     assert("this is some text") in file_contents
     assert("and this is some more text") in file_contents
@@ -83,41 +83,41 @@ def test_render_element():
 # ########
 
 
-# # tests for the new tags
-# def test_html():
-#     e = Html("this is some text")
-#     e.append("and this is some more text")
+# tests for the new tags
+def test_html():
+    e = Html("this is some text")
+    e.append("and this is some more text")
 
-#     file_contents = render_result(e).strip()
+    file_contents = render_result(e).strip()
 
-#     assert("this is some text") in file_contents
-#     assert("and this is some more text") in file_contents
-#     print(file_contents)
-#     assert file_contents.endswith("</html>")
+    assert("this is some text") in file_contents
+    assert("and this is some more text") in file_contents
+    print(file_contents)
+    assert file_contents.endswith("</html>")
 
 
-# def test_body():
-#     e = Body("this is some text")
-#     e.append("and this is some more text")
+def test_body():
+    e = Body("this is some text")
+    e.append("and this is some more text")
 
-#     file_contents = render_result(e).strip()
+    file_contents = render_result(e).strip()
 
-#     assert("this is some text") in file_contents
-#     assert("and this is some more text") in file_contents
+    assert("this is some text") in file_contents
+    assert("and this is some more text") in file_contents
 
-#     assert file_contents.startswith("<body>")
-#     assert file_contents.endswith("</body>")
+    assert file_contents.startswith("<body>")
+    assert file_contents.endswith("</body>")
 
 
 # def test_p():
 #     e = P("this is some text")
 #     e.append("and this is some more text")
-
+#
 #     file_contents = render_result(e).strip()
-
+#
 #     assert("this is some text") in file_contents
 #     assert("and this is some more text") in file_contents
-
+#
 #     assert file_contents.startswith("<p>")
 #     assert file_contents.endswith("</p>")
 
@@ -130,10 +130,10 @@ def test_render_element():
 #     page.append("some plain text.")
 #     page.append(P("A simple paragraph of text"))
 #     page.append("Some more plain text.")
-
+#
 #     file_contents = render_result(page)
 #     print(file_contents) # so we can see it if the test fails
-
+#
 #     # note: The previous tests should make sure that the tags are getting
 #     #       properly rendered, so we don't need to test that here.
 #     assert "some plain text" in file_contents
@@ -229,4 +229,36 @@ def test_render_element():
 # Step 3
 ########
 
-# Add your tests here!
+def test_title():
+    e = Title('This is a title')
+    file_contents = render_result(e).strip()
+
+    assert file_contents.startswith('<title>')
+    assert '\n' not in file_contents
+    assert file_contents.endswith('</title>')
+
+
+########
+# Step 4
+########
+
+def test_new_p():
+    e = P('here is some text in the paragraph'
+            'here is some more text in the paragraph',
+            style = 'text-align: center; font-style: oblique;')
+    file_contents = render_result(e).strip()
+
+    assert file_contents.startswith("<p style='text-align: center; font-style: oblique;'>")
+    assert file_contents.endswith('</p>')
+
+
+########
+# Step 5
+########
+
+def test_selftag():
+    e = Hr()
+    file_contents = render_result(e).strip()
+    assert '<hr />' in file_contents
+    e2 = Hr('this is some content')
+    file_contents2 = render_result(e2).strip()

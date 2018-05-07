@@ -7,9 +7,32 @@ class Fraction:
     '''
     Simple class to represent fractions to be completed in class
     '''
-    pass
+    def __init__(self, num, denom):
+        if denom == 0:
+            raise ZeroDivisionError
+        if not isinstance(num, int) or not isinstance(denom, int):
+            raise TypeError
+        if denom < 0:
+            num *= -1
+            denom *= -1
+        self.num = num
+        self.denom = denom
 
+def __str__(self):
+    return str(self.num) + '/' +str(self.denom)
 
+def __eq__(self, other):
+    return self.num * other.denom == self.demon * other.num
+
+def __lt__(self, other):
+    return self.num * other.denom < other.num * self.denom
+
+def __add__(self, other):
+    num = self.num *  other.denom + self.denom * other.num
+    denom = self.denom * other.denom
+    return Fraction(num, denom)
+
+    
 if __name__ == '__main__':
     # f = Fraction(1, 0)  # ZeroDivisionError
     # f = Fraction(1.0, 2)    # TypeError
