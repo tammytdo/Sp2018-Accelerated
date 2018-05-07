@@ -29,7 +29,8 @@ class Circle:
         pass
     
     def __add__(self, other):
-        pass
+        c3 = c1 + c2
+        
     
     def __mul__(self, other):
         pass
@@ -49,7 +50,6 @@ c = Circle(3)
 
 def from_diameter():
     a_diameter = input('Enter a diameter and I will calulate the                         area for you ==> ')
-    a_radius = a_diameter / 2
     
 from_diameter()   
 print(c.area)

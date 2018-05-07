@@ -22,4 +22,3 @@ def test_area():
     if AssertionError:
         pass
 
-print c
