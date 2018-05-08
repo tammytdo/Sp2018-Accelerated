@@ -11,6 +11,10 @@ Notes for Session 09
 
 A collection of notes to go over in class, to keep things organized.
 
+Due Date/Time
+=============
+
+All submissions' due dates/times are now set to 6pm, Monday, 5/14/2018. Letter grading will start at that time with all the submissions made by that time. If you miss this deadline and haven't achieved 80% of the total possible score, you'll be given an I (incomplete) grade and a 2-week extension. We'll notify you if we have to give you an I grade and ask you to follow up.
 
 Lightning Talks
 ===============
@@ -28,7 +32,11 @@ Issues that came up during the week.
 
 ``_something`` vs ``__something`` vs ``__something__``
 
-Let's talk about that...
+Let's talk about that... See the following articles:
+
+https://www.geeksforgeeks.org/underscore-_-python/
+
+http://igorsobreira.com/2010/09/16/difference-between-one-underline-and-two-underlines-in-python.html
 
 
 Adding parameters to a subclass __init__
@@ -78,10 +86,7 @@ Any other html_render questions?
 Lightning Talks
 ===============
 
-Jay Johnson
-
-Tammy Do
-
+Anyone missed?
 
 New Topics
 ==========
@@ -93,7 +98,7 @@ maybe it's a good idea to add a sort_key method to your classes?
 
 see ``IntroPython-2017/examples/Session09/sort_key.py``
 
-let's try it on Circle....
+let's try it on Circle... (or on Fraction ?)
 
 classmethod
 -----------
@@ -105,6 +110,8 @@ The key point is that classmethods work for subclasses -- like for alternate con
 Let's look at that with my Circle solution:
 
 ``IntroPython-2017/solutions/Session08/circle.py``
+
+https://github.com/UWPCE-PythonCert-ClassRepos/Wi2018-Classroom/blob/master/solutions/Session08/circle.py#L26
 
 (and answer any other questions about Circle, while we are at it)
 
