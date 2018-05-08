@@ -1266,7 +1266,7 @@ class Classy:
 
 Classy.a_class_method(4)
 
-#### Alternative Constructors *** Know this methods
+#### Alternative Constructors *** Know this methods (Polymorphism)
 
 #### Super
 
@@ -1333,7 +1333,9 @@ Typical use to call a cooperative superclass method:
 class C(B):
     def meth(self, arg):
         super().meth(arg)
-This works for class methods too:
+
+# This works for class methods too:
+
 class C(B):
     @classmethod
     def cmeth(cls, arg):
@@ -1418,9 +1420,9 @@ for c in C.__mro__:
 <class '__main__.A'>
 <class 'object'>
 ```
-#### Note: A.this did NOT get called!
-### Even though it is in the MRO
-### Python stopped when it found the method in B.
+### Note: A.this did NOT get called!
+#### Even though it is in the MRO
+#### Python stopped when it found the method in B.
 ```
 C.this
 Out[120]: <function __main__.C.this>
@@ -1512,3 +1514,6 @@ Out[137]: 1049
 109 ns ± 4.53 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
 
 ```
+### 18.5.7.6:00
+
+At least (2) classes in mailroom. Donor class and UI class are suggested.

@@ -108,7 +108,7 @@ list_of_numbers = [random.randint(0, 100) for i in range(20)]
 list_of_strings = ["this ", "that, ", "the other"]
 
 def add_up_seq(seq, start=0):
-    total = 0
+    total = start
     for item in seq:
         total += item
     return total
