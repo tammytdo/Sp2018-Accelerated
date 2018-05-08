@@ -1369,3 +1369,146 @@ print(s_b)
 
 print(D.__mro__)
 (<class '__main__.D'>, <class '__main__.C'>, <class '__main__.B'>, <class '__main__.A'>, <class 'object'>)
+
+print(s_a)
+<super: <class 'A'>, <D object>>
+
+class A():
+    def this(self):
+        print("in A.this")
+
+class B():
+    def this(self):
+        print("in B.this")
+
+class C(A,B):
+    def this(self):
+        A.this(self)
+        B.this(self)
+
+print("Running with super()")
+Running with super()
+
+c = C()
+c.this()
+
+in A.this
+in B.this
+
+# C's this explicitly called both A and B's methods
+
+class A():
+        def this(self):
+            print("in A.this")
+
+class B(A):
+    def this(self):
+        print("in B.this")
+
+class C(B):
+    def this(self):
+        print("in C.this")
+        super().this()
+
+for c in C.__mro__:
+    print(c)
+
+<class '__main__.C'>
+<class '__main__.B'>
+<class '__main__.A'>
+<class 'object'>
+```
+#### Note: A.this did NOT get called!
+### Even though it is in the MRO
+### Python stopped when it found the method in B.
+```
+C.this
+Out[120]: <function __main__.C.this>
+```
+#### Using Super Everywhere:
+```
+class Base():
+    def this(self):
+        pass # just so there is a base that has the method
+
+class A(Base):
+    def this(self):
+        print("in A.this")
+        super().this()
+
+class B(Base):
+    def this(self):
+        print("in B.this")
+        super().this()
+
+class C(A,B):
+    def this(self):
+        print("in C.this")
+        super().this()
+
+
+c = C()
+c.this()
+print(Base.__mro__)
+
+in C.this
+in A.this
+in B.this
+(<class '__main__.Base'>, <class 'object'>)
+```
+#### Adding Up Immutables
+```
+import random
+
+list_of_numbers = [random.randint(0, 100) for i in range(20)]
+list_of_strings = ["this ", "that, ", "the other"]
+
+
+def add_up_seq(seq):
+    total = 0
+    for item in seq:
+        total += item
+    return total
+
+
+add_up_seq(list_of_numbers)
+Out[130]: 1049
+
+add_up_seq(range(100))
+Out[131]: 4950
+
+def add_up_seq(seq, start=0):
+    total = 0
+    for item in seq:
+        total += item
+    return total
+
+
+def add_up_seq(seq, start=0):
+    total = start
+    for item in seq:
+        total += item
+    return total
+
+
+add_up_seq(list_of_strings, start="")
+Out[134]: 'this that, the other'
+```
+#### There is a better way
+```
+sum(range(5))
+Out[136]: 10
+
+sum(list_of_numbers)
+Out[137]: 1049
+
+% timeit add_up_seq(range(1000000))
+48.3 ms ± 205 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+
+% timeit sum(range(1000000))
+30.3 ms ± 123 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+
+%timeit "".join(list_of_strings)
+109 ns ± 4.53 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+
+```
