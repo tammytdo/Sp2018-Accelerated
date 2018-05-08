@@ -203,6 +203,436 @@ my_dict = dict.fromkeys(bigstring, 0)
 
 for letter in bigstring:
     my_dict[letter] += 1
+```
 
+### IPython
 
-my_dict
+(IPython Tips & Tricks)[http://ipython.readthedocs.io/en/stable/interactive/tips.html]
+
+#### Help in IPython
+
+Any built-in, method or attribute followed by a "?" gives a brief description in IPython.
+
+ For windows-based systems, the default aliases are ‘copy’, ‘ddir’, ‘echo’, ‘ls’, ‘ldir’, ‘mkdir’, ‘ren’, and ‘rmdir’.
+
+#### Embed IPython in your programs
+A few lines of code are enough to load a complete IPython inside your own programs, giving you the ability to work with your data interactively after automatic processing has been completed. See the embedding section.
+
+### Dictionary Comprehensions or "dict comps"
+
+```
+new_dict = { key: value for variable in a_sequence}
+
+names = ['fred', 'John', 'MARY']
+ids = [1, 2, 3]
+d = dict(zip(names,ids))
+
+d
+Out[53]: {'John': 2, 'MARY': 3, 'fred': 1}
+
+d = {id: name for id, name in zip(ids, names) if name != 'MARY'}
+
+d
+Out[55]: {1: 'fred', 2: 'John'}
+```
+
+### Collections module
+
+(Python Docs on collections module)[https://docs.python.org/3/library/collections.html]
+
+- namedtuple(): factory function for creating tuple subclasses with named fields
+- deque: list-like container with fast appends and pops on either end
+- Counter: dict subclass for counting hashable objects
+- OrderedDict: dict subclass that remembers the order entries were added
+- defaultdict: dict subclass that calls a factory function to supply missing values
+- ChainMap: dict-like class for creating a single view of multiple mappings
+
+- UserDict: wrapper around dictionary objects for easier dict subclassing
+- UserList: wrapper around list objects for easier list subclassing
+- UserString: wrapper around string objects for easier string subclassing
+
+(Collections module overview)[https://pymotw.com/3/collections/]
+
+### defaultdict()
+
+```
+from collections import defaultdict
+
+dd = defaultdict(list)
+dd['this'].append(23)
+dd
+Out[60]: defaultdict(list, {'this': [23]})
+dd['this'].append(4)
+dd['this'].append(4)
+dd
+Out[63]: defaultdict(list, {'this': [23, 4, 4]})
+dd['that'].append(4)
+dd
+Out[65]: defaultdict(list, {'that': [4], 'this': [23, 4, 4]})
+dd['those'].append(8)
+dd
+Out[67]: defaultdict(list, {'that': [4], 'this': [23, 4, 4], 'those': [8]})
+dd['those'].append(16)
+dd['those'].append(32)
+dd['those'].pop()
+Out[70]: 32
+dd
+Out[71]: defaultdict(list, {'that': [4], 'this': [23, 4, 4], 'those': [8, 16]})
+```
+Nice!!! "...you’ll get a dict that will automatically put an empty list in when the key isn’t there yet." ~ PythonCert 4.0
+
+### 18.4.29.9:32  Comprehensions Lab
+```
+feast = ['lambs', 'sloths', 'orangutans',
+          'breakfast cereals', 'fruit bats']
+
+comprehension = [delicacy.capitalize() for delicacy in feast]
+
+```
+#### What is the output?
+```
+comprehension[0]
+{'Lambs'}
+
+comprehension[2]
+{'Orangutans'}
+```
+#### Close!
+```
+feast = ['Lamn', 'sloths', 'orangutans', 'breakfast cereal', 'fruit bats']
+comprehension = [delicacy.capitalize() for delicacy in feast]
+comprehension[1]
+Out[74]: 'Sloths'
+comprehension[0]
+Out[75]: 'Lamn'
+comprehension[2]
+Out[76]: 'Orangutans'
+feast[0] = 'lamb'
+feast
+Out[78]: ['lamb', 'sloths', 'orangutans', 'breakfast cereal', 'fruit bats']
+comprehension = [delicacy.capitalize() for delicacy in feast]
+comprehension[0]
+Out[80]: 'Lamb'
+comprehension[2]
+Out[81]: 'Orangutans'
+comp = [delicacy for delicacy in feast if len(delicacy) > 6]
+comp[1]
+Out[83]: 'breakfast cereal'
+comp[0]
+Out[84]: 'orangutans'
+comp[3]
+Traceback (most recent call last):
+  File "<ipython-input-85-224dba9f58bc>", line 1, in <module>
+    comp[3]
+IndexError: list index out of range
+```
+### Filtering lists with list comprehensions
+```
+len(feast)
+Out[86]: 5
+len(comp)
+Out[87]: 3
+```
+### Unpacking tuples in list Comprehensions
+```
+list_of_tuples = [(1, 'lumberjack'), (2, 'inquisition'), (4, 'spam')]
+comprehension = [ skit * number for number, skit in list_of_tuples]
+
+comprehension[0]
+Out[90]: 'lumberjack'
+
+comprehension[2]
+Out[91]: 'spamspamspamspam'
+```
+I got the first right but thought it was 8*spam for the second not 4 * spam. I mulitplied by the index... ???
+```
+len(comprehension[2])
+Out[92]: 16
+```
+Missed the len()...
+
+### Double list Comprehensions
+```
+eggs = ['poached egg', 'fried egg']
+meats = ['lite spam', 'ham spam', 'fried spam']
+comprehension = [ '{0} and {1}'.format(egg, meat) for egg in eggs for meat in meats]
+len(comprehension)
+Out[98]: 6
+comprehension[0]
+Out[99]: 'poached egg and lite spam'
+comprehension = { c for c in 'aabbbcccc'}
+comprehension
+Out[101]: {'a', 'b', 'c'}
+```
+### Set comprehensions
+<!-- sets are immutable requiring a unique key which only one can exist in any given sequence.-->
+```
+comprehension = { c for c in 'aabbbcccc'}
+comprehension
+Out[101]: {'a', 'b', 'c'}
+```
+
+### Dictionary Comprehensions
+```
+dict_of_weapons = {'first': 'fear',
+                    'second': 'surprise',
+                    'third': 'ruthless efficiency',
+                    'forth': 'fanatical devotion',
+                    'fifth': None}
+
+dict_comprehension = {k.upper(): weapon for k, weapon in dict_of_weapons.items() if weapon}
+```
+What is the output?
+```
+[a for a in dir(str) if a[0] != "_"]
+```
+### Unit testing
+```
+unittest?
+Type:        module
+String form: <module 'unittest' from 'd:\\Anaconda3\\lib\\unittest\\__init__.py'>
+File:        d:\anaconda3\lib\unittest\__init__.py
+Docstring:  
+Python unit testing framework, based on Erich Gamma's JUnit and Kent Beck's
+Smalltalk testing framework (used with permission).
+
+This module contains the core framework classes that form the basis of
+specific test cases and suites (TestCase, TestSuite etc.), and also a
+text-based utility class for running the tests and reporting the results
+ (TextTestRunner).
+
+Simple usage:
+
+    import unittest
+
+    class IntegerArithmeticTestCase(unittest.TestCase):
+        def testAdd(self):  # test method names begin with 'test'
+            self.assertEqual((1 + 2), 3)
+            self.assertEqual(0 + 1, 1)
+        def testMultiply(self):
+            self.assertEqual((0 * 10), 0)
+            self.assertEqual((5 * 8), 40)
+
+    if __name__ == '__main__':
+        unittest.main()
+```
+(Further information is available in the bundled documentation, and from)[http://docs.python.org/library/unittest.html]
+
+## Lesson 07
+
+### 18.4.30.13:00
+
+### Object Oriented Programming
+
+(Programming Paradigms)[https://en.wikipedia.org/wiki/Programming_paradigm]
+
+It can be officially noted that I finally have attained "class".
+```
+class C:
+    pass
+
+type(C)
+Out[58]: type
+
+issubclass(C, object)
+Out[59]: True
+
+print(C)
+<class '__main__.C'>
+
+dir(C)
+Out[61]:
+['__class__',
+ '__delattr__',
+ '__dict__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '__weakref__']
+
+print(C.dir())
+Traceback (most recent call last):
+
+  File "<ipython-input-62-712969ace520>", line 1, in <module>
+    print(C.dir())
+
+AttributeError: type object 'C' has no attribute 'dir'
+
+print(C.__hash__)
+<slot wrapper '__hash__' of 'object' objects>
+
+print(C.__main__)
+Traceback (most recent call last):
+
+  File "<ipython-input-64-f258886a611d>", line 1, in <module>
+    print(C.__main__)
+
+AttributeError: type object 'C' has no attribute '__main__'
+
+print(C.__dict__)
+{'__module__': '__main__', '__dict__': <attribute '__dict__' of 'C' objects>, '__weakref__': <attribute '__weakref__' of 'C' objects>, '__doc__': None}
+
+```
+<!-- Cool!!! I found where __main__ is kept just dundering around.-->
+```
+print(C.__module__)
+__main__
+
+print(C.__weakref__)
+<attribute '__weakref__' of 'C' objects>
+
+__setattr__?
+Object `__setattr__` not found.
+
+C.__setattr__?
+Signature:      C.__setattr__(self, name, value, /)
+Call signature: C.__setattr__(*args, **kwargs)
+Type:           wrapper_descriptor
+String form:    <slot wrapper '__setattr__' of 'object' objects>
+Docstring:      Implement setattr(self, name, value).
+
+```
+
+```
+class Point:
+    x = 1
+    y = 2
+
+Point
+Out[73]: __main__.Point
+
+p = Point
+p = Point()
+p
+Out[76]: <__main__.Point at 0x27c479ce630>
+p.x
+Out[77]: 1
+p.y
+Out[78]: 2
+run simple_classes
+p.x is: 3
+p.y is: 4
+4
+red
+4
+red
+blue
+
+import simple_classes
+p.x is: 3
+p.y is: 4
+4
+red
+4
+red
+blue
+
+Circle
+Out[81]: __main__.Circle
+
+Rect
+Out[82]: __main__.Rect
+
+Rect(5, 7)
+Out[83]: <__main__.Rect at 0x27c47c010b8>
+
+Rect
+Out[84]: __main__.Rect
+
+class Point(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+Point(x, y)
+Traceback (most recent call last):
+
+  File "<ipython-input-86-474e6b1ccaa2>", line 1, in <module>
+    Point(x, y)
+
+NameError: name 'x' is not defined
+
+Point(4, 5)
+Out[87]: <__main__.Point at 0x27c47c01f98>
+
+p = Point(3,4)
+p
+Out[89]: <__main__.Point at 0x27c479a3630>
+m = Point(4, 5)
+m
+Out[91]: <__main__.Point at 0x27c47987b00>
+print("p.x is:", p.x)
+p.x is: 3
+print("m.x is:", m.x)
+m.x is: 4
+class Point:
+    def a_func(self, x, y)
+  File "<ipython-input-94-c15cada14c1e>", line 2
+    def a_func(self, x, y)
+                          ^
+SyntaxError: invalid syntax
+
+class Point:
+    size = 4
+    color = "red"
+
+def get_color(self):
+    return self.color
+
+p3.get_color()
+Out[97]: 'red'
+
+class C:
+    x = [1,2,3]
+    def __init__(self):
+        self.y = [4,5,6]
+
+c1 = C()
+c2 = C()
+c1.x is c2.x
+Out[112]: True
+
+c1.y is c2.y
+Out[113]: False
+```
+### Typical Methods
+```
+class Circle:
+    color = 'red'
+    def __init__(self, diameter):
+        self.diameter = diameter
+
+class Circle:
+    color = 'red'
+    def __init__(self, diameter):
+        self.diameter = diameter
+
+class Circle:
+    color = 'red'
+    def __init__(self, diameter):
+        self.diameter = diameter
+    def expand(self, factor=2):
+        self.diameter = self.diameter * factor
+```
+## Subclassing and Inheritance
+
+### Inheritance

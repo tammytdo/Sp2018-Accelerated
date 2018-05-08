@@ -6,9 +6,10 @@ number is printed if none of the conditions are met.
 '''
 
 
-def FizzBuzz():
-    for i in range(1, 101):
+def FizzBuzz(n):
+    for i in range(n, n+1):
         if i % 3 == 0 and i % 5 == 0:
+            #if i % 15 == 0:
             print("FizzBuzz")
         elif i % 3 == 0:
             print("Fizz")
