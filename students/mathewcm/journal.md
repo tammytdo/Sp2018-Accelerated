@@ -1517,3 +1517,37 @@ Out[137]: 1049
 ### 18.5.7.6:00
 
 At least (2) classes in mailroom. Donor class and UI class are suggested.
+
+### 18.5.9.9:30
+
+Final push!!! How agile can one be in the scrum of life? Seemingly always at the bottom of the pile and reality's foot pressing squarely on my face. With achilles torn my resistance is futile at best. Yet, no time for rest! Onward and upwards like the Phoenix reborn...
+
+Focusing on submitting HTML renderer today and understanding how to incorporate classes in data manipulation and handling strings in particular.
+
+#### From class materials
+
+[UWPCE Canvas Spring 2018 Accelerated](https://canvas.uw.edu/courses/1197533/assignments/4129941?module_item_id=8240380)
+
+Checking If It’s The Right Type
+How do you decide if the wrapper is required?
+
+Checking it it’s an instance of Element:
+
+You could check and see if the object being appended is an Element:
+```
+if isinstance(content, Element):
+    self.content.append(content)
+else:
+    self.content.append(TextWrapper(content))
+```
+
+This would work well, but closes the door to using any other type that may not be a strict subclass of Element, but can render itself. Not too bad in this case, but in general, frowned upon in Python.
+
+Alternatively, you could check for the string type:
+```
+if isinstance(content, str):
+    self.content.append(TextWrapper(content))
+else:
+    self.content.append(content)
+```
+I think this is a little better – strings are a pretty core type in Python, so it’s not likely that anyone is going to need to use a “string-like” object.
