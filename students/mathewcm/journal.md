@@ -1706,3 +1706,12 @@ Independently of its category, each concrete stream object will also have variou
 All streams are careful about the type of data you give to them. For example giving a str object to the write() method of a binary stream will raise a TypeError. So will giving a bytes object to the write() method of a text stream.
 
 Changed in version 3.3: Operations that used to raise IOError now raise OSError, since IOError is now an alias of OSError.
+
+#### Online markup validation tool for HTML
+
+[Markup Validation Service](http://validator.w3.org/#validate_by_input)
+
+### 18.5.9.17:45
+#### Finished HtML Renderer excercise with 7/ 7 tests passing without factoring in indentation
+
+Thanks to Kristian and Andy both whose code I refered to in working thru my solution. I incorporated Kristian's **kwarg approach and could understand the looping and key, value arguments after seeing them implemented so well. I added additional tags and hope to revisit this excercise and finish the indentations as it would in fact make the renderer more readable.

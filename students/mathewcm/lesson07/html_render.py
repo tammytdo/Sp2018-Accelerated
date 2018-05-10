@@ -66,7 +66,7 @@ class Element():
 class Html(Element):
     ind = 0
     def render(self, out_file, **kwargs):
-#        out_file.write(f'<!DOCTYPE html>\n')
+        out_file.write(f'<!DOCTYPE html>\n')
         Element.render(self, out_file, **kwargs)
             
 class Head(Element):
@@ -86,6 +86,27 @@ class H1(Element):
     
 class H2(Element):
     tag = 'h2'
+
+class H3(Element):
+    tag = 'h3'
+
+class H4(Element):
+    tag = 'h4'
+    
+class H5(Element):
+    tag = 'h5'
+
+class H6(Element):
+    tag = 'h6'
+
+class Footer(Element):
+    tag = 'footer'
+
+class Ul(Element):
+    tag = 'ui'
+    
+class Li(Element):
+    tag = 'li'
 
 class OneLineTag(Element):
     def render(self, out_file, **kwargs):
@@ -112,6 +133,7 @@ class Title(OneLineTag):
     tag = 'title'
 
 class SelfClosingTag(Element):
+    '''SubClass without \n or closing tag'''
     def __init__(self, **kwargs):
         if 'content' in kwargs:
             raise ValueError('Only hr and br allow self closing tags')
@@ -134,11 +156,11 @@ class SelfClosingTag(Element):
             out_file.write('f"{' '*indent}<self.tag} />\n"')
         return out_file
         
-## class hr(selfClosingTag):
-#    tag = 'hr'
-#
-#class br(SelfClosingTag):
-#    tag = 'br'
+class hr(SelfClosingTag):
+    tag = 'hr'
+
+class br(SelfClosingTag):
+    tag = 'br'
     
 class meta(SelfClosingTag):
     tag = 'meta'
