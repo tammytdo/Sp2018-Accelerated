@@ -66,7 +66,7 @@ class Element():
 class Html(Element):
     ind = 0
     def render(self, out_file, **kwargs):
-        out_file.write(f'<!DOCTYPE html>\n')
+#        out_file.write(f'<!DOCTYPE html>\n')
         Element.render(self, out_file, **kwargs)
             
 class Head(Element):
@@ -78,16 +78,35 @@ class Body(Element):
 class P(Element):
     tag = 'p'
 
+class Hr(Element):
+    tag = 'hr'
+    
+class H1(Element):
+    tag = 'h1'
+    
+class H2(Element):
+    tag = 'h2'
+
 class OneLineTag(Element):
-    def render(self, out_file):
-        out_file.write(self.open_tag)
+    def render(self, out_file, **kwargs):
+        if 'indent' in kwargs:
+            indent = kwargs['indent']
+        else: 
+            indent = self.ind
+        if self.attrs:
+            attr_string = ''
+            for key, value in self.attrs.items():
+                attr_string += str("{}='{}' ".format(key, value))
+            out_file.write(f"{' '*indent}<{self.tag} {attr_string.strip()}>")
+        else:
+            out_file.write(f"{' '*indent}<{self.tag}>")
         for line in self.content:
             if isinstance(line, str):
-                out_file.write(line)
-            else:
-                line.render(out_file)
-
-            out_file.write("</{}>".format(self.tag))
+                out_file.write(f"{line}")
+            elif isinstance(line, object):
+                line.render(out_file, indent=indent+4)
+        out_file.write(f"</{self.tag}>\n")
+        return out_file
 
 class Title(OneLineTag):
     tag = 'title'

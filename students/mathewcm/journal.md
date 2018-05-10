@@ -1560,12 +1560,12 @@ Return true if the object argument is an instance of the classinfo argument, or 
 
 #### Metaclasses in Python: A metaclass is the class of the classes
 
-[Metclasses](https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python)
+[Metaclasses](https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python)
 
 
 A metaclass is the class of a class. Like a class defines how an instance of the class behaves, a metaclass defines how a class behaves. A class is an instance of a metaclass.
 
-[metaclass diagram]: (https://i.stack.imgur.com/QQ0OK.png)
+![alt text](https://i.stack.imgur.com/QQ0OK.png "Metaclasses")
 
 While in Python you can use arbitrary callables for metaclasses (like Jerub shows), the more useful approach is actually to make it an actual class itself. type is the usual metaclass in Python. In case you're wondering, yes, type is itself a class, and it is its own type. You won't be able to recreate something like type purely in Python, but Python cheats a little. To create your own metaclass in Python you really just want to subclass type.
 
@@ -1617,3 +1617,92 @@ class MyType(type):
         print "Would unregister class %s now." % self
 ```
 http://www.pythonforbeginners.com/files/reading-and-writing-files-in-python
+
+
+#### 7.5 StringIO --- Read and write strings as files
+This module implements a file-like class, StringIO, that reads and writes a string buffer (also known as memory files). See the description of file objects for operations (section File Objects). (For standard strings, see str and unicode.)
+```
+class StringIO.StringIO([buffer])
+```
+- When a StringIO object is created, it can be initialized to an existing string by passing the string to the constructor. If no string is given, the StringIO will start empty. In both cases, the initial file position starts at zero.
+- The StringIO object can accept either Unicode or 8-bit strings, but mixing the two may take some care. If both are used, 8-bit strings that cannot be interpreted as 7-bit ASCII (that use the 8th bit) will cause a UnicodeError to be raised when getvalue() is called.
+- The following methods of StringIO objects require special mention:
+```
+StringIO.getvalue()
+```
+- Retrieve the entire contents of the “file” at any time before the StringIO object’s close() method is called. See the note above for information about mixing Unicode and 8-bit strings; such mixing can cause this method to raise
+```
+UnicodeError.
+```
+```
+StringIO.close()
+```
+Free the memory buffer. Attempting to do further operations with a closed StringIO object will raise a ValueError.
+
+Example usage:
+```
+import StringIO
+
+output = StringIO.StringIO()
+output.write('First line.\n')
+print >>output, 'Second line.'
+
+# Retrieve file contents -- this will be
+# 'First line.\nSecond line.\n'
+contents = output.getvalue()
+
+# Close object and discard memory buffer --
+# .getvalue() will now raise an exception.
+output.close()
+```
+
+#### 7.6. cStringIO — Faster version of StringIO
+- The module cStringIO provides an interface similar to that of the StringIO module. Heavy use of StringIO.StringIO objects can be made more efficient by using the function StringIO() from this module instead.
+```
+cStringIO.StringIO([s])
+```
+- Return a StringIO-like stream for reading or writing.
+- Since this is a factory function which returns objects of built-in types, there’s no way to build your own version using subclassing. It’s not possible to set attributes on it. Use the original StringIO module in those cases.
+- Unlike the StringIO module, this module is not able to accept Unicode strings that cannot be encoded as plain ASCII strings.
+- Another difference from the StringIO module is that calling StringIO() with a string parameter creates a read-only object. Unlike an object created without a string parameter, it does not have write methods. These objects are not generally visible. They turn up in tracebacks as StringI and StringO.
+- The following data objects are provided as well:
+```
+cStringIO.InputType
+```
+- The type object of the objects created by calling StringIO() with a string parameter.
+```
+cStringIO.OutputType
+```
+- The type object of the objects returned by calling StringIO() with no parameters.
+- There is a C API to the module as well; refer to the module source for more information.
+
+Example usage:
+```
+import cStringIO
+
+output = cStringIO.StringIO()
+output.write('First line.\n')
+print >>output, 'Second line.'
+
+# Retrieve file contents -- this will be
+# 'First line.\nSecond line.\n'
+contents = output.getvalue()
+
+# Close object and discard memory buffer --
+# .getvalue() will now raise an exception.
+output.close()
+```
+
+
+#### 16.2 io --- Core tools for working with streams Source code: Lib/io.py
+
+[16.2.](https://docs.python.org/3/library/io.html)
+
+##### 16.2.1. Overview
+The io module provides Python’s main facilities for dealing with various types of I/O. There are three main types of I/O: text I/O, binary I/O and raw I/O. These are generic categories, and various backing stores can be used for each of them. A concrete object belonging to any of these categories is called a file object. Other common terms are stream and file-like object.
+
+Independently of its category, each concrete stream object will also have various capabilities: it can be read-only, write-only, or read-write. It can also allow arbitrary random access (seeking forwards or backwards to any location), or only sequential access (for example in the case of a socket or pipe).
+
+All streams are careful about the type of data you give to them. For example giving a str object to the write() method of a binary stream will raise a TypeError. So will giving a bytes object to the write() method of a text stream.
+
+Changed in version 3.3: Operations that used to raise IOError now raise OSError, since IOError is now an alias of OSError.
