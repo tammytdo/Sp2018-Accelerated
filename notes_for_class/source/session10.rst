@@ -16,6 +16,25 @@ Lightning Talks
 
 Anyone missed their chance?
 
+Logistics, announcements (from Hosung)
+======================================
+
+Office hours
+------------
+
+Hosung's: 3-5pm, Saturday, 5/12/2018 @ Study Room #1 (not the usual #9), Foster Business Library, Paccar Hall
+
+Also available online through Zoom. Email for appointment!
+
+Grades
+------
+
+Canvas gradebook is now fully updated. The last two assignments (OO mailroom, funciontal mailroom) are not yet included in the total percent score. All others are included (submissions still accepted), and no submissions are treated as 0. Do make sure your gradebook entries are accurate and contact us otherwise. Do note that 80% assignment score is a requirement for an SC (Successful Completion) grade.
+
+Merge conflicts
+---------------
+
+We've got a number of merge conflicts in PRs, which keep us from completing/merging those PRs. We need to fix them in person, so I'll contact each affected individual and try to sort this out. I also should have mentioned in last class that everyone should copy the example code files to their own student directory, not working directly on those files (in the example directory) that are pulled from upstream... My fault if merge conflicts were on that directory. I still saw strange merge conflicts, so we'll be fixing them in person in this class during the break.
 
 Issues that came up during the week.
 ====================================
@@ -48,6 +67,18 @@ You *do* want to use properties to "hide" implementation details -- but the name
 
 Anything else from OO mailroom?
 -------------------------------
+
+
+Supplements to Functional Programming in Python (from Hosung)
+=============================================================
+
+Searched the web for some good references on the topic, and found some (seemingly) good ones that I liked. We'll go over some examples from them:
+
+https://anandology.com/python-practice-book/functional-programming.html : Really liked the trace and the memoize decorations.
+
+https://maryrosecook.com/blog/post/a-practical-introduction-to-functional-programming : A seemingly good read on functional programming principles with examples in Python
+
+http://www.cs.rpi.edu/~sibel/csci1100/fall2017/lecture_notes/lec24_functional.html : Seemingly good examples on lambda
 
 
 The Next Class
@@ -141,7 +172,7 @@ Concurrency & Async Programming
 End of Quarter:
 ===============
 
-We will review PRs through Sunday.
+We will review PRs through Monday.
 
 
 
