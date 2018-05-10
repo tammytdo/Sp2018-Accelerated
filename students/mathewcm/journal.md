@@ -1712,6 +1712,107 @@ Changed in version 3.3: Operations that used to raise IOError now raise OSError,
 [Markup Validation Service](http://validator.w3.org/#validate_by_input)
 
 ### 18.5.9.17:45
-#### Finished HtML Renderer excercise with 7/ 7 tests passing without factoring in indentation
+```
+! pytest test_html_render.py
+============================= test session starts =============================
+platform win32 -- Python 3.6.4, pytest-3.3.2, py-1.5.2, pluggy-0.6.0
+rootdir: D:\uwpy\Sp2018-Accelerated\students\mathewcm\lesson07, inifile:
+collected 8 items
 
-Thanks to Kristian and Andy both whose code I refered to in working thru my solution. I incorporated Kristian's **kwarg approach and could understand the looping and key, value arguments after seeing them implemented so well. I added additional tags and hope to revisit this excercise and finish the indentations as it would in fact make the renderer more readable.
+test_html_render.py .......F                                             [100%]
+
+================================== FAILURES ===================================
+_________________________________ test_indent _________________________________
+
+    def test_indent():
+        """
+        Tests that the indentation gets passed through to the renderer
+        """
+        html = Html("some content")
+        file_contents = render_result(html, indent=3)
+
+        print(file_contents)
+        lines = file_contents.split("\n")
+>       assert lines[0].startswith("   <")
+E       AssertionError: assert False
+E        +  where False = <built-in method startswith of str object at 0x000001D7617240F0>('   <')
+E        +    where <built-in method startswith of str object at 0x000001D7617240F0> = '<!DOCTYPE html>'.startswith
+
+test_html_render.py:171: AssertionError
+---------------------------- Captured stdout call -----------------------------
+<!DOCTYPE html>
+   <html>
+       some content       
+</html>
+
+===================== 1 failed, 7 passed in 0.12 seconds ======================
+
+! pytest test_html_render.py
+============================= test session starts =============================
+platform win32 -- Python 3.6.4, pytest-3.3.2, py-1.5.2, pluggy-0.6.0
+rootdir: D:\uwpy\Sp2018-Accelerated\students\mathewcm\lesson07, inifile:
+collected 7 items
+
+test_html_render.py .......                                              [100%]
+
+========================== 7 passed in 0.06 seconds ===========================
+```
+#### Finished HTML Renderer exercise with 7/ 7 tests passing without factoring in indentation
+
+Thanks to Kristian and Andy both whose code I referred to in working thru my solution. I incorporated Kristian's `**kwarg` approach and could understand the looping and key, value arguments after seeing them implemented so well. I added additional tags and hope to revisit this exercise and finish the indentations as it would in fact make the renderer more readable.
+
+### 18.5.10.12:30
+
+Focusing on the low fruit today and cleanup in preparation for more difficult refactoring of the mailroom project. Submission of both the Kata Fourteen: Tom Swift Under Milk Wood and the Circle Class exercises. Both should be well documented and I doubt I will face any major blocks today. The final date for submission is 18.5.14.23:59. D-4.45 Attempting to maximize course points given limited timeframe.
+
+Taking good notes and having well documented course materials has proven to be highly beneficial while sharpening my markdown language proficiency. The output looks highly professional and integrates into my workflow with Anaconda Spyder3 as well as Atom very nicely. Keeping my journal open and capturing salient points almost randomly without missing stride toward my coding objectives.
+
+Being able to reference pertinent information and having the means to access it from 'virtually' anywhere is a powerful application of technology. Updating it and sharing it openly is its own form of humanity, filling the void with light even if but bits of some random memory.
+
+### 18.5.10.12:50
+
+[Kata14: Tom Swift Under the Milkwood](http://codekata.com/kata/kata14-tom-swift-under-the-milkwood/)
+
+#### Using RegEx re.findall for text manipulation
+
+##### Using re.findall for text
+`Re.findall()` module is used when you want to iterate over the lines of the file, it will return a list of all the matches in a single step. For example, here we have a list of e-mail addresses, and we want all the e-mail addresses to be fetched out from the list, we use the re.findall method. It will find all the e-mail addresses from the list.
+
+Python Regex Tutorial: re.match(), re.search(), re.findall(), Flags
+
+Here is the complete code
+```
+import re
+
+list = ["guru99 get", "guru99 give", "guru Selenium"]
+for element in list:
+    z = re.match("(g\w+)\W(g\w+)", element)
+if z:
+    print((z.groups()))
+
+patterns = ['software testing', 'guru99']
+text = 'software testing is fun?'
+for pattern in patterns:
+    print('Looking for "%s" in "%s" ->' % (pattern, text), end=' ')
+    if re.search(pattern, text):
+        print('found a match!')
+else:
+    print('no match')
+abc = 'guru99@google.com, careerguru99@hotmail.com, users@yahoomail.com'
+emails = re.findall(r'[\w\.-]+@[\w\.-]+', abc)
+for email in emails:
+    print(email)
+```    
+#### Python Flags
+Many Python Regex Methods and Regex functions take an optional argument called Flags. This flags can modify the meaning of the given Regex pattern. To understand these we will see one or two example of these Flags.
+
+Various flags used in Python includes
+
+Syntax for Regex Flags	What does this flag do
+
+[re.M] |	Make begin/end consider each line
+[re.I] |	It ignores case
+[re.S] |	Make [ . ]
+[re.U] |	Make { \w,\W,\b,\B} follows Unicode rules
+[re.L] |	Make {\w,\W,\b,\B} follow locale
+[re.X] |	Allow comment in Regex
