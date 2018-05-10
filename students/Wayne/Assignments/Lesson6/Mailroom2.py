@@ -62,7 +62,7 @@ def search_donor_db(name):
 
 
 def list_donors():
-    listing = ("Donors:")
+    listing = ["Donors:"]
     for donor in donor_db.values():
         listing.append(donor[0])
     return "\n".join(listing)
