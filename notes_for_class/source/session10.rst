@@ -36,6 +36,13 @@ Merge conflicts
 
 We've got a number of merge conflicts in PRs, which keep us from completing/merging those PRs. We need to fix them in person, so I'll contact each affected individual and try to sort this out. I also should have mentioned in last class that everyone should copy the example code files to their own student directory, not working directly on those files (in the example directory) that are pulled from upstream... My fault if merge conflicts were on that directory. I still saw strange merge conflicts, so we'll be fixing them in person in this class during the break.
 
+Last 2 assignments
+------------------
+
+Feel free to combine the last 2 assignments (OO mailroom & functional mailroom) and submit just one PR. If your single submission includes both OO-redesigned mailroom and required functional features, we'll mark both assignments as complete for such a submission.
+
+Also feel free to build on the solution to the previous mailroom assignment that's posted at https://github.com/UWPCE-PythonCert-ClassRepos/Sp2018-Accelerated/blob/master/solutions/Lesson06/mailroom2.py .
+
 Issues that came up during the week.
 ====================================
 
@@ -74,11 +81,11 @@ Supplements to Functional Programming in Python (from Hosung)
 
 Searched the web for some good references on the topic, and found some (seemingly) good ones that I liked. We'll go over some examples from them:
 
-https://anandology.com/python-practice-book/functional-programming.html : Really liked the trace and the memoize decorations.
+https://anandology.com/python-practice-book/functional-programming.html : Really liked the trace and the memoize decorations. See how the original ```fib(n)``` can be inefficient and also see why using the trace decoration and how it can be improved usng the memoize (not a typo!) decoration. Note that recursion is not much considered as functional, though functional programming relies heavily on recursion. Also note that decorators will be covered in more detail in the second course of the program, and they may not be considered pure functional (closures, mutating environment, ...).
 
 https://maryrosecook.com/blog/post/a-practical-introduction-to-functional-programming : A seemingly good read on functional programming principles with examples in Python
 
-http://www.cs.rpi.edu/~sibel/csci1100/fall2017/lecture_notes/lec24_functional.html : Seemingly good examples on lambda
+http://www.cs.rpi.edu/~sibel/csci1100/fall2017/lecture_notes/lec24_functional.html : Seemingly good examples on lambda. An example problem: Given a list of points in 2D coordinates, return a list of the points in the order of distance from the origin (```(0,0)```). What about in the order of distance from any point ```(x,y)```?
 
 
 The Next Class
