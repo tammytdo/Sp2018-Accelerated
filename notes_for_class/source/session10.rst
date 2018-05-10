@@ -41,6 +41,8 @@ Last 2 assignments
 
 Feel free to combine the last 2 assignments (OO mailroom & functional mailroom) and submit just one PR. If your single submission includes both OO-redesigned mailroom and required functional features, we'll mark both assignments as complete for such a submission.
 
+Also feel free to build on the solution to the previous mailroom assignment that's posted at https://github.com/UWPCE-PythonCert-ClassRepos/Sp2018-Accelerated/blob/master/solutions/Lesson06/mailroom2.py .
+
 Issues that came up during the week.
 ====================================
 
