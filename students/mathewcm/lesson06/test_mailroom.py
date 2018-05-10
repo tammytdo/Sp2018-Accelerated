@@ -14,10 +14,6 @@ def test_1():
     
     assert result[0][2] > result[-1][1]
 '''    
-#def retrieve_donations(fullname):
-#    """ if donors exists, return donations, otherwise return None"""
-#    if fullname in DONORS:
-#        return DONORS[fullname]
 
 def test_retreive_donations():
     result = mailroom.retrieve_donations('John Smith')

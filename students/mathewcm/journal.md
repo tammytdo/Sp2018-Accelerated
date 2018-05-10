@@ -1517,3 +1517,201 @@ Out[137]: 1049
 ### 18.5.7.6:00
 
 At least (2) classes in mailroom. Donor class and UI class are suggested.
+
+### 18.5.9.9:30
+
+Final push!!! How agile can one be in the scrum of life? Seemingly always at the bottom of the pile and reality's foot pressing squarely on my face. With achilles torn my resistance is futile at best. Yet, no time for rest! Onward and upwards like the Phoenix reborn...
+
+Focusing on submitting HTML renderer today and understanding how to incorporate classes in data manipulation and handling strings in particular.
+
+#### From class materials
+
+[UWPCE Canvas Spring 2018 Accelerated](https://canvas.uw.edu/courses/1197533/assignments/4129941?module_item_id=8240380)
+
+Checking If It’s The Right Type
+How do you decide if the wrapper is required?
+
+Checking if it’s an instance of Element:
+
+You could check and see if the object being appended is an Element:
+```
+if isinstance(content, Element):
+    self.content.append(content)
+else:
+    self.content.append(TextWrapper(content))
+```
+
+This would work well, but closes the door to using any other type that may not be a strict subclass of Element, but can render itself. Not too bad in this case, but in general, frowned upon in Python.
+
+Alternatively, you could check for the string type:
+```
+if isinstance(content, str):
+    self.content.append(TextWrapper(content))
+else:
+    self.content.append(content)
+```
+I think this is a little better – strings are a pretty core type in Python, so it’s not likely that anyone is going to need to use a “string-like” object.
+
+
+#### isinstance(object, classinfo)
+
+- isinstance(object, classinfo)
+Return true if the object argument is an instance of the classinfo argument, or of a (direct, indirect or virtual) subclass thereof. If object is not an object of the given type, the function always returns false. If classinfo is a tuple of type objects (or recursively, other such tuples), return true if object is an instance of any of the types. If classinfo is not a type or tuple of types and such tuples, a TypeError exception is raised.
+
+#### Metaclasses in Python: A metaclass is the class of the classes
+
+[Metaclasses](https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python)
+
+
+A metaclass is the class of a class. Like a class defines how an instance of the class behaves, a metaclass defines how a class behaves. A class is an instance of a metaclass.
+
+![alt text](https://i.stack.imgur.com/QQ0OK.png "Metaclasses")
+
+While in Python you can use arbitrary callables for metaclasses (like Jerub shows), the more useful approach is actually to make it an actual class itself. type is the usual metaclass in Python. In case you're wondering, yes, type is itself a class, and it is its own type. You won't be able to recreate something like type purely in Python, but Python cheats a little. To create your own metaclass in Python you really just want to subclass type.
+
+A metaclass is most commonly used as a class-factory. Like you create an instance of the class by calling the class, Python creates a new class (when it executes the 'class' statement) by calling the metaclass. Combined with the normal __init__ and __new__ methods, metaclasses therefore allow you to do 'extra things' when creating a class, like registering the new class with some registry, or even replace the class with something else entirely.
+
+When the class statement is executed, Python first executes the body of the class statement as a normal block of code. The resulting namespace (a dict) holds the attributes of the class-to-be. The metaclass is determined by looking at the baseclasses of the class-to-be (metaclasses are inherited), at the __metaclass__ attribute of the class-to-be (if any) or the __metaclass__ global variable. The metaclass is then called with the name, bases and attributes of the class to instantiate it.
+
+However, metaclasses actually define the type of a class, not just a factory for it, so you can do much more with them. You can, for instance, define normal methods on the metaclass. These metaclass-methods are like classmethods, in that they can be called on the class without an instance, but they are also not like classmethods in that they cannot be called on an instance of the class. type.__subclasses__() is an example of a method on the type metaclass. You can also define the normal 'magic' methods, like __add__, __iter__ and __getattr__, to implement or change how the class behaves.
+
+Here's an aggregated example of the bits and pieces:
+
+```
+def make_hook(f):
+    """Decorator to turn 'foo' method into '__foo__'"""
+    f.is_hook = 1
+    return f
+
+class MyType(type):
+    def __new__(mcls, name, bases, attrs):
+
+        if name.startswith('None'):
+            return None
+
+        # Go over attributes and see if they should be renamed.
+        newattrs = {}
+        for attrname, attrvalue in attrs.iteritems():
+            if getattr(attrvalue, 'is_hook', 0):
+                newattrs['__%s__' % attrname] = attrvalue
+            else:
+                newattrs[attrname] = attrvalue
+
+        return super(MyType, mcls).__new__(mcls, name, bases, newattrs)
+
+    def __init__(self, name, bases, attrs):
+        super(MyType, self).__init__(name, bases, attrs)
+
+        # classregistry.register(self, self.interfaces)
+        print "Would register class %s now." % self
+
+    def __add__(self, other):
+        class AutoClass(self, other):
+            pass
+        return AutoClass
+        # Alternatively, to autogenerate the classname as well as the class:
+        # return type(self.__name__ + other.__name__, (self, other), {})
+
+    def unregister(self):
+        # classregistry.unregister(self)
+        print "Would unregister class %s now." % self
+```
+http://www.pythonforbeginners.com/files/reading-and-writing-files-in-python
+
+
+#### 7.5 StringIO --- Read and write strings as files
+This module implements a file-like class, StringIO, that reads and writes a string buffer (also known as memory files). See the description of file objects for operations (section File Objects). (For standard strings, see str and unicode.)
+```
+class StringIO.StringIO([buffer])
+```
+- When a StringIO object is created, it can be initialized to an existing string by passing the string to the constructor. If no string is given, the StringIO will start empty. In both cases, the initial file position starts at zero.
+- The StringIO object can accept either Unicode or 8-bit strings, but mixing the two may take some care. If both are used, 8-bit strings that cannot be interpreted as 7-bit ASCII (that use the 8th bit) will cause a UnicodeError to be raised when getvalue() is called.
+- The following methods of StringIO objects require special mention:
+```
+StringIO.getvalue()
+```
+- Retrieve the entire contents of the “file” at any time before the StringIO object’s close() method is called. See the note above for information about mixing Unicode and 8-bit strings; such mixing can cause this method to raise
+```
+UnicodeError.
+```
+```
+StringIO.close()
+```
+Free the memory buffer. Attempting to do further operations with a closed StringIO object will raise a ValueError.
+
+Example usage:
+```
+import StringIO
+
+output = StringIO.StringIO()
+output.write('First line.\n')
+print >>output, 'Second line.'
+
+# Retrieve file contents -- this will be
+# 'First line.\nSecond line.\n'
+contents = output.getvalue()
+
+# Close object and discard memory buffer --
+# .getvalue() will now raise an exception.
+output.close()
+```
+
+#### 7.6. cStringIO — Faster version of StringIO
+- The module cStringIO provides an interface similar to that of the StringIO module. Heavy use of StringIO.StringIO objects can be made more efficient by using the function StringIO() from this module instead.
+```
+cStringIO.StringIO([s])
+```
+- Return a StringIO-like stream for reading or writing.
+- Since this is a factory function which returns objects of built-in types, there’s no way to build your own version using subclassing. It’s not possible to set attributes on it. Use the original StringIO module in those cases.
+- Unlike the StringIO module, this module is not able to accept Unicode strings that cannot be encoded as plain ASCII strings.
+- Another difference from the StringIO module is that calling StringIO() with a string parameter creates a read-only object. Unlike an object created without a string parameter, it does not have write methods. These objects are not generally visible. They turn up in tracebacks as StringI and StringO.
+- The following data objects are provided as well:
+```
+cStringIO.InputType
+```
+- The type object of the objects created by calling StringIO() with a string parameter.
+```
+cStringIO.OutputType
+```
+- The type object of the objects returned by calling StringIO() with no parameters.
+- There is a C API to the module as well; refer to the module source for more information.
+
+Example usage:
+```
+import cStringIO
+
+output = cStringIO.StringIO()
+output.write('First line.\n')
+print >>output, 'Second line.'
+
+# Retrieve file contents -- this will be
+# 'First line.\nSecond line.\n'
+contents = output.getvalue()
+
+# Close object and discard memory buffer --
+# .getvalue() will now raise an exception.
+output.close()
+```
+
+
+#### 16.2 io --- Core tools for working with streams Source code: Lib/io.py
+
+[16.2.](https://docs.python.org/3/library/io.html)
+
+##### 16.2.1. Overview
+The io module provides Python’s main facilities for dealing with various types of I/O. There are three main types of I/O: text I/O, binary I/O and raw I/O. These are generic categories, and various backing stores can be used for each of them. A concrete object belonging to any of these categories is called a file object. Other common terms are stream and file-like object.
+
+Independently of its category, each concrete stream object will also have various capabilities: it can be read-only, write-only, or read-write. It can also allow arbitrary random access (seeking forwards or backwards to any location), or only sequential access (for example in the case of a socket or pipe).
+
+All streams are careful about the type of data you give to them. For example giving a str object to the write() method of a binary stream will raise a TypeError. So will giving a bytes object to the write() method of a text stream.
+
+Changed in version 3.3: Operations that used to raise IOError now raise OSError, since IOError is now an alias of OSError.
+
+#### Online markup validation tool for HTML
+
+[Markup Validation Service](http://validator.w3.org/#validate_by_input)
+
+### 18.5.9.17:45
+#### Finished HtML Renderer excercise with 7/ 7 tests passing without factoring in indentation
+
+Thanks to Kristian and Andy both whose code I refered to in working thru my solution. I incorporated Kristian's **kwarg approach and could understand the looping and key, value arguments after seeing them implemented so well. I added additional tags and hope to revisit this excercise and finish the indentations as it would in fact make the renderer more readable.
