@@ -15,11 +15,8 @@ print(task_one(a_tuple))
 #task theree
 print('=============task three===============')
 def formatter(in_tuple):
-    q = len(in_tuple)
-    numbers = []
-    for i in range(q):
-        numbers.append('{:d}')
-    numbers = ','.join(numbers)
+    q = len(in_tuple) - 1
+    numbers = '{:d},' * q + '{:d}'
     form_string = f'the {q} numbers are: {numbers}'
     return form_string.format(*in_tuple)
 in_tuple = (2,3,4,5)
@@ -35,7 +32,7 @@ print(task_four(another_tuple))
 print('==============task five=================')
 
 def task_five(e_list,w = 1):
-    li_new =f'The wight of an {e_list[0][:-1].upper()} is {e_list[1]*w} and the weight of a {e_list[2][:-1].upper()} is {e_list[-1]*w}'
+    li_new =f'The wight of an {e_list[0][:-1].upper()} is {e_list[1] * w} and the weight of a {e_list[2][:-1].upper()} is {e_list[-1]*w}'
     return li_new
 e_list = ['oranges', 1.3, 'lemons', 1.1]
 print(task_five(e_list))
