@@ -14,7 +14,7 @@ class Circle():
     
     version = '0.1'      # class variable
     
-    def __init__(self, a_radius=None):
+    def __init__(self, a_radius = None):
         if a_radius is None:
             self.radius = 0
         else:
@@ -22,7 +22,6 @@ class Circle():
         
     def __str__(self):
         return 'Circle with radius: %d' % (self.radius)
-    
     
     def __repr__(self):
         return 'Circle(%d)' % (self.radius)
@@ -63,12 +62,12 @@ class Circle():
     def diameter(self):
         return 2 * self.radius
     @diameter.setter
-    def diameter(self, diameter):
-        self.radius = diameter / 2
+    def diameter(self, val):
+        self.radius = val / 2
 
     @classmethod
     def from_diameter(cls, diameter_value):
-        self = cls(int(diameter_value/2))
+        self = cls(int(diameter_value / 2))
         return self
 
 # c = Circle(3)

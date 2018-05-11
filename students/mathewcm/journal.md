@@ -1256,7 +1256,7 @@ StaticAdder.add(3,6)
 No highly used!
 
 #### Class methods
-
+```
 class Classy:
     x = 2
     @classmethod
@@ -1265,14 +1265,14 @@ class Classy:
         return y ** cls.x
 
 Classy.a_class_method(4)
-
+```
 #### Alternative Constructors *** Know this methods (Polymorphism)
 
 #### Super
 
-1) The method being called by super needs to exist
-2) Caller and the called need to have matching argument signatures
-3) Every occurance of the method needs to use Super
+1. The method being called by super needs to exist
+2. Caller and the called need to have matching argument signatures
+3. Every occurance of the method needs to use Super
 
 ```
 class A():
@@ -1321,15 +1321,16 @@ in B __init__
 self's class is: <class '__main__.D'>
 in A __init__
 self's class is: <class '__main__.D'>
-
-super?
-Init signature: super(self, /, *args, **kwargs)
-Docstring:     
-super() -> same as super(__class__, <first argument>)
-super(type) -> unbound super object
-super(type, obj) -> bound super object; requires isinstance(obj, type)
-super(type, type2) -> bound super object; requires issubclass(type2, type)
-Typical use to call a cooperative superclass method:
+```
+#### super
+1. Init signature: super(self, /, *args, \**kwargs)
+2. Docstring:     
+  * super() -> same as super(__class__, <first argument>)
+  * super(type) -> unbound super object
+  * super(type, obj) -> bound super object; requires isinstance(obj, type)
+  * super(type, type2) -> bound super object; requires issubclass(type2, type)
+3. Typical use to call a cooperative superclass method:
+```
 class C(B):
     def meth(self, arg):
         super().meth(arg)
@@ -1825,3 +1826,168 @@ Trigrams works after much tweaking. Incorporated Andy Kwon's brilliant regex sol
 #### Setters and Getters in python
 
 [Properties vs. Getters and Setters](https://www.python-course.eu/python3_properties.php)
+
+### 18.5.11.9:55
+
+I will have to code my count down clock to deadlines like course submission. Trying to hold to lexicographical order in my date format got me thinking about the D-Day type countdown and how it helps motivate one toward significant milestones.
+
+```
+1805142359 - 1805110955
+Out[153]: 31404
+
+```
+#### D-3.14:04
+
+That's 3 days 14 hours and 4 minutes with pretty simple math and by parsing out my periods and colons.
+
+Just a function definition and a f string away from a new countdown module.
+
+Back to it! Goals for today are to finish circle.py and feeling more confident with using asserts and testing objects using exceptions and logic. I want to dig deeper into classes and get a better handle on how they are used in python. The knowledge that `type` is a class itself was hugely insightful. I'm feeling more and more confidence in peeking under the hood.
+
+I should thank all my mentors in this process as it does not come naturally. Those willing and able to guide me from the darkness and shed light where for me none previously existed, is in fact a wonderful sight to see. I'm forever indebted to their selfless service to me. Restoring my trust in my fellow human and revitalizing my quest to fulfill my greater dreams. On the path forward toward the mountaintop where I hope to share a vista both beautiful and glorious beyond all our means.
+
+```
+1805142359 - 1805111012
+Out[154]: 31347
+```
+#### D-3.13:47
+```
+ls
+ Volume in drive D is mcm-data
+ Volume Serial Number is 6694-EFE3
+
+ Directory of D:\uwpy\Sp2018-Accelerated\students\mathewcm\lesson08
+
+05/07/2018  03:26 PM    <DIR>          .
+05/07/2018  03:26 PM    <DIR>          ..
+05/05/2018  04:21 PM    <DIR>          .cache
+05/06/2018  03:52 PM    <DIR>          __pycache__
+05/11/2018  09:30 AM             1,928 circle.py
+05/07/2018  07:09 PM             2,466 lesson09_notes.py
+05/11/2018  09:30 AM               329 test_circle.py
+               3 File(s)          4,723 bytes
+               4 Dir(s)  554,212,499,456 bytes free
+
+run circle.py
+
+c = Circle(2)
+
+print(c.area)
+12.566370614359172
+
+c1 = Circle(3)
+
+print(c1.area)
+28.274333882308138
+
+c3
+Out[161]: Circle(7)
+
+print(c3.area)
+153.93804002589985
+
+assert c3.area == 153.93804002589985
+
+assert c3.area == 153.93804002589986
+
+c4 = Circle(7)
+
+c4
+Out[166]: Circle(7)
+
+c4.area
+Out[167]: 153.93804002589985
+
+c3 == c4
+Out[168]: True
+
+print(c3)
+Circle with radius: 7
+
+print(c4)
+Circle with radius: 7
+
+repr(c)
+Out[172]: 'Circle(2)'
+
+dir(c)
+Out[173]:
+['__add__',
+ '__class__',
+ '__delattr__',
+ '__dict__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__mul__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__rmul__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '__weakref__',
+ 'area',
+ 'diameter',
+ 'from_diameter',
+ 'radius',
+ 'version']
+
+repr?
+Signature: repr(obj, /)
+Docstring:
+Return the canonical string representation of the object.
+
+For many object types, including most builtins, eval(repr(obj)) == obj.
+Type:      builtin_function_or_method
+
+str?
+Init signature: str(self, /, *args, **kwargs)
+Docstring:     
+str(object='') -> str
+str(bytes_or_buffer[, encoding[, errors]]) -> str
+
+Create a new string object from the given object. If encoding or
+errors is specified, then the object must expose a data buffer
+that will be decoded using the given encoding and error handler.
+Otherwise, returns the result of object.__str__() (if defined)
+or repr(object).
+encoding defaults to sys.getdefaultencoding().
+errors defaults to 'strict'.
+Type:           type
+
+d = eval(repr(c))
+
+d
+Out[177]: Circle(2)
+
+eval?
+Signature: eval(source, globals=None, locals=None, /)
+Docstring:
+Evaluate the given source in the context of globals and locals.
+
+The source may be a string representing a Python expression
+or a code object as returned by compile().
+The globals must be a dictionary and locals can be any mapping,
+defaulting to the current globals and locals.
+If only globals is given, locals defaults to it.
+Type:      builtin_function_or_method
+
+```
+### 18.5.11.11:30
+
+Circle.py testing OK thru step 6 in excercise att.
