@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 # It should have a data structure that holds a list of your donors and a history of the amounts they have donated. This structure should be populated at first with at least five donors, with between 1 and 3 donations each.
 #
 # You can store that data structure in the global namespace.
@@ -33,6 +34,93 @@
 # Jeff Bezos                 $     877.33           1  $      877.33
 # Paul Allen                 $     708.42           3  $      236.14
 
+donors = {"Bee": [100, 25, 75], "Puppycat": [10, 200], "Deckard": [15, 15, 15, 15, 15]}
+# donors_viewobj = donors.items()  # this returns tuple, which i want because tuples are sortable?
+#
+# for x in donors_viewobj:
+#     print(x)
 
-if __name__ == "__main__":
-    pass
+
+def menu():
+    main_menu = ("Welcome to The Mailroom!\n\n"
+                 "Please choose from the following options:\n"
+                 "1: Send a Thank You\n"
+                 "2: Create a Report\n"
+                 "3: Quit\n")
+
+    valid_response = ["1", "2", "3"]
+    print(main_menu)
+    response = input(">> ").title()
+
+    while response not in valid_response:
+        response = input("{} is not an available option. Please enter 1, 2 or 3.\n"
+                         ">> ".format(response))
+
+    while response in valid_response:
+        if response == "1":
+            thank_you()
+        elif response == "2":
+            create_report()
+        elif response == "3":
+            exit_()
+
+
+def thank_you():
+    thankyou_menu = ("You selected Send a Thank You!\n\n"
+                     "Please enter the full name of the donor you would like to thank below.\n"
+                     "Type 'List' to view previous donors to select from.\n"
+                     "Type 'Quit' to exit to the main menu.\n")
+
+    thankyou_template = ("\n\nDear {},\n\n"
+                         "Thank you for your generous {} donation which will allow us to continue\n"
+                         "our fight against the tyranny of the flying spaghetti monster and help\n"
+                         "rebuild the devastation caused by his meatballs.\n\n"
+                         "All donations received by our organization go directly to fund R&D geared\n"
+                         "towards stopping this vicious beast, rebuilding of areas devastated by meatballs\n"
+                         "and paying our meatball eaters a fair and livable wage.\n\n"
+                         "Many Thanks,\n"
+                         "Team Meatball Eaters\n\n")
+
+    valid_response = ["List", "Quit"]
+    print(thankyou_menu)
+    response = input(">> ").title()
+    donor_names = donors.keys()
+
+    if response not in valid_response:
+        donors.setdefault(response, [])
+        print(donor_names)  # Delete this check after it works correctly!
+        donation_amt = input(int("How much are they donating today? >> $ "))
+        donors[response].append(donation_amt)
+        print(thankyou_template.format(response, donation_amt))
+
+    for response in valid_response:
+        if response == "List":
+            print(donor_names)  # Currently this return "dict_keys([names])" make pretty!
+            response = input(">> ").title()  # This isn't evaluating right now. fix! Maybe turn if above into function?
+        elif response == "Quit":
+             menu()  # This may deepen the stack. Another way to get back to main menu function?
+
+
+def create_report():
+    report_header = ("Donor Name          | Total Given | Num Gifts | Average Gift\n"
+                     "------------------------------------------------------------\n")
+    report_line = "{:20} ${:12,.2f}{:11} ${:12}".format("banana", 400, 6, 60)  #
+    # I thought d would make it so many from left, linter complaining?
+
+
+    print(report_header, report_line)
+
+
+def exit_():
+    response = input("Are you sure you'd like to exit the program? Y/N\n >> ").capitalize()
+    valid_response = ["Y", "N"]
+    while response in valid_response:
+        if response == "N":
+            menu()
+        elif response == "Y":
+            sys.exit()
+        else:
+            response = input("{} is not an available option. Please enter Y or N\n >> ".format(response))
+
+
+thank_you()
