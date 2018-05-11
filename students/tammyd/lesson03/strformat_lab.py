@@ -2,6 +2,8 @@
 
 '''
 String Formatting Lab Exercise
+
+
 '''
 
 #take the following four element tuple: ( 2, 123.4567, 10000, 12345.67)
