@@ -1,7 +1,7 @@
+#!/usr/bin3/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Sat May  5 15:14:49 2018
-
 @author: mattn
 """
 
@@ -9,55 +9,85 @@ Created on Sat May  5 15:14:49 2018
 
 import math
 
-class Circle:
+class Circle():
     'An advanced circle analytic toolkit'
     
     version = '0.1'      # class variable
     
-    def __init__(self, a_radius):
-        self.radius = a_radius
-        self.diameter = a_radius * 2
+    def __init__(self, a_radius=None):
+        if a_radius is None:
+            self.radius = 0
+        else:
+            self.radius = a_radius
         
     def __str__(self):
-        return f'Circle with radius: {c.radius:.6f}'
+        return 'Circle with radius: %d' % (self.radius)
     
     
     def __repr__(self):
-        return str(c)
+        return 'Circle(%d)' % (self.radius)
     
-    def __lt__(self):
-        pass
+    def __gt__(self, other):
+        if self.radius > other.radius:
+            return True
+        else:
+            return False
+    
+    def __lt__(self, other):
+        if self.radius < other.radius:
+            return True
+        else:
+            return False
+    
+    def __eq__(self, other):
+        if self.radius == other.radius:
+            return True
+        else: 
+            return False
     
     def __add__(self, other):
-        c3 = c1 + c2
+        return Circle(self.radius + other.radius)
         
     
     def __mul__(self, other):
-        pass
+        return Circle(self.radius * other)
     
+    __rmul__ = __mul__
+       
     @property
     def area(self):
         'Perform quadrature on a shape of uniform radius'
-        return math.pi * self.radius ** 2.0
+        return math.pi * self.radius**2
+    
+    @property
+    def diameter(self):
+        return 2 * self.radius
+    @diameter.setter
+    def diameter(self, diameter):
+        self.radius = diameter / 2
 
+    @classmethod
+    def from_diameter(cls, diameter_value):
+        self = cls(int(diameter_value/2))
+        return self
 
-c = Circle(3)
+# c = Circle(3)
 # print(c.radius)
 # print(c.diameter)
 
 # a = Circle(4)
 # print(str(math.pi * 4 ** 2.0))
-
-def from_diameter():
-    a_diameter = input('Enter a diameter and I will calulate the                         area for you ==> ')
-    
-from_diameter()   
-print(c.area)
-
-print(c)
-    
-c1 = Circle(2)
-c2 = Circle(4)
+#
+#
+#
+#    
+#from_diameter()   
+#print(c.area)
+#
+#print(c)
+#    
+#c1 = Circle(2)
+#c2 = Circle(4)
 
 
 

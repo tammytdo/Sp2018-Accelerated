@@ -1817,3 +1817,11 @@ Syntax for Regex Flags	What does this flag do
 | [re.U] |	Make { \w,\W,\b,\B} follows Unicode rules  |
 | [re.L] |	Make {\w,\W,\b,\B} follow locale           |
 | [re.X] |	Allow comment in Regex                     |
+
+### 18.5.10.15:30 Trigrams completed
+
+Trigrams works after much tweaking. Incorporated Andy Kwon's brilliant regex solution for removing special characters. Code could use a little drying. Satisfied with result and my understanding. Moving on to Circle.py excercise before submitting another PR. Don't want to hold myself up waiting for grading at this time and want to continue to power on.
+
+#### Setters and Getters in python
+
+[Properties vs. Getters and Setters](https://www.python-course.eu/python3_properties.php)
