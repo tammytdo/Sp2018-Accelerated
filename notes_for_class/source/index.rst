@@ -1,6 +1,6 @@
 
 ########################################
-Intro to Python: Spring 2017 Accelerated
+Intro to Python: Spring 2018 Accelerated
 ########################################
 
 
@@ -19,6 +19,6 @@ Notes for each Session
     session07
     session08
     session09
-..    session10
+    session10
 
 ..    lightning_talks
