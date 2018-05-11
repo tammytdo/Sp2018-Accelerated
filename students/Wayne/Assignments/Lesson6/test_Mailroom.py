@@ -42,3 +42,11 @@ def test_new_donor():
     assert donor[0] == "Will Smith"
     assert donor[1] == [350]
     assert MR.search_donor_db
+
+
+def test_file_output():
+
+    MR.save_letters_to_disk()
+
+    assert os.path.isfile('Billy_Joe_Armstrong.txt')
+    assert os.path.isfile('Dave_Grohl.txt')
