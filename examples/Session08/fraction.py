@@ -5,7 +5,10 @@ import math
 
 class Fraction:
     '''
-    Simple class to represent fractions to be completed in class
+    Simple class to represent fractions to be completed in class.
+    Intentionally left as incomplete after class as of 8:30pm, 5/3/18.
+    I highly encourage everyone to complete this class to pass all the pytest
+    test cases and run the __main__ part of this module correctly.
     '''
     def __init__(self, num, denom):
         if denom == 0:
@@ -17,8 +20,25 @@ class Fraction:
             denom *= -1
         self.num = num
         self.denom = denom
+<<<<<<< HEAD
         # need to compute greatest commpon divider
         landa
+=======
+
+    def __str__(self):
+        return str(self.num) + "/" + str(self.denom)
+
+    def __eq__(self, other):
+        return self.num * other.denom == self.denom * other.num
+
+    def __lt__(self, other):
+        return self.num * other.denom < self.denom * other.num
+
+    def __add__(self, other):
+        num = self.num * other.denom + self.denom * other.num
+        denom = self.denom * other.denom
+        return Fraction(num, denom)
+>>>>>>> 240ba4a37485a0554791d375c12d098ac717f370
 
     def __str__(self):
         return str(self.num) + "/" + str(self.denom)
@@ -37,7 +57,7 @@ class Fraction:
 if __name__ == '__main__':
     # f = Fraction(1, 0)  # ZeroDivisionError
     # f = Fraction(1.0, 2)    # TypeError
-    f1 = Fraction(1, 2)
+    f1 = Fraction(1, 2)  # 1/2
     print(f1)
     f2 = Fraction(2, 4)
     print(f1 == f2)     # True

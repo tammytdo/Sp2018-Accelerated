@@ -16,11 +16,13 @@ def test_fraction_str():
 
 def test_fraction_eq():
     assert Fraction(1, 2) == Fraction(2, 4)
+    # 1+2 = +(1, 2)
     assert Fraction(2, 3) != Fraction(3, 4)
 
 
 def test_fraction_lt():
     assert Fraction(1, 2) < Fraction(2, 3)
+    assert Fraction(1, -2) < Fraction(2, 3)
 
 
 def test_fraction_add():
