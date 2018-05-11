@@ -1229,7 +1229,7 @@ def __add__(self, other):
     return Fraction(num, denom)
 ```
 #### At the constructor is the best time to do normalization: Add GCD algorithm to the constructor to get all tests to pass.
-
+```
 class Base:
     def __init__(self):
         print(type(self))
@@ -1242,7 +1242,7 @@ class Derived(Base):
 d = Derived()
 <class '__main__.Derived'>
 <class '__main__.Base'>
-
+```
 
 #### Python static vs. class Methods
 ```
