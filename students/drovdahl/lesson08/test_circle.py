@@ -1,6 +1,6 @@
 #! /usr/local/bin/python3
 '''
-test code for circle2.py
+test code for circle.py
 '''
 from circle2 import *
 import math
