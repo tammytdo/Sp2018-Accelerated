@@ -1991,3 +1991,39 @@ Type:      builtin_function_or_method
 ### 18.5.11.11:30
 
 Circle.py testing OK thru step 6 in excercise att.
+
+### logging
+
+[python logging howto](https://docs.python.org/3/howto/logging.html#logging-basic-tutorial)
+
+##### Implemented in Circle Exercise:
+```
+def test_area():
+    logger = logging.getLogger(__name__)
+    c = Circle(5)
+    c1 = Circle(2)
+    c2 = Circle(5)
+    c3 = Circle(7)
+    assert c.area == 78.53981633974483
+    assert c1.area == 12.566370614359172
+    assert c3.area == 153.93804002589985
+    try:
+        assert c2.area == 50.26548245743669
+    except AssertionError as error:
+        logger.error(AssertionError)
+```
+### 18.5.11.21:54
+Circle.py passed all tests att. Committing Circle Excercise.
+
+```
+!pytest
+============================= test session starts =============================
+platform win32 -- Python 3.6.4, pytest-3.3.2, py-1.5.2, pluggy-0.6.0
+rootdir: D:\uwpy\Sp2018-Accelerated\students\mathewcm\lesson08, inifile:
+collected 13 items
+
+test_circle.py .............                                             [100%]
+
+========================== 13 passed in 0.08 seconds ==========================
+
+```

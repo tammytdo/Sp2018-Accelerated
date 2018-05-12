@@ -41,9 +41,9 @@ class Circle():
     def __eq__(self, other):
         if self.radius == other.radius:
             return True
-        else: 
+        else:
             return False
-    
+
     def __add__(self, other):
         return Circle(self.radius + other.radius)
         
@@ -70,23 +70,6 @@ class Circle():
         self = cls(int(diameter_value / 2))
         return self
 
-# c = Circle(3)
-# print(c.radius)
-# print(c.diameter)
-
-# a = Circle(4)
-# print(str(math.pi * 4 ** 2.0))
-#
-#
-#
-#    
-#from_diameter()   
-#print(c.area)
-#
-#print(c)
-#    
-#c1 = Circle(2)
-#c2 = Circle(4)
 
 
 
