@@ -18,53 +18,51 @@ import math
 
 class Circle(object):
     def __init__(self, radius):
-        self._radius = radius
+        self.radius = radius
         self.diameter = radius * 2
 
     @property
-    def radius(self):
-        return self.diameter / 2
-
-    @property
     def diameter(self):
-        return self._radius * 2
+        return self.radius * 2
 
     @diameter.setter
     def diameter(self, val):
-        self._radius = val / 2
+        self.radius = val / 2
 
     @property
     def area(self):
-        return math.pi * self._radius ** 2
+        return math.pi * self.radius ** 2
 
     @classmethod
+    # this is a constructor method that allows creation of a 'Circle' object by
+    # diameter instead of radius
     def from_diameter(cls, diameter):
         self = cls(diameter/2)
         return self
 
     def __repr__(self):
-        return 'Circle({})'.format(int(self._radius))
+        return 'Circle({})'.format(int(self.radius))
 
     def __str__(self):
-        return 'Circle with radius: {:6f}'.format(self._radius)
+        return 'Circle with radius: {:6f}'.format(self.radius)
 
     def __add__(self, other):
-        return Circle(self._radius + other._radius)
+        return Circle(self.radius + other.radius)
 
     def __mul__(self, val):
-        return Circle(self._radius * val)
+        return Circle(self.radius * val)
 
     def __rmul__(self, val):
-        return Circle(self._radius * val)
+        return Circle(self.radius * val)
 
     def __gt__(self, other):
-        return self._radius > other._radius
+        return self.radius > other.radius
 
     def __lt__(self, other):
-        return self._radius < other._radius
+        return self.radius < other.radius
 
     def __eq__(self, other):
-        return self._radius == other._radius
+        return self.radius == other.radius
 
 
 #if __name__ == '__main__':
