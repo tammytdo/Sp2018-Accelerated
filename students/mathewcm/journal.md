@@ -2064,3 +2064,14 @@ Hosung
 
 >Thanks for all your hard work!
 -Harry
+
+#### Current class point assessment
+
+In [7]: 195. / 225.
+Out[7]: 0.8666666666666667
+
+Of a possible 225 points by my visual count from the Class Canvas page att I have 195 points. Missing as currently ungraded is Kata Fourteen: Tom Swift Under Milk Wood which I submitted with the latest PR late last night. On Canvas I then submitted Circle Exercise and Mailroom 4 all this AM. If this assessment is good then I believe I've passed the first portion of the course. Assuming 87% is passing. Onward and upward.
+
+I still need to finish the last classes notes and course materials including refactoring mailroom as functional then for OO with a Donor Class and a UI class per notes. However, I have a ton of personal matters I've been putting off for course completion priorities weighing down on me. I may just clear the deck this AM for my own sanity.
+
+I'm glad to see no study group today because I'm really not prepared in all honesty. I need to have some code together and a plan to share with Hosung tomorrow. My goals for today are to prepare for that reality by reviewing materials and to understanding the exercise explicitly. Then develop my class implementation approach with a repeatable Methodology that I can then apply more broadly with a deeper understanding and logical means. So much material but I think it is really coming together at least abstractly.
