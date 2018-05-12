@@ -20,8 +20,6 @@ class Fraction:
             denom *= -1
         self.num = num
         self.denom = denom
-<<<<<<< HEAD
-=======
 
     def __str__(self):
         return str(self.num) + "/" + str(self.denom)
@@ -36,21 +34,6 @@ class Fraction:
         num = self.num * other.denom + self.denom * other.num
         denom = self.denom * other.denom
         return Fraction(num, denom)
->>>>>>> 240ba4a37485a0554791d375c12d098ac717f370
-
-def __str__(self):
-    return str(self.num) + '/' +str(self.denom)
-
-def __eq__(self, other):
-    return self.num * other.denom == self.demon * other.num
-
-def __lt__(self, other):
-    return self.num * other.denom < other.num * self.denom
-
-def __add__(self, other):
-    num = self.num *  other.denom + self.denom * other.num
-    denom = self.denom * other.denom
-    return Fraction(num, denom)
 
     
 if __name__ == '__main__':

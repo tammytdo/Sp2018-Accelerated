@@ -34,6 +34,8 @@ class Circle(object):
         return math.pi * self.radius ** 2
 
     @classmethod
+    # this is a constructor method that allows creation of a 'Circle' object by
+    # diameter instead of radius
     def from_diameter(cls, diameter):
         self = cls(diameter/2)
         return self

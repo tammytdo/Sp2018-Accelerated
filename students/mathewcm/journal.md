@@ -1229,7 +1229,7 @@ def __add__(self, other):
     return Fraction(num, denom)
 ```
 #### At the constructor is the best time to do normalization: Add GCD algorithm to the constructor to get all tests to pass.
-
+```
 class Base:
     def __init__(self):
         print(type(self))
@@ -1242,7 +1242,7 @@ class Derived(Base):
 d = Derived()
 <class '__main__.Derived'>
 <class '__main__.Base'>
-
+```
 
 #### Python static vs. class Methods
 ```
@@ -1256,7 +1256,7 @@ StaticAdder.add(3,6)
 No highly used!
 
 #### Class methods
-
+```
 class Classy:
     x = 2
     @classmethod
@@ -1265,14 +1265,14 @@ class Classy:
         return y ** cls.x
 
 Classy.a_class_method(4)
-
+```
 #### Alternative Constructors *** Know this methods (Polymorphism)
 
 #### Super
 
-1) The method being called by super needs to exist
-2) Caller and the called need to have matching argument signatures
-3) Every occurance of the method needs to use Super
+1. The method being called by super needs to exist
+2. Caller and the called need to have matching argument signatures
+3. Every occurance of the method needs to use Super
 
 ```
 class A():
@@ -1321,15 +1321,16 @@ in B __init__
 self's class is: <class '__main__.D'>
 in A __init__
 self's class is: <class '__main__.D'>
-
-super?
-Init signature: super(self, /, *args, **kwargs)
-Docstring:     
-super() -> same as super(__class__, <first argument>)
-super(type) -> unbound super object
-super(type, obj) -> bound super object; requires isinstance(obj, type)
-super(type, type2) -> bound super object; requires issubclass(type2, type)
-Typical use to call a cooperative superclass method:
+```
+#### super
+1. Init signature: super(self, /, *args, \**kwargs)
+2. Docstring:     
+  * super() -> same as super(__class__, <first argument>)
+  * super(type) -> unbound super object
+  * super(type, obj) -> bound super object; requires isinstance(obj, type)
+  * super(type, type2) -> bound super object; requires issubclass(type2, type)
+3. Typical use to call a cooperative superclass method:
+```
 class C(B):
     def meth(self, arg):
         super().meth(arg)
@@ -1712,6 +1713,365 @@ Changed in version 3.3: Operations that used to raise IOError now raise OSError,
 [Markup Validation Service](http://validator.w3.org/#validate_by_input)
 
 ### 18.5.9.17:45
-#### Finished HtML Renderer excercise with 7/ 7 tests passing without factoring in indentation
+```
+! pytest test_html_render.py
+============================= test session starts =============================
+platform win32 -- Python 3.6.4, pytest-3.3.2, py-1.5.2, pluggy-0.6.0
+rootdir: D:\uwpy\Sp2018-Accelerated\students\mathewcm\lesson07, inifile:
+collected 8 items
 
-Thanks to Kristian and Andy both whose code I refered to in working thru my solution. I incorporated Kristian's **kwarg approach and could understand the looping and key, value arguments after seeing them implemented so well. I added additional tags and hope to revisit this excercise and finish the indentations as it would in fact make the renderer more readable.
+test_html_render.py .......F                                             [100%]
+
+================================== FAILURES ===================================
+_________________________________ test_indent _________________________________
+
+    def test_indent():
+        """
+        Tests that the indentation gets passed through to the renderer
+        """
+        html = Html("some content")
+        file_contents = render_result(html, indent=3)
+
+        print(file_contents)
+        lines = file_contents.split("\n")
+>       assert lines[0].startswith("   <")
+E       AssertionError: assert False
+E        +  where False = <built-in method startswith of str object at 0x000001D7617240F0>('   <')
+E        +    where <built-in method startswith of str object at 0x000001D7617240F0> = '<!DOCTYPE html>'.startswith
+
+test_html_render.py:171: AssertionError
+---------------------------- Captured stdout call -----------------------------
+<!DOCTYPE html>
+   <html>
+       some content       
+</html>
+
+===================== 1 failed, 7 passed in 0.12 seconds ======================
+
+! pytest test_html_render.py
+============================= test session starts =============================
+platform win32 -- Python 3.6.4, pytest-3.3.2, py-1.5.2, pluggy-0.6.0
+rootdir: D:\uwpy\Sp2018-Accelerated\students\mathewcm\lesson07, inifile:
+collected 7 items
+
+test_html_render.py .......                                              [100%]
+
+========================== 7 passed in 0.06 seconds ===========================
+```
+#### Finished HTML Renderer exercise with 7/ 7 tests passing without factoring in indentation
+
+Thanks to Kristian and Andy both whose code I referred to in working thru my solution. I incorporated Kristian's `**kwarg` approach and could understand the looping and key, value arguments after seeing them implemented so well. I added additional tags and hope to revisit this exercise and finish the indentations as it would in fact make the renderer more readable.
+
+### 18.5.10.12:30
+
+Focusing on the low fruit today and cleanup in preparation for more difficult refactoring of the mailroom project. Submission of both the Kata Fourteen: Tom Swift Under Milk Wood and the Circle Class exercises. Both should be well documented and I doubt I will face any major blocks today. The final date for submission is 18.5.14.23:59. D-4.45 Attempting to maximize course points given limited timeframe.
+
+Taking good notes and having well documented course materials has proven to be highly beneficial while sharpening my markdown language proficiency. The output looks highly professional and integrates into my workflow with Anaconda Spyder3 as well as Atom very nicely. Keeping my journal open and capturing salient points almost randomly without missing stride toward my coding objectives.
+
+Being able to reference pertinent information and having the means to access it from 'virtually' anywhere is a powerful application of technology. Updating it and sharing it openly is its own form of humanity, filling the void with light even if but bits of some random memory.
+
+### 18.5.10.12:50
+
+[Kata14: Tom Swift Under the Milkwood](http://codekata.com/kata/kata14-tom-swift-under-the-milkwood/)
+
+#### Using RegEx re.findall for text manipulation
+
+##### Using re.findall for text
+`Re.findall()` module is used when you want to iterate over the lines of the file, it will return a list of all the matches in a single step. For example, here we have a list of e-mail addresses, and we want all the e-mail addresses to be fetched out from the list, we use the re.findall method. It will find all the e-mail addresses from the list.
+
+Python Regex Tutorial: re.match(), re.search(), re.findall(), Flags
+
+Here is the complete code
+```
+import re
+
+list = ["guru99 get", "guru99 give", "guru Selenium"]
+for element in list:
+    z = re.match("(g\w+)\W(g\w+)", element)
+if z:
+    print((z.groups()))
+
+patterns = ['software testing', 'guru99']
+text = 'software testing is fun?'
+for pattern in patterns:
+    print('Looking for "%s" in "%s" ->' % (pattern, text), end=' ')
+    if re.search(pattern, text):
+        print('found a match!')
+else:
+    print('no match')
+abc = 'guru99@google.com, careerguru99@hotmail.com, users@yahoomail.com'
+emails = re.findall(r'[\w\.-]+@[\w\.-]+', abc)
+for email in emails:
+    print(email)
+```    
+#### Python Flags
+Many Python Regex Methods and Regex functions take an optional argument called Flags. This flags can modify the meaning of the given Regex pattern. To understand these we will see one or two example of these Flags.
+
+Various flags used in Python includes
+
+Syntax for Regex Flags	What does this flag do
+
+| [re.M] |	Make begin/end consider each line          |
+| ------ |:-------------------------------------------:|
+| [re.I] |	It ignores case                            |
+| [re.S] |	Make [ . ]                                 |
+| [re.U] |	Make { \w,\W,\b,\B} follows Unicode rules  |
+| [re.L] |	Make {\w,\W,\b,\B} follow locale           |
+| [re.X] |	Allow comment in Regex                     |
+
+### 18.5.10.15:30 Trigrams completed
+
+Trigrams works after much tweaking. Incorporated Andy Kwon's brilliant regex solution for removing special characters. Code could use a little drying. Satisfied with result and my understanding. Moving on to Circle.py excercise before submitting another PR. Don't want to hold myself up waiting for grading at this time and want to continue to power on.
+
+#### Setters and Getters in python
+
+[Properties vs. Getters and Setters](https://www.python-course.eu/python3_properties.php)
+
+### 18.5.11.9:55
+
+I will have to code my count down clock to deadlines like course submission. Trying to hold to lexicographical order in my date format got me thinking about the D-Day type countdown and how it helps motivate one toward significant milestones.
+
+```
+1805142359 - 1805110955
+Out[153]: 31404
+
+```
+#### D-3.14:04
+
+That's 3 days 14 hours and 4 minutes with pretty simple math and by parsing out my periods and colons.
+
+Just a function definition and a f string away from a new countdown module.
+
+Back to it! Goals for today are to finish circle.py and feeling more confident with using asserts and testing objects using exceptions and logic. I want to dig deeper into classes and get a better handle on how they are used in python. The knowledge that `type` is a class itself was hugely insightful. I'm feeling more and more confidence in peeking under the hood.
+
+I should thank all my mentors in this process as it does not come naturally. Those willing and able to guide me from the darkness and shed light where for me none previously existed, is in fact a wonderful sight to see. I'm forever indebted to their selfless service to me. Restoring my trust in my fellow human and revitalizing my quest to fulfill my greater dreams. On the path forward toward the mountaintop where I hope to share a vista both beautiful and glorious beyond all our means.
+
+```
+1805142359 - 1805111012
+Out[154]: 31347
+```
+#### D-3.13:47
+```
+ls
+ Volume in drive D is mcm-data
+ Volume Serial Number is 6694-EFE3
+
+ Directory of D:\uwpy\Sp2018-Accelerated\students\mathewcm\lesson08
+
+05/07/2018  03:26 PM    <DIR>          .
+05/07/2018  03:26 PM    <DIR>          ..
+05/05/2018  04:21 PM    <DIR>          .cache
+05/06/2018  03:52 PM    <DIR>          __pycache__
+05/11/2018  09:30 AM             1,928 circle.py
+05/07/2018  07:09 PM             2,466 lesson09_notes.py
+05/11/2018  09:30 AM               329 test_circle.py
+               3 File(s)          4,723 bytes
+               4 Dir(s)  554,212,499,456 bytes free
+
+run circle.py
+
+c = Circle(2)
+
+print(c.area)
+12.566370614359172
+
+c1 = Circle(3)
+
+print(c1.area)
+28.274333882308138
+
+c3
+Out[161]: Circle(7)
+
+print(c3.area)
+153.93804002589985
+
+assert c3.area == 153.93804002589985
+
+assert c3.area == 153.93804002589986
+
+c4 = Circle(7)
+
+c4
+Out[166]: Circle(7)
+
+c4.area
+Out[167]: 153.93804002589985
+
+c3 == c4
+Out[168]: True
+
+print(c3)
+Circle with radius: 7
+
+print(c4)
+Circle with radius: 7
+
+repr(c)
+Out[172]: 'Circle(2)'
+
+dir(c)
+Out[173]:
+['__add__',
+ '__class__',
+ '__delattr__',
+ '__dict__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__mul__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__rmul__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '__weakref__',
+ 'area',
+ 'diameter',
+ 'from_diameter',
+ 'radius',
+ 'version']
+
+repr?
+Signature: repr(obj, /)
+Docstring:
+Return the canonical string representation of the object.
+
+For many object types, including most builtins, eval(repr(obj)) == obj.
+Type:      builtin_function_or_method
+
+str?
+Init signature: str(self, /, *args, **kwargs)
+Docstring:     
+str(object='') -> str
+str(bytes_or_buffer[, encoding[, errors]]) -> str
+
+Create a new string object from the given object. If encoding or
+errors is specified, then the object must expose a data buffer
+that will be decoded using the given encoding and error handler.
+Otherwise, returns the result of object.__str__() (if defined)
+or repr(object).
+encoding defaults to sys.getdefaultencoding().
+errors defaults to 'strict'.
+Type:           type
+
+d = eval(repr(c))
+
+d
+Out[177]: Circle(2)
+
+eval?
+Signature: eval(source, globals=None, locals=None, /)
+Docstring:
+Evaluate the given source in the context of globals and locals.
+
+The source may be a string representing a Python expression
+or a code object as returned by compile().
+The globals must be a dictionary and locals can be any mapping,
+defaulting to the current globals and locals.
+If only globals is given, locals defaults to it.
+Type:      builtin_function_or_method
+
+```
+### 18.5.11.11:30
+
+Circle.py testing OK thru step 6 in excercise att.
+
+### logging
+
+[python logging howto](https://docs.python.org/3/howto/logging.html#logging-basic-tutorial)
+
+##### Implemented in Circle Exercise:
+```
+def test_area():
+    logger = logging.getLogger(__name__)
+    c = Circle(5)
+    c1 = Circle(2)
+    c2 = Circle(5)
+    c3 = Circle(7)
+    assert c.area == 78.53981633974483
+    assert c1.area == 12.566370614359172
+    assert c3.area == 153.93804002589985
+    try:
+        assert c2.area == 50.26548245743669
+    except AssertionError as error:
+        logger.error(AssertionError)
+```
+### 18.5.11.21:54
+Circle.py passed all tests att. Committing Circle Excercise.
+
+```
+!pytest
+============================= test session starts =============================
+platform win32 -- Python 3.6.4, pytest-3.3.2, py-1.5.2, pluggy-0.6.0
+rootdir: D:\uwpy\Sp2018-Accelerated\students\mathewcm\lesson08, inifile:
+collected 13 items
+
+test_circle.py .............                                             [100%]
+
+========================== 13 passed in 0.08 seconds ==========================
+
+```
+#### D-3.01:54
+
+### 18.5.12.08:36
+
+Thinking about life while at coffee and how much coding has helped me give a framework to the stressors I feel daily. I actually started thinking about issues in a stack and popping off those which rise mysteriously daily to the top of the seemingly endless iterations. Having the means to move forward and address them singularly and not wholly is the only logical path and that which I know is manageable. Given the magnitude of any single persons struggle with mortality, it seems we can only take one step at a time though when perceived collectively, the mountaintop seems so so far away. Yet, it is the burden itself, the character of struggle and the story of our sacrifice that motivates me day upon day, week upon week, year upon year, until that fateful day. In magnitudes I have yet to understand... though currently it seems only a class away.
+
+### 18.5.12.08:46
+
+#### D-2.15:12
+
+>Email summary for remaining UWPCE Intro PythonCert:
+
+>For those who missed today's class or couldn't keep up with my typing...
+
+>Some suggested class definitions for OO mailroom (incomplete, not the only way!): https://github.com/UWPCE-PythonCert-ClassRepos/Sp2018-Accelerated/blob/master/students/hosungs/Lesson06_posted_solutions/mailroom_oo.py#L44-L93
+
+>Related unit tests (incomplete again!): https://github.com/UWPCE-PythonCert-ClassRepos/Sp2018-Accelerated/blob/master/students/hosungs/Lesson06_posted_solutions/test_mailroom_oo.py
+
+>Office hours (Hosung): 3-5pm, Saturday 5/12 @ Study Room #1, Foster Business Library, Paccar Hall
+
+>Email for appointment!
+
+>Thanks for all your hard work,
+Hosung
+
+>Hey class,
+
+>I'll have office hours this Sunday.
+
+>1:30-3:30PM 5/13/18. @ Raygun Lounge 501 E Pine St, Seattle, WA 98122.
+
+>Sorry it has to be in Capital Hill because I have to run to work up the street right after, but free parking on Sundays should make that palatable!
+
+>Email or slack with questions. I can even help after the deadline on Monday and Thurs evenings next week if anyone has to take a temporary "incomplete." But please try to complete your work by Monday so you can register for the next class before it begins. But, if that doesn't happen and you want help, just let me know and we can figure something out on one or both of those evenings.
+
+>Thanks for all your hard work!
+-Harry
+
+#### Current class point assessment
+
+In [7]: 195. / 225.
+Out[7]: 0.8666666666666667
+
+Of a possible 225 points by my visual count from the Class Canvas page att I have 195 points. Missing as currently ungraded is Kata Fourteen: Tom Swift Under Milk Wood which I submitted with the latest PR late last night. On Canvas I then submitted Circle Exercise and Mailroom 4 all this AM. If this assessment is good then I believe I've passed the first portion of the course. Assuming 87% is passing. Onward and upward.
+
+I still need to finish the last classes notes and course materials including refactoring mailroom as functional then for OO with a Donor Class and a UI class per notes. However, I have a ton of personal matters I've been putting off for course completion priorities weighing down on me. I may just clear the deck this AM for my own sanity.
+
+I'm glad to see no study group today because I'm really not prepared in all honesty. I need to have some code together and a plan to share with Hosung tomorrow. My goals for today are to prepare for that reality by reviewing materials and to understanding the exercise explicitly. Then develop my class implementation approach with a repeatable Methodology that I can then apply more broadly with a deeper understanding and logical means. So much material but I think it is really coming together at least abstractly.
