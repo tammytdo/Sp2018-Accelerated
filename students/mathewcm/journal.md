@@ -2027,3 +2027,40 @@ test_circle.py .............                                             [100%]
 ========================== 13 passed in 0.08 seconds ==========================
 
 ```
+#### D-3.01:54
+
+### 18.5.12.08:36
+
+Thinking about life while at coffee and how much coding has helped me give a framework to the stressors I feel daily. I actually started thinking about issues in a stack and popping off those which rise mysteriously daily to the top of the seemingly endless iterations. Having the means to move forward and address them singularly and not wholly is the only logical path and that which I know is manageable. Given the magnitude of any single persons struggle with mortality, it seems we can only take one step at a time though when perceived collectively, the mountaintop seems so so far away. Yet, it is the burden itself, the character of struggle and the story of our sacrifice that motivates me day upon day, week upon week, year upon year, until that fateful day. In magnitudes I have yet to understand... though currently it seems only a class away.
+
+### 18.5.12.08:46
+
+#### D-2.15:12
+
+>Email summary for remaining UWPCE Intro PythonCert:
+
+>For those who missed today's class or couldn't keep up with my typing...
+
+>Some suggested class definitions for OO mailroom (incomplete, not the only way!): https://github.com/UWPCE-PythonCert-ClassRepos/Sp2018-Accelerated/blob/master/students/hosungs/Lesson06_posted_solutions/mailroom_oo.py#L44-L93
+
+>Related unit tests (incomplete again!): https://github.com/UWPCE-PythonCert-ClassRepos/Sp2018-Accelerated/blob/master/students/hosungs/Lesson06_posted_solutions/test_mailroom_oo.py
+
+>Office hours (Hosung): 3-5pm, Saturday 5/12 @ Study Room #1, Foster Business Library, Paccar Hall
+
+>Email for appointment!
+
+>Thanks for all your hard work,
+Hosung
+
+>Hey class,
+
+>I'll have office hours this Sunday.
+
+>1:30-3:30PM 5/13/18. @ Raygun Lounge 501 E Pine St, Seattle, WA 98122.
+
+>Sorry it has to be in Capital Hill because I have to run to work up the street right after, but free parking on Sundays should make that palatable!
+
+>Email or slack with questions. I can even help after the deadline on Monday and Thurs evenings next week if anyone has to take a temporary "incomplete." But please try to complete your work by Monday so you can register for the next class before it begins. But, if that doesn't happen and you want help, just let me know and we can figure something out on one or both of those evenings.
+
+>Thanks for all your hard work!
+-Harry
