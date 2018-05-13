@@ -3,6 +3,7 @@
 
 import sys
 import string
+from functools import reduce
 
 
 class Donor():
@@ -88,6 +89,18 @@ class donor_DB():
     def quit(self):
         sys.exit()
 
+    def challenge(self, n, min_d = None, max_d = None):
+        for donor in self._donors.values():
+            if min_d is None and max_d is not None:
+                donor.donation = list(filter(lambda x: x <= max_d, donor.donation))
+            if min_d is not None and max_d is None:
+                donor.donation = list(filter(lambda x: x >= min_d, donor.donation))
+            if not min_d is None and max_d is None:
+                donor.donation = list(filter(lambda x: x >= min_d and x <= max_d, donor.donation))
+            else:
+                continue
+            donor.donation = map(lambda x : x * n, donor.donation)
+        return self._donors
 
 def Welcome():
     print('Welcome to Mailroom')
@@ -99,7 +112,8 @@ def Welcome():
               '3) Send thank you\n'
               '4) Creat a report\n'
               '5) Send letters to everyone\n'
-              '6) quit\n')
+              '6) Total contribution by MORE\n'
+              '7) quit\n')
         response = input('>> ')
         if response == '1':
             print(db.donor_list())
@@ -131,6 +145,22 @@ def Welcome():
             print('Letters have been saved')
             print('Return to main menu\n')
         elif response == '6':
+            print('scenario 1: double contributions under $100\n'
+                  'scenario 2: triple contributions over $50\n')
+            rs = input('choose your scenario "1" or "2": ')
+            if rs == '1':
+                n = 2
+                max = 100
+                donor_new_data = db.challenge(n, max_d = max)
+            elif rs == '2':
+                n = 3
+                min = 50
+                donor_new_data = db.challenge(n, min_d = min)
+            else:
+                print('Invalid input')
+            for donor in donor_new_data.values():
+                print(donor.name,' new total donation is ', reduce(lambda x, y: x + y, donor.donation))
+        elif response == '7':
             print('Exit Now')
             db.quit()
         else:
