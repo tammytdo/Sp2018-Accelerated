@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 """
 mailroom assignment
-
 This version uses a dict for the main db, and exception handling to
 check input, and has been factored to be amenable to testing.
 """
@@ -29,22 +28,9 @@ def get_donor_db():
             'mark zuckerberg': ("Mark Zuckerberg", [1663.23, 4300.87, 10432.0]),
             }
 
-def get_donor_db_oo():
-    db = DonorDB()
-    raw_data = get_donor_db()
-
-    for k, v in raw_data.items():
-        donor = Donor(k)
-        for donation in v[1]:
-            donor.add_donation(donation)
-        db.add_donor(donor)
-
-    return db
-
-
 class Donor:
     def __init__(self, name, donations=None):
-        self._name = name
+        self.name = name
         self._donations = [] if donations is None else donations
 
     @property
@@ -54,50 +40,59 @@ class Donor:
     @property
     def donations(self):
         return self._donations
-    
-    def add_donation(self, donation):
+
+    def add_donations(self, donations):
         self._donations.append(donation)
 
     @property
     def total_donations(self):
-        return sum(self._donations)
-        
-        #return reduce(lambda a,x: a+x, self._donations, 0)
-        
+        return reduce(lambda a,x: a+t, self._donations, 0)
+        #avoid the style below
         # s = 0
         # for d in self._donations:
-        #     s += d
+        #     s += n 
         # return s
 
-    def __repr__(self):
+    def __str__(self):
         return "{}: {}".format(self._name, self._donations)
-
 
 class DonorDB:
     def __init__(self):
         self._donors = {}
 
-    def add_donor(self, donor):
+    def add_donor(sef, donor):
         self._donors[donor.name.lower()] = donor
 
     def get_total_from_donor(self, donor_name):
-        return self._donors[donor_name.lower()].total_donations
+        self._donors[donor_name.lower()].total_donations
 
     def get_donor(self, donor_name):
-        return self._donors[donor_name.lower()]
+        return self._donors[donor_name.lower()] ###stuff here
 
     @property
     def num_donors(self):
-        return len(self._donors)
+        return str(self._donors)
 
     def __repr__(self):
-        return str(self._donors)
+        return #whaaaax
+
+def get_donor_db_oo():
+    db = DonorDB()
+    raw_data = get_donor_db()
+
+    for k, v in raw_data.items():
+        donor = Donor(k)
+        for donation in v:
+            donor.add_donation(donation)
+
+    return db
+
+
 
 
 def list_donors():
     """
     creates a list of the donors as a string, so they can be printed
-
     Not calling print from here makes it more flexible and easier to
     test
     """
@@ -110,9 +105,7 @@ def list_donors():
 def find_donor(name):
     """
     find a donor in the donor db
-
     :param: the name of the donor
-
     :returns: The donor data structure -- None if not in the donor_db
     """
     key = name.strip().lower()
@@ -122,9 +115,7 @@ def find_donor(name):
 def add_donor(name):
     """
     Add a new donor to the donor db
-
     :param: the name of the donor
-
     :returns: the new Donor data structure
     """
     name = name.strip()
@@ -139,12 +130,10 @@ def main_menu_selection():
     """
     action = input(dedent('''
       Choose an action:
-
       1 - Send a Thank You
       2 - Create a Report
       3 - Send letters to everyone
       4 - Quit
-
       > '''))
     return action.strip()
 
@@ -152,19 +141,14 @@ def main_menu_selection():
 def gen_letter(donor):
     """
     Generate a thank you letter for the donor
-
     :param: donor tuple
-
     :returns: string with letter
-
     note: This doesn't actually write to a file -- that's a separate
           function. This makes it more flexible and easier to test.
     """
     return dedent('''Dear {0:s},
-
           Thank you for your very kind donation of ${1:.2f}.
           It will be put to very good use.
-
                          Sincerely,
                             -The Team
           '''.format(donor[0], donor[1][-1]))
@@ -225,7 +209,6 @@ def sort_key(item):
 def generate_donor_report():
     """
     Generate the report of the donors and amounts donated.
-
     :returns: the donor report as a string.
     """
     # First, reduce the raw data into a summary list view
@@ -269,24 +252,26 @@ def quit():
 
 def main():
     donor_db = get_donor_db_oo()
-    donor_name = input('Whose donation record would you like to see?')
+    donor_name = input("Enter donor name:")
     donor = donor_db.get_donor(donor_name)
-    print("{}, you donated total of {}! Thank you!".format(donor.name, donor.total_donations))
+    prints("{}, you donated total of {}! Thank you!".format(donor.name, donor.total_donations))
+
 
 if __name__ == "__main__":
-    main()
-    # donor_db = get_donor_db()
+#    main()
 
-    # running = True
+    donor_db = get_donor_db()
 
-    # selection_dict = {"1": send_thank_you,
-    #                   "2": print_donor_report,
-    #                   "3": save_letters_to_disk,
-    #                   "4": quit}
+    running = True
 
-    # while True:
-    #     selection = main_menu_selection()
-    #     try:
-    #         selection_dict[selection]()
-    #     except KeyError:
-    #         print("error: menu selection is invalid!")
+    selection_dict = {"1": send_thank_you,
+                      "2": print_donor_report,
+                      "3": save_letters_to_disk,
+                      "4": quit}
+
+    while True:
+        selection = main_menu_selection()
+        try:
+            selection_dict[selection]()
+        except KeyError:
+            print("error: menu selection is invalid!")
