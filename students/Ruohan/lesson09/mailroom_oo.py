@@ -40,6 +40,7 @@ class Donor():
     def fIsDonor(self, name):
         return self.name == name
 
+
 class Handle():
 
     def __init__(self):
@@ -77,11 +78,11 @@ class Handle():
         return self.donors_name_list
 
     def _letter(self, d):
-        self.letter = '''Dear {}
+        letter = '''Dear {}
             Thank you for your generous donation of ${:.2f}.
             We appreciate your contribution.
             Team R '''.format(d.name, d.last)
-        return self.letter
+        return letter
 
     def thank_you(self):
         name = input("Enter donor's name or type 'list' to see all donors: ").title()
@@ -101,7 +102,7 @@ class Handle():
         print('\n<return to main menu>\n')
 
 
-    def letters(self):
+    def file_letters(self):
         for donor in self.donordatas:
             f_name = donor.name+'.txt'
             with open(f_name, 'wt') as f:
@@ -111,11 +112,11 @@ class Handle():
                     Team R ''', file = f)
 
     def quit(self):
-        print('Exit Now')
         sys.exit()
 
+
 if __name__ == "__main__":
-    print('welcome to Mailroom')
+    print('Welcome to Mailroom')
     p = Handle()
     while True:
         print('\nwhat do you want to do?')
@@ -124,5 +125,5 @@ if __name__ == "__main__":
               '3) Send letters to everyone\n'
               '4) quit\n')
         response = input('>> ')
-        menu = {'1': p.thank_you, '2': p.report, '3': p.letters, '4': p.quit}
+        menu = {'1': p.thank_you, '2': p.report, '3': p.file_letters, '4': p.quit}
         menu.get(response)()
