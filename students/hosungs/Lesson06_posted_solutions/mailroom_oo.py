@@ -35,8 +35,9 @@ def get_donor_db_oo():
 
     for k, v in raw_data.items():
         donor = Donor(k)
-        for donation in v:
+        for donation in v[1]:
             donor.add_donation(donation)
+        db.add_donor(donor)
 
     return db
 
