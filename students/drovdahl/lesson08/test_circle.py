@@ -1,8 +1,8 @@
 #! /usr/local/bin/python3
 '''
-test code for circle.py
+test code for circle2.py
 '''
-from circle import *
+from circle2 import *
 import math
 
 
@@ -14,6 +14,13 @@ def test_radius():
 def test_diameter():
     c = Circle(2)
     assert c.diameter == 4
+
+
+def test_radius_change():
+    c = Circle(3)
+    assert c.radius == 3
+    c.radius = 4
+    assert c.radius == 4
 
 
 def test_diameter_change():
