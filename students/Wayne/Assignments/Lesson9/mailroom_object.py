@@ -28,16 +28,6 @@ def find_donor_db():
            'rivers cuomo': ("Rivers Cuomo", [1994.96, 2100000]),
            }
 
-
-# def object_oriented_db():
-#     db = find_donor_db()
-#     raw_data = find_donor_db()
-
-#     for k, v in raw_data.items():
-#         donor = Donor(k)
-#         for donation in v:
-#             donor.add_donation(donation)
-
 # ----------------------------------------------------------------------------
 #
 # Building donor class that handles all items pertaining to storing a donor
@@ -45,25 +35,26 @@ def find_donor_db():
 # ----------------------------------------------------------------------------
 
 
-class Donor:
+class Donor():
     def __init__(self, name, donations=None):
-        self.name = name
-        self.donations = [] if donations is None else donations
+        self._name = name
+        self._name = name.strip()
+        self._donations = [] if donations is None else donations
 
-        @property
-        def name(self):
-            return self.name
+    @property
+    def universal_name(name):
+        return name.lower().strip().replace(" ", "")
 
-        @property
-        def donations(self):
-            return self.donations
+    @property
+    def donations(self):
+        return self._donations
 
-        def add_donation(self, donation):
-            return self.donations.append(donation)
+    def add_donation(self, donation):
+        return self._donations.append(donation)
 
-        @property
-        def total_donations(self):
-            return sum(self.donations)
+    @property
+    def total_donations(self):
+        return sum(self._donations)
 
 # ----------------------------------------------------------------------------
 #
@@ -73,35 +64,74 @@ class Donor:
 # ----------------------------------------------------------------------------
 
 
-class DonorData:
-    def __init__(self, donors =None):
-        self.donors = {}
-        self.donations = {} if donations is None else {d.}
-
+class DonorData():
+    def __init__(self, donors=None):
+        if donors is None:
+            self.donor_data = {}
+        else:
+            self.donor_data = {d.universal_name: d for d in donors}
 
     def add_donor(self, donor):
         self.donors[donor.name.lower()] = donor
 
     def get_total_from_donor(self, donor_name):
-        return self.donors[donor_name.lower()] = donor
+        return self.donors[donor_name.lower()].total_donations
 
     @property
-    def list_donors():
-    listing = ("Donors:")
-    for donor in self.donor_db.values():
-        listing.append(donor[0])
-    return "\n".join(listing)
+    def list_donors(self):
+        listing = ("Donors:")
+        for donor in self.donor_db.values(Donor.name):
+            listing.append(donor.name[0])
+        return "\n".join(listing)
 
-    def search_donor_db(name):
-    key = self.name.strip().lower()
-    return donor_db.get(key)
+    # def search_donor_db(self, name):
+    #     return self.donor_data.get(d.universal_name)
+    #     # return donor_db.get(key)
+
+    @property
+    def sort_key(donor_record):
+        return donor_record[1]
+
+    def accept_donation(self, name):
+        while True:
+            donation_msg = input("Enter your desired donation amount"
+                                " or 'menu' to exit)>").strip()
+            if donation_msg == "menu":
+                return
+            else:
+                donation_amt = float(donation_msg)
+                break
+
+        donor = self.search_donor_db(name)
+        if donor is None:
+            donor = self.add_new_donor(name)
+
+            donor[1].append(donation_amt)
+
+            print(thank_you_message())
+
+    @property
+    def num_donors(self):
+        return len(donors)
+
+
+def object_oriented_db():
+    db = DonorData()
+    raw_data = find_donor_db()
+
+    for k, v in raw_data.items():
+        print(k,v)
+        donor = Donor(k)
+        for donation in v[1]:
+            donor.add_donation(donation)
+    return db
 
 
 # ----------------------------------------------------------------------------
 #
 # The following function adds a new donor to the db. The function below uses
 # .lower() to convert all of the donor names into a single case to allow for
-# an easier sorting method of the dict.
+# an easier sorting methDOod of the dict.
 #
 # ----------------------------------------------------------------------------
 
@@ -120,9 +150,9 @@ class DonorData:
 # ----------------------------------------------------------------------------
 
 
-def search_donor_db(name):
-    key = name.strip().lower()
-    return donor_db.get(key)
+# def search_donor_db(name):
+#     key = name.strip().lower()
+#     return donor_db.get(key)
 
 # ----------------------------------------------------------------------------
 #
@@ -131,11 +161,11 @@ def search_donor_db(name):
 # ----------------------------------------------------------------------------
 
 
-def list_donors():
-    listing = ("Donors:")
-    for donor in donor_db.values():
-        listing.append(donor[0])
-    return "\n".join(listing)
+# def list_donors():
+#     listing = ("Donors:")
+#     for donor in donor_db.values():
+#         listing.append(donor[0])
+#     return "\n".join(listing)
 
 
 # ----------------------------------------------------------------------------
@@ -145,23 +175,23 @@ def list_donors():
 # ----------------------------------------------------------------------------
 
 
-def accept_donation(name):
-    while True:
-        donation_msg = input("Enter your desired donation amount"
-                             "or 'menu' to exit)>").strip()
-        if donation_msg == "menu":
-            return
-        else:
-            donation_amt = float(donation_msg)
-            break
+# def accept_donation(name):
+#     while True:
+#         donation_msg = input("Enter your desired donation amount"
+#                              " or 'menu' to exit)>").strip()
+#         if donation_msg == "menu":
+#             return
+#         else:
+#             donation_amt = float(donation_msg)
+#             break
 
-    donor = search_donor_db(name)
-    if donor is None:
-        donor = add_new_donor(name)
+#     donor = search_donor_db(name)
+#     if donor is None:
+#         donor = add_new_donor(name)
 
-        donor[1].append(donation_amt)
+#         donor[1].append(donation_amt)
 
-        print(thank_you_message())
+#         print(thank_you_message())
 
 # ----------------------------------------------------------------------------
 #
@@ -211,7 +241,7 @@ def thank_you_message():
         elif name == 'menu':
             return
         else:
-            accept_donation(name)
+            donor_db.accept_donation(name)
 
 # creates loop for donation amount input
 
@@ -311,7 +341,7 @@ def quit():
 
 if __name__ == "__main__":
 
-    donor_db = find_donor_db()
+    donor_db = object_oriented_db()
 
     mainlist_dict = {"1": thank_you_message,
                      "2": print_donor_report,
