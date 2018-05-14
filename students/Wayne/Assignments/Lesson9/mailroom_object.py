@@ -37,24 +37,30 @@ def find_donor_db():
 
 class Donor():
     def __init__(self, name, donations=None):
-        self._name = name
-        self._name = name.strip()
-        self._donations = [] if donations is None else donations
+        self.uni_name = self.universal_name(name)
+        self.name = name.strip()
+        self.donations = [] if donations is None else list(donations)
 
-    @property
+# Used to return a key
+
+    @staticmethod
     def universal_name(name):
         return name.lower().strip().replace(" ", "")
 
-    @property
-    def donations(self):
-        return self._donations
+    # @property
+    # def donations(self):
+    #     return self._donations
 
     def add_donation(self, donation):
-        return self._donations.append(donation)
+        return self.donations.append(donation)
 
     @property
     def total_donations(self):
-        return sum(self._donations)
+        return sum(self.donations)
+
+    @property
+    def average_donation(self):
+        return self.total_donations / len(self.donations)
 
 # ----------------------------------------------------------------------------
 #
@@ -71,6 +77,10 @@ class DonorData():
         else:
             self.donor_data = {d.universal_name: d for d in donors}
 
+    @property
+    def donors(self):
+        return self.donor_data.values()
+
     def add_donor(self, donor):
         self.donors[donor.name.lower()] = donor
 
@@ -84,11 +94,11 @@ class DonorData():
             listing.append(donor.name[0])
         return "\n".join(listing)
 
-    # def search_donor_db(self, name):
-    #     return self.donor_data.get(d.universal_name)
+    def search_donor_db(self, name):
+        return self.donor_data.get(Donor.universal_name)
     #     # return donor_db.get(key)
 
-    @property
+    @staticmethod
     def sort_key(donor_record):
         return donor_record[1]
 
@@ -104,7 +114,7 @@ class DonorData():
 
         donor = self.search_donor_db(name)
         if donor is None:
-            donor = self.add_new_donor(name)
+            donor = add_new_donor(name)
 
             donor[1].append(donation_amt)
 
@@ -113,6 +123,35 @@ class DonorData():
     @property
     def num_donors(self):
         return len(donors)
+
+    # ----------------------------------------------------------------------------
+#
+# Builds the donor report and displays the name, total given, number of gifts
+# and the average gift donated by the donor.
+#
+# ----------------------------------------------------------------------------
+
+    def donor_report(self):
+
+        report_rows = []
+        for donor in self.donor_data.values():
+            name = donor.name
+            donations = donor.donations
+            total_donations = donor.total_donations
+            num_donations = len(donations)
+            avg_donation = donor.avg_donation
+            report_rows.append((name, total_donations, num_donations, avg_donation))
+
+        report_rows.sort(key=sort_key)
+        report = []
+        report.append("{:25s} | {:11s} | {:9s} | {:12s}".format("Donor Name",
+                                                                "Total Donated",
+                                                                "Num gifts",
+                                                                "Average Donation"))
+        report.append("_" * 66)
+        for row in report_rows:
+            report.append("{:25s}   ${:10.2f}   ${:9d}   ${:11.2f}".format(*row))
+        return "\n".join(report)
 
 
 def object_oriented_db():
@@ -126,73 +165,6 @@ def object_oriented_db():
             donor.add_donation(donation)
     return db
 
-
-# ----------------------------------------------------------------------------
-#
-# The following function adds a new donor to the db. The function below uses
-# .lower() to convert all of the donor names into a single case to allow for
-# an easier sorting methDOod of the dict.
-#
-# ----------------------------------------------------------------------------
-
-# **************************** Moved to donor class **************************
-
-# def add_new_donor(name):
-#     name = name.strip()
-#     donor = (name, [])
-#     donor_db[name.lower()] = donor
-#     return donor
-
-# ----------------------------------------------------------------------------
-#
-# The following function uses the dictionary key to search the donor database
-#
-# ----------------------------------------------------------------------------
-
-
-# def search_donor_db(name):
-#     key = name.strip().lower()
-#     return donor_db.get(key)
-
-# ----------------------------------------------------------------------------
-#
-# The following function creates a list of donors from the database
-#
-# ----------------------------------------------------------------------------
-
-
-# def list_donors():
-#     listing = ("Donors:")
-#     for donor in donor_db.values():
-#         listing.append(donor[0])
-#     return "\n".join(listing)
-
-
-# ----------------------------------------------------------------------------
-#
-# The following function adds a new donation amount into the database
-#
-# ----------------------------------------------------------------------------
-
-
-# def accept_donation(name):
-#     while True:
-#         donation_msg = input("Enter your desired donation amount"
-#                              " or 'menu' to exit)>").strip()
-#         if donation_msg == "menu":
-#             return
-#         else:
-#             donation_amt = float(donation_msg)
-#             break
-
-#     donor = search_donor_db(name)
-#     if donor is None:
-#         donor = add_new_donor(name)
-
-#         donor[1].append(donation_amt)
-
-#         print(thank_you_message())
-
 # ----------------------------------------------------------------------------
 #
 # The following function creates a sort key for the donor db. Allows the user
@@ -201,8 +173,7 @@ def object_oriented_db():
 # ----------------------------------------------------------------------------
 
 
-def sort_key(item):
-    return item[1]
+
 
 
 """
@@ -216,6 +187,7 @@ mail room application.
 #
 # ----------------------------------------------------------------------------
 
+testdb = (object_oriented_db())
 
 def mainloop():
 
@@ -269,33 +241,7 @@ def write_letter(donor):
                                         - The American Cancer Society)
         '''.format(donor[0], donor[1][-1]))
 
-# ----------------------------------------------------------------------------
-#
-# Builds the donor report and displays the name, total given, number of gifts
-# and the average gift donated by the donor.
-#
-# ----------------------------------------------------------------------------
 
-
-def donor_report():
-
-    report_rows = []
-    for (name, donation_amt) in donor_db.values():
-        total_donations = sum(donation_amt)
-        num_donations = len(donation_amt)
-        avg_donation = total_donations / num_donations
-        report_rows.append((name, total_donations, num_donations, avg_donation))
-
-    report_rows.sort(key=sort_key)
-    report = []
-    report.append("{:25s} | {:11s} | {:9s} | {:12s}".format("Donor Name",
-                                                            "Total Donated",
-                                                            "Num gifts",
-                                                            "Average Donation"))
-    report.append("_" * 66)
-    for row in report_rows:
-        report.append("{:25s}   ${:10.2f}   ${:9d}   ${:11.2f}".format(*row))
-    return "\n".join(report)
 
 # ----------------------------------------------------------------------------
 #
@@ -319,7 +265,7 @@ def save_letters_to_disk():
 
 
 def print_donor_report():
-    print(donor_report())
+    print(testdb.donor_report())
 
 
 # ----------------------------------------------------------------------------
