@@ -9,8 +9,6 @@ check input, and has been factored to be amenable to testing.
 import sys
 import math
 
-from functools import reduce
-
 # handy utility to make pretty printing easier
 from textwrap import dedent
 
@@ -28,70 +26,6 @@ def get_donor_db():
             'paul allen': ("Paul Allen", [663.23, 43.87, 1.32]),
             'mark zuckerberg': ("Mark Zuckerberg", [1663.23, 4300.87, 10432.0]),
             }
-
-def get_donor_db_oo():
-    db = DonorDB()
-    raw_data = get_donor_db()
-
-    for k, v in raw_data.items():
-        donor = Donor(k)
-        for donation in v[1]:
-            donor.add_donation(donation)
-        db.add_donor(donor)
-
-    return db
-
-
-class Donor:
-    def __init__(self, name, donations=None):
-        self._name = name
-        self._donations = [] if donations is None else donations
-
-    @property
-    def name(self):
-        return self._name
-
-    @property
-    def donations(self):
-        return self._donations
-    
-    def add_donation(self, donation):
-        self._donations.append(donation)
-
-    @property
-    def total_donations(self):
-        return sum(self._donations)
-        
-        #return reduce(lambda a,x: a+x, self._donations, 0)
-        
-        # s = 0
-        # for d in self._donations:
-        #     s += d
-        # return s
-
-    def __repr__(self):
-        return "{}: {}".format(self._name, self._donations)
-
-
-class DonorDB:
-    def __init__(self):
-        self._donors = {}
-
-    def add_donor(self, donor):
-        self._donors[donor.name.lower()] = donor
-
-    def get_total_from_donor(self, donor_name):
-        return self._donors[donor_name.lower()].total_donations
-
-    def get_donor(self, donor_name):
-        return self._donors[donor_name.lower()]
-
-    @property
-    def num_donors(self):
-        return len(self._donors)
-
-    def __repr__(self):
-        return str(self._donors)
 
 
 def list_donors():
@@ -267,26 +201,20 @@ def print_donor_report():
 def quit():
     sys.exit(0)
 
-def main():
-    donor_db = get_donor_db_oo()
-    donor_name = input('Whose donation record would you like to see?')
-    donor = donor_db.get_donor(donor_name)
-    print("{}, you donated total of {}! Thank you!".format(donor.name, donor.total_donations))
-
 if __name__ == "__main__":
-    main()
-    # donor_db = get_donor_db()
 
-    # running = True
+    donor_db = get_donor_db()
 
-    # selection_dict = {"1": send_thank_you,
-    #                   "2": print_donor_report,
-    #                   "3": save_letters_to_disk,
-    #                   "4": quit}
+    running = True
 
-    # while True:
-    #     selection = main_menu_selection()
-    #     try:
-    #         selection_dict[selection]()
-    #     except KeyError:
-    #         print("error: menu selection is invalid!")
+    selection_dict = {"1": send_thank_you,
+                      "2": print_donor_report,
+                      "3": save_letters_to_disk,
+                      "4": quit}
+
+    while True:
+        selection = main_menu_selection()
+        try:
+            selection_dict[selection]()
+        except KeyError:
+            print("error: menu selection is invalid!")
