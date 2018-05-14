@@ -5,9 +5,10 @@ class Circle:
     def __init__(self, radius):
         self.radius = radius
 
-    def from_diameter(self, diameter):
-        self.diameter = diameter
-        Circle(self.diameter / 2)
+    @classmethod
+    def from_diameter(cls, diameter):
+        radius = diameter / 2
+        self = cls(radius)
 
     @property
     def diameter(self):
@@ -32,6 +33,9 @@ class Circle:
         return f'Circle({self.radius + other.radius})'
 
     def __mul__(self, number):
+        return f'Circle({self.radius * number})'
+
+    def __rmul__(self, number):
         return f'Circle({self.radius * number})'
 
     def __lt__(self, other):
