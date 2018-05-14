@@ -51,8 +51,11 @@ class Donor():
     # def donations(self):
     #     return self._donations
 
-    def add_donation(self, donation):
-        return self.donations.append(donation)
+    def add_donation(self, amount):
+        amount = float(amount)
+        if amount <= 0.0:
+            raise ValueError("Donation must be greater than zero")
+        self.donations.append(amount)
 
     @property
     def total_donations(self):
@@ -61,6 +64,10 @@ class Donor():
     @property
     def average_donation(self):
         return self.total_donations / len(self.donations)
+
+    @property
+    def last_donation(self):
+        return self.donations[-1]
 
 # ----------------------------------------------------------------------------
 #
@@ -75,54 +82,37 @@ class DonorData():
         if donors is None:
             self.donor_data = {}
         else:
-            self.donor_data = {d.universal_name: d for d in donors}
+            self.donor_data = {Donor.universal_name: d for d in donors}
 
     @property
     def donors(self):
         return self.donor_data.values()
 
-    def add_donor(self, donor):
-        self.donors[donor.name.lower()] = donor
+    def add_donor(self, name):
+        donor = Donor(name)
+        self.donor_data[Donor.universal_name] = donor
+        return donor
 
-    def get_total_from_donor(self, donor_name):
-        return self.donors[donor_name.lower()].total_donations
+    # def get_total_from_donor(self, donor_name):
+    #     return self.donors[donor_name.lower()].total_donations
 
-    @property
     def list_donors(self):
-        listing = ("Donors:")
-        for donor in self.donor_db.values(Donor.name):
-            listing.append(donor.name[0])
+        listing = ["Donors:"]
+        for donor in self.donors:
+            listing.append(donor.name)
         return "\n".join(listing)
 
     def search_donor_db(self, name):
-        return self.donor_data.get(Donor.universal_name)
+        return self.donor_data.get(Donor.universal_name(name))
     #     # return donor_db.get(key)
 
     @staticmethod
-    def sort_key(donor_record):
-        return donor_record[1]
+    def sort_key(item):
+        return item[1]
 
-    def accept_donation(self, name):
-        while True:
-            donation_msg = input("Enter your desired donation amount"
-                                " or 'menu' to exit)>").strip()
-            if donation_msg == "menu":
-                return
-            else:
-                donation_amt = float(donation_msg)
-                break
-
-        donor = self.search_donor_db(name)
-        if donor is None:
-            donor = add_new_donor(name)
-
-            donor[1].append(donation_amt)
-
-            print(thank_you_message())
-
-    @property
-    def num_donors(self):
-        return len(donors)
+    # @property
+    # def num_donors(self):
+    #     return len(donors)
 
     # ----------------------------------------------------------------------------
 #
@@ -139,10 +129,10 @@ class DonorData():
             donations = donor.donations
             total_donations = donor.total_donations
             num_donations = len(donations)
-            avg_donation = donor.avg_donation
+            avg_donation = donor.average_donation
             report_rows.append((name, total_donations, num_donations, avg_donation))
 
-        report_rows.sort(key=sort_key)
+        report_rows.sort(key=self.sort_key)
         report = []
         report.append("{:25s} | {:11s} | {:9s} | {:12s}".format("Donor Name",
                                                                 "Total Donated",
@@ -153,32 +143,54 @@ class DonorData():
             report.append("{:25s}   ${:10.2f}   ${:9d}   ${:11.2f}".format(*row))
         return "\n".join(report)
 
-
-def object_oriented_db():
-    db = DonorData()
-    raw_data = find_donor_db()
-
-    for k, v in raw_data.items():
-        print(k,v)
-        donor = Donor(k)
-        for donation in v[1]:
-            donor.add_donation(donation)
-    return db
-
 # ----------------------------------------------------------------------------
 #
-# The following function creates a sort key for the donor db. Allows the user
-# to sort by name.
+# Makes a standardized letter template that passes through the donor name and
+# and the amount donated
 #
 # ----------------------------------------------------------------------------
 
+    def write_letter(self, donor):
+
+        return dedent('''Dear {0:s},
+
+            Thank you for your kind doation of ${1:.2f}.
+            We will make sure that it is put to very good use.
+
+                                    Sincerely,
+                                        - The American Cancer Society)
+        '''.format(donor.name, donor.last_donation)
+                     )
+
+# ----------------------------------------------------------------------------
+#
+# Save letters to disk
+#
+# ----------------------------------------------------------------------------
+
+    def save_letters_to_disk(self):
+        for donor in self.donor_data.values():
+            print("creating letter to:", donor.name)
+            letter = self.write_letter(donor)
+            filename = donor.name.replace(" ", "_") + ".txt"
+            open(filename, 'w').write(letter)
 
 
+
+# def object_oriented_db():
+#     db = DonorData()
+#     raw_data = find_donor_db()
+
+#     for k, v in raw_data.items():
+#         print(k,v)
+#         donor = Donor(k)
+#         for donation in v[1]:
+#             donor.add_donation(donation)
+#     return db
 
 
 """
 The following section of the code pertaions to the operational side of the
-mail room application.
 """
 
 # ----------------------------------------------------------------------------
@@ -187,7 +199,8 @@ mail room application.
 #
 # ----------------------------------------------------------------------------
 
-testdb = (object_oriented_db())
+testdb = DonorData(find_donor_db())
+
 
 def mainloop():
 
@@ -203,17 +216,36 @@ def mainloop():
     return mainmenuinput.strip()
 
 
+# def accept_donation(self, name):
+#     while True:
+#         donation_msg = input("Enter your desired donation amount"
+#                              " or 'menu' to exit)>").strip()
+#         if donation_msg == "menu":
+#             return
+#         else:
+#             donation_amt = float(donation_msg)
+#             break
+
+#     donor = self.search_donor_db(name)
+#     if donor is None:
+#         donor = testdb.add_new_donor(name)
+
+#         donor[1].append(donation_amt)
+
+#         print(thank_you_message())
+
+
 def thank_you_message():
     while True:
         name = input("Enter the donor's name or a list of donor's"
                      "names to see all donors (or type 'menu'"
                      "to exit)>").strip()
         if name == 'list':
-            print(list_donors())
+            print(testdb.list_donors())
         elif name == 'menu':
             return
         else:
-            donor_db.accept_donation(name)
+            break
 
 # creates loop for donation amount input
 
@@ -223,40 +255,22 @@ def thank_you_message():
         if donationinput == 'menu':
             return
 
-# ----------------------------------------------------------------------------
-#
-# Makes a standardized letter template that passes through the donor name and
-# and the amount donated
-#
-# ----------------------------------------------------------------------------
+        try:
+            amount = float(donationinput)
+            if math.isnan(amount):
+                raise ValueError
+        except ValueError:
+            print("please enter a valide donation amount")
+        else:
+            break
 
-def write_letter(donor):
+    donor = testdb.search_donor_db(name)
+    if donor is None:
+        donor = testdb.add_donor(name)
 
-    return dedent('''Dear {0:s},
+        donor.add_donation(amount)
 
-        Thank you for your kind doation of ${1:.2f}.
-        We will make sure that it is put to very good use.
-
-                                    Sincerely,
-                                        - The American Cancer Society)
-        '''.format(donor[0], donor[1][-1]))
-
-
-
-# ----------------------------------------------------------------------------
-#
-# Save letters to disk
-#
-# ----------------------------------------------------------------------------
-
-
-def save_letters_to_disk():
-    for donor in donor_db.values():
-        letter = write_letter(donor)
-        filename = donor[0].replace(" ", "_") + ".txt"
-        print("creating letter to:", donor[0])
-        open(filename, 'w').write(letter)
-
+        print(testdb.write_letter(donor))
 # ----------------------------------------------------------------------------
 #
 # Prints the donor report
@@ -285,13 +299,10 @@ def quit():
 # ----------------------------------------------------------------------------
 
 
-if __name__ == "__main__":
-
-    donor_db = object_oriented_db()
-
+def runmain():
     mainlist_dict = {"1": thank_you_message,
                      "2": print_donor_report,
-                     "3": save_letters_to_disk,
+                     "3": testdb.save_letters_to_disk,
                      "4": quit}
 
     while True:
@@ -300,3 +311,7 @@ if __name__ == "__main__":
             mainlist_dict[action]()
         except KeyError:
             print("error: menu selection is invalid!")
+
+
+if __name__ == "__main__":
+    runmain()
