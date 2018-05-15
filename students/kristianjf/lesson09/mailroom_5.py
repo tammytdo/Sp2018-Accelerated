@@ -215,7 +215,7 @@ def menu_response_valid(options):
         return response
     #Name Validation
 
-def main():
+def PopulateDB():
     'Create Donors'
     jb = Donor('Jeff Bezos', [1, 5, 10])
     bg = Donor('Bill Gates', [10000])
@@ -225,6 +225,10 @@ def main():
     dh.add_donor(jb)
     dh.add_donor(bg)
     dh.add_donor(sj)
+    return dh
+
+def main():
+    dh = PopulateDB()
     'Call Main Menu'
     main_menu(donor_handler=dh)
 
