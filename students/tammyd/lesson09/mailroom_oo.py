@@ -8,6 +8,7 @@ Updating mailroom_pt4.py
 
 """
 
+#following the class example more closely this time in an attempt to resolve issues
 
 import sys
 
@@ -17,12 +18,33 @@ import sys
 #You will have a method for each of the functions in your non-OO version. 
 
 #pt1: data structure that holds a list of your donors
-donor_db = {"Britney Spears": ("Britney Spears", [50.99, 100.99, 1000.99]),
+def donor_db():
+    return  {"Britney Spears": ("Britney Spears", [50.99, 100.99, 1000.99]),
             "Christina Aguilera": ("Christina Aguilera", [50.99, 100.99, 2000.99]),
             "Mandy Moore": ("Mandy Moore", [50.99, 100.99, 3000.99]),
             "Jessica Simpson": ("Jessica Simpson", [50.99, 100.99, 4000.99]),
             "Queen Bey": ("Queen Bey", [50.99, 100.99, 5000.99]),
             }
+
+
+def get_donor_database():
+#print("test: inside def donor_database")
+    print("Donor list: \n")
+    #borrowing from class example
+    db = DonorDB()
+    for k, v in donor_db().items():
+        donor = Donor(k)
+        for donation in v[1]:
+        #TypeError: new_donation() missing 1 required positional argument: 'donation'
+            donor.new_donation(donation)
+    db.new_donor(donor)
+        #tried many different ways to print the donors. what am I missing??
+        #return donor[0] + "\n"
+        #return donor_db
+        #return donor_db.donor[0] + "\n"
+        #return donor_db[0] + "\n"
+
+    return db
 
 
 #You'll want a Donor class – this will hold all the information about the donor, and have attributes and methods to provide access to the donor specific information that is needed.
@@ -52,8 +74,8 @@ class Donor:
         return sum(self._donations)
 
     @property
-    def new_donation(self, donation_amount):
-        self._donations.append(donation_amount)
+    def new_donation(self, donation):
+        self._donations.append(donation)
 
     @property
     # total_donations = sum(values)
@@ -82,15 +104,6 @@ class DonorDB:
     def __init__(self):
         self._donors = {}
 
-    def donor_database():
-    #print("test: inside def donor_database")
-        print("Donor list: \n")
-        for donor in donor_db.keys():
-            #tried many different ways to print the donors. what am I missing??
-            #return donor[0] + "\n"
-            #return donor_db
-            #return donor_db.donor[0] + "\n"
-            #return donor_db[0] + "\n"
 
     #methods to add a new donor
     def add_donor(self, donor):
@@ -101,7 +114,7 @@ class DonorDB:
 #pt1: Send a Thank You
 def thank_you():
     print("\nMenu: Send a Thank You\n")
-    thank_you_dict = {"list": DonorDB.donor_database,
+    thank_you_dict = {"list": get_donor_database,
                       "menu": main_menu,
                       "q": quit_program
                       }
@@ -125,7 +138,7 @@ def thank_you():
         except KeyError:
             print("Incorrect entry. Try again.")
             return
-    donation_amount(donor_name)
+    donation(donor_name)
 
 
 
