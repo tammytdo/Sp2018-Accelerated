@@ -10,7 +10,13 @@ class Circle:
 			raise ValueError
 		else:
 			self.radius = radius
-			print("Circle with radius {0:.6f}".format(radius))
+			#print("Circle with radius {0:.6f}".format(radius))
+	
+	def __str__(self):
+		return "Circle with radius {0:.6f}".format(self.radius)
+
+	def __repr__(self):
+		return "Circle({})".format(self.radius)
 	
 	@property
 	def diameter(self):
@@ -31,20 +37,34 @@ class Circle:
 		radius = diameter/2
 		return cls.Circle(radius)
 	
+	
 	#being able to add 2 new circles together
 	def __add__(self,newcircle):
 		if isinstance(newcircle,Circle):
-			return self.radius + newcircle.radius
+			return Circle(self.radius + newcircle.radius)
 		else:
-			return self.radius + newcircle
+			return Circle(self.radius + newcircle)
+
+	def __mul__(self,factorint):
+		return Circle(self.radius*factorint)
+
+	def __eq__(self,other):
+		if isinstance(other,Circle):
+			return 
+
 
 	
 
 	# def repr():
 	
 
-
 c =Circle(3)
+# print(c)
+# print(repr(c))
+c2 = Circle(4)
+# print(repr(c+c2))
+# print(c*2)
+c > c2
 
 
 
