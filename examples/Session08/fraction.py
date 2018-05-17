@@ -35,7 +35,7 @@ class Fraction:
         denom = self.denom * other.denom
         return Fraction(num, denom)
 
-
+    
 if __name__ == '__main__':
     # f = Fraction(1, 0)  # ZeroDivisionError
     # f = Fraction(1.0, 2)    # TypeError

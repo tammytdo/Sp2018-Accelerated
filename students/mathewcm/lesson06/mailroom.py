@@ -28,7 +28,7 @@ def return_to_menu():
 
 
 def create_donors_report():
-    [name, total, number, avg] = [[], [], [], []]
+    name, total, number, avg = [], [], [], []
     for x in DONORS:
         name.append(x)
         total.append(sum(DONORS[x]))
@@ -38,6 +38,7 @@ def create_donors_report():
     donors_report = sorted(
             donors_report, key=lambda y: int(y[1]), reverse=True)
     return donors_report
+
 
 def config_donors_report():
     print_report(create_donors_report())
