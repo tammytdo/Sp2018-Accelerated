@@ -36,7 +36,9 @@ class Circle:
 	def circle_from_diameter(cls, diameter):
 		radius = diameter/2
 		return cls.Circle(radius)
-	
+
+	def addcircle(self):
+		
 	
 	#being able to add 2 new circles together
 	def __add__(self,newcircle):
@@ -49,14 +51,16 @@ class Circle:
 		return Circle(self.radius*factorint)
 
 	def __eq__(self,other):
-		if isinstance(other,Circle):
-			return 
+		return self.radius == other.radius
+
+	def __lt__(self,other):
+		return self.radius < other.radius
+
+	def __gt__(self,other):
+		return self.radius > other.radius
 
 
-	
 
-	# def repr():
-	
 
 c =Circle(3)
 # print(c)
@@ -64,9 +68,11 @@ c =Circle(3)
 c2 = Circle(4)
 # print(repr(c+c2))
 # print(c*2)
-c > c2
 
-
+print(c == c2)
+print(c < c2)
+print(c > c2)
+print(c == Circle(5))
 
 
 
