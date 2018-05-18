@@ -1,5 +1,5 @@
 from math import pi 
-circlelist = []
+
 
 #Creating class to represent circle object 
 class Circle:
@@ -37,8 +37,6 @@ class Circle:
 		radius = diameter/2
 		return cls.Circle(radius)
 
-	def addcircle(self):
-		
 	
 	#being able to add 2 new circles together
 	def __add__(self,newcircle):
@@ -61,6 +59,18 @@ class Circle:
 
 
 
+circlelist = []
+Continue2 = True
+while Continue2 == True:
+  x = int(input("Input circle radius. Enter 0 to stop.\n"))
+  if x < 0:
+    Continue2 = False
+  elif x == 0:
+  	Continue2 = False
+  else:
+  	c = Circle(x)
+  	circlelist.append(c)
+print(circlelist)
 
 c =Circle(3)
 # print(c)
@@ -69,6 +79,8 @@ c2 = Circle(4)
 # print(repr(c+c2))
 # print(c*2)
 
+
+#Some statements to ensure comparators are working
 print(c == c2)
 print(c < c2)
 print(c > c2)
@@ -76,5 +88,4 @@ print(c == Circle(5))
 
 
 
-#user queries class to output attributes of circle 
 
