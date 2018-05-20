@@ -26,7 +26,6 @@ def display_the_joke(joke):
 try:
     not_joke = fun(first_try[2])
     display_the_joke(not_joke)
-
 except SyntaxError:
     print('Run Away!')
 else:
@@ -76,7 +75,7 @@ def excepttest2(listx):
 		except IndexError:
 			print("IndexError exception was called")
 
-excepttest2(langs2)
-excepttest2(langs)
+# excepttest2(langs2)
+# excepttest2(langs)
 #excepttest(langs2)
 
