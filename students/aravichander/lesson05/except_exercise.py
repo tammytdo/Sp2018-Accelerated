@@ -66,6 +66,17 @@ def excepttest(listx):
 	except IndexError:
 		print("IndexError exception was called")
 
-excepttest(langs)
+def excepttest2(listx):
+	for x in range(0,(len(listx)+1)):
+		try:
+			print("Calling function for",x,"\n")
+			print("Calling more_fun with value",listx[x])
+			more_joke = more_fun(listx[x])
+			print(more_joke)
+		except IndexError:
+			print("IndexError exception was called")
+
+excepttest2(langs2)
+excepttest2(langs)
 #excepttest(langs2)
 
