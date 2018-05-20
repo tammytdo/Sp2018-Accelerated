@@ -54,15 +54,18 @@ print("after the exception block\n")
 # parameters. (pun intended)
 
 langs = ['java', 'c', 'python']
+langs2 = ['MATLAB','VB','C-sharp','java','c','python']
 
-def excepttest(x):
+def excepttest(listx):
 	try:
-		print("Calling more_fun with",langs[x])
-		more_joke = more_fun(langs[x])
-		print(more_joke)
+		for x in range(0,(len(listx)+1)):
+			print("Calling function for",x,"\n")
+			print("Calling more_fun with value",listx[x])
+			more_joke = more_fun(listx[x])
+			print(more_joke)
 	except IndexError:
 		print("IndexError exception was called")
 
-for x in range(0,4):
-	print("Calling function for",x,"\n")
-	excepttest(x)
+excepttest(langs)
+#excepttest(langs2)
+
