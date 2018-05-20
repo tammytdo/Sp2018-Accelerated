@@ -35,7 +35,7 @@ else:
 finally:
 	print("This always runs")
 
-print("after the exception block")
+print("after the exception block\n")
 
 # What did that do? You can think of else in this context, as well as in
 # loops as meaning: "else if nothing went wrong"
@@ -55,4 +55,14 @@ print("after the exception block")
 
 langs = ['java', 'c', 'python']
 
-more_joke = more_fun(langs[0])
+def excepttest(x):
+	try:
+		print("Calling more_fun with",langs[x])
+		more_joke = more_fun(langs[x])
+		print(more_joke)
+	except IndexError:
+		print("IndexError exception was called")
+
+for x in range(0,4):
+	print("Calling function for",x,"\n")
+	excepttest(x)
