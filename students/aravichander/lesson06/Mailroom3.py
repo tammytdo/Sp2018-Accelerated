@@ -3,11 +3,8 @@
 import sys
 import json
 
-
-#Modified into a dictionary
-
 Donors = {"Bill Gates":[10000,12000],
-		  "Jeff Bezos":[50],
+		  "Jeff Bezos":[50],`
 		  "Mark Zuckerberg": [500,600,700],
 		  "Paul Allen": [250,350,450],
 		  "King of Siam": [200,250]
@@ -15,15 +12,12 @@ Donors = {"Bill Gates":[10000,12000],
 
 def printdonors():
 	for x,v in Donors.items():
-		print(x,"donated",v)
-
+		print(x,"donated $",v)
 
 def thankall():
 	for x in Donors:
 		totaldonated = sum(Donors[x])
 		letterofthanks(x,totaldonated)
-
-
 
 def letterofthanks(donorname,totaldonated):
 	#To add sum of donations
@@ -35,11 +29,14 @@ def letterofthanks(donorname,totaldonated):
 	print("\nLetter of thanks has been saved to hard disk as text file under "+str(filename))
 
 def searchdonors(thankdonor):
-	#print("Searching for donor")
+	#Not sure if these exceptions here are needed to be honest#
 	for x in Donors:
-		if thankdonor == x:
-			totaldonated = sum(Donors[x])
-			letterofthanks(thankdonor,totaldonated)
+		try:
+			if thankdonor == x:
+				totaldonated = sum(Donors[x])
+				letterofthanks(thankdonor,totaldonated)
+		except KeyError:
+			print("That donor doesn't exist")
 
 #Needs to be modified to actually add something to original list
 def newdonation():
@@ -49,6 +46,7 @@ def newdonation():
 
 def thanks():
 	thankdonor = input("\nPlease enter full name of donor you'd like to thank or list to view donors\n")
+	#Added to catch name errors #
 	try:
 		if thankdonor == "list":
 			printdonors()
@@ -66,21 +64,24 @@ def report():
 def mainloop():
 	print("Introducing Mailroom!")
 	response = "0"
-	while response < "4":
-		print("\nWhat do you want to do?")
-		print("\n(1) Send a thank you\n", "(2) Create a Report,\n", "(3) Send letters to everyone,\n","(4) Quit")
-		response = input(">> ")
-		print("response was,",response)
-		if response =="1":
-			print("\nYou have chosen the 'Thank' option")
-			thanks()
-		elif response == "2":
-			report()
-		elif response == "3":
-			thankall()
-		else:
-			print("\nSee you later!")
-			sys.exit
+	try:
+		while response < "4":
+			print("\nWhat do you want to do?")
+			print("\n(1) Send a thank you\n", "(2) Create a Report,\n", "(3) Send letters to everyone,\n","(4) Quit")
+			response = input(">> ")
+			print("response was,",response)
+			if response =="1":
+				print("\nYou have chosen the 'Thank' option")
+				thanks()
+			elif response == "2":
+				report()
+			elif response == "3":
+				thankall()
+			else:
+				print("\nSee you later!")
+				sys.exit
+	except ValueError:
+		print("Not an option, try again!")
 
 	#addexceptionerror here for things that are outside mainloop selection
 
