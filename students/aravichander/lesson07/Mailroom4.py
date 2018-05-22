@@ -2,7 +2,6 @@
 
 import sys
 import json
-import unittest 
 
 Donors = {"Bill Gates":[10000,12000],
 		  "Jeff Bezos":[50],`
@@ -84,6 +83,6 @@ def mainloop():
 	except ValueError:
 		print("Not an option, try again!")
 
-
+	#addexceptionerror here for things that are outside mainloop selection
 
 mainloop()
