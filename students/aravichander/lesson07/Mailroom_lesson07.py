@@ -16,7 +16,6 @@ def createlist():
 def getlist():
 	return Donors 
 	
-
 def printdonors():
 	for x,v in Donors.items():
 		print("\n{} donated ${}".format(x,v))
