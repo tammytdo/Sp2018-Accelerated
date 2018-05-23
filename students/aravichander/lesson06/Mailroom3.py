@@ -3,8 +3,6 @@
 import sys
 import json
 import unittest 
-import pprint
-
 
 Donors = {"Bill Gates":[10000,12000],
 		  "Jeff Bezos":[50],
@@ -96,5 +94,5 @@ def mainloop():
 			done = True 
 
 
-
-mainloop()
+if __name__ == "__main__":
+	mainloop()
