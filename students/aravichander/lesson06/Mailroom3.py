@@ -4,16 +4,18 @@ import sys
 import json
 import unittest 
 
-Donors = {"Bill Gates":[10000,12000],
-		  "Jeff Bezos":[50],
-		  "Mark Zuckerberg": [500,600,700],
-		  "Paul Allen": [250,350,450],
-		  "King of Siam": [200,250]
-		  }		  
+Donors = {}
+def createlist():
+	Donors["Bill Gates"] = [10000,12000]
+	Donors["Jeff Bezos"]=[50]
+	Donors["Mark Zuckerberg"] = [500,600,700]
+	Donors["Paul Allen"] = [250,350,450]
+	Donors["King of Siam"] = [200,250]
+	
 
 def printdonors():
 	for x,v in Donors.items():
-		print("{} donated ${}".format(x,v))
+		print("\n{} donated ${}".format(x,v))
 
 def thankall():
 	for x in Donors:
@@ -73,6 +75,7 @@ def report():
 
 
 def mainloop():
+	createlist()
 	print("Introducing Mailroom!")
 	done = False
 	while done is False:
