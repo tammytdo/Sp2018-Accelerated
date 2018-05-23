@@ -3,13 +3,15 @@
 import sys
 import json
 import unittest 
+import pprint
+
 
 Donors = {"Bill Gates":[10000,12000],
 		  "Jeff Bezos":[50],
 		  "Mark Zuckerberg": [500,600,700],
 		  "Paul Allen": [250,350,450],
 		  "King of Siam": [200,250]
-		  }
+		  }		  
 
 def printdonors():
 	for x,v in Donors.items():
@@ -39,8 +41,25 @@ def searchdonors(thankdonor):
 
 
 def newdonation():
-	newdonor = input("Input name of new donor")
-	newdonations = input("Input donations, multiple if necessary")
+	newdonor = input("Input name of new donor\n")
+	while len(str.strip(newdonor)) == 0:
+		newdonor = input("Invalid input, enter name of new donor\n")
+	newdonor = str.strip(newdonor)
+	Donors[newdonor] = []
+	donationsdone = False
+	newdonations = []
+	while donationsdone is False:	
+		donation = input("Input donations or hit enter when done\n")
+		if donation == "":
+			donationsdone = True 
+		else:
+			try:
+				newdonations.append(float(donation))
+			except ValueError:
+				print("Enter number or hit enter - no letters!")
+	#print("Donations is/are {}".format(newdonations))
+	Donors[newdonor] = newdonations
+	printdonors()
 
 def thanks():
 	thankdonor = input("\nPlease enter full name of donor you'd like to thank or list to view donors\n")
@@ -60,7 +79,7 @@ def mainloop():
 	done = False
 	while done is False:
 		print("\nWhat do you want to do?")
-		print("\n (1) Send a thank you\n", "(2) Create a Report,\n", "(3) Send letters to everyone,\n","(4) Quit")
+		print("\n (1) Send a thank you\n", "(2) Create a Report,\n", "(3) Send letters to everyone,\n","(4) Add donor \n", "(5) Quit")
 		response = input(">> ")
 		print("response was,",response)
 		if response =="1":
@@ -70,6 +89,8 @@ def mainloop():
 			report()
 		elif response == "3":
 			thankall()
+		elif response == "4":
+			newdonation()
 		else:
 			print("\nSee you later!")
 			done = True 
