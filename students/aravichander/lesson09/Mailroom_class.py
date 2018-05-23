@@ -1,16 +1,58 @@
-#Mailroom #3&4
+#Mailroom_OO
 
 import sys
 import json
 import unittest 
 
+class Donor:
+	def __init__(self,Name):
+		self.Name = Name
+
+	@property
+	def donations(self):
+		return self.donations
+
+	@classmethod
+	def sumdonation(cls, donations):
+		total = sum(self.donations)
+		return cls.Donor(Name)
+
+class Donorlist:
+	def __init__(self,Donors)
+
+
+
+	@property
+	def numberofdonors(self)
+
+	@property
+	def totaldonationsofdonors(self)
+
+	@classmethod
+	def memberdonations(cls..etc.)
+
+
+
+
+
+
+
+
+
+
+
+
 Donors = {}
+
 def createlist():
 	Donors["Bill Gates"] = [10000,12000]
 	Donors["Jeff Bezos"]=[50]
 	Donors["Mark Zuckerberg"] = [500,600,700]
 	Donors["Paul Allen"] = [250,350,450]
 	Donors["King of Siam"] = [200,250]
+
+def getlist():
+	return Donors 
 	
 
 def printdonors():
@@ -31,10 +73,13 @@ def letterofthanks(donorname,totaldonated):
 	f.close()
 	print("\nLetter of thanks has been saved to hard disk as text file under "+str(filename))
 
+def sumdonor(thankdonor):
+	return sum(Donors[thankdonor])
+
 def searchdonors(thankdonor):
 		try:
 			print(Donors[thankdonor])
-			totaldonated = sum(Donors[thankdonor])
+			totaldonated = sumdonor(thankdonor)
 			letterofthanks(thankdonor,totaldonated)
 		except KeyError:
 			print("\nThat donor doesn't exist")

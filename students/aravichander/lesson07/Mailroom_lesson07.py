@@ -5,14 +5,17 @@ import json
 import unittest 
 
 Donors = {}
+
 def createlist():
 	Donors["Bill Gates"] = [10000,12000]
 	Donors["Jeff Bezos"]=[50]
 	Donors["Mark Zuckerberg"] = [500,600,700]
 	Donors["Paul Allen"] = [250,350,450]
 	Donors["King of Siam"] = [200,250]
-	
 
+def getlist():
+	return Donors 
+	
 def printdonors():
 	for x,v in Donors.items():
 		print("\n{} donated ${}".format(x,v))
@@ -31,10 +34,13 @@ def letterofthanks(donorname,totaldonated):
 	f.close()
 	print("\nLetter of thanks has been saved to hard disk as text file under "+str(filename))
 
+def sumdonor(thankdonor):
+	return sum(Donors[thankdonor])
+
 def searchdonors(thankdonor):
 		try:
 			print(Donors[thankdonor])
-			totaldonated = sum(Donors[thankdonor])
+			totaldonated = sumdonor(thankdonor)
 			letterofthanks(thankdonor,totaldonated)
 		except KeyError:
 			print("\nThat donor doesn't exist")
