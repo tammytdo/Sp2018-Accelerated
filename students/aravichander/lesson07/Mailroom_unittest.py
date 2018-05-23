@@ -1,6 +1,6 @@
 import unittest
 
-from Mailroom3 import createlist, getlist, searchdonors 
+from Mailroom_lesson07 import createlist,getlist,sumdonor
 
 class MyFuncTestCase(unittest.TestCase):
 	
@@ -20,6 +20,12 @@ class MyFuncTestCase(unittest.TestCase):
 	# 	with self.assertRaises(KeyError):
 	# 		searchdonors("Carrot Top")
 
+	def test_sumdonor(self):
+		createlist()
+		self.assertTrue(sumdonor("Paul Allen") == 1050)
+		self.assertFalse(sumdonor("Jeff Bezos") == 250000000)
+		with self.assertRaises(KeyError):
+			sumdonor("Porky Pig")
 
 
 
