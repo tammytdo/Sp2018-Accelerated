@@ -26,7 +26,6 @@ def display_the_joke(joke):
 try:
     not_joke = fun(first_try[2])
     display_the_joke(not_joke)
-
 except SyntaxError:
     print('Run Away!')
 else:
@@ -35,7 +34,7 @@ else:
 finally:
 	print("This always runs")
 
-print("after the exception block")
+print("after the exception block\n")
 
 # What did that do? You can think of else in this context, as well as in
 # loops as meaning: "else if nothing went wrong"
@@ -54,5 +53,29 @@ print("after the exception block")
 # parameters. (pun intended)
 
 langs = ['java', 'c', 'python']
+langs2 = ['MATLAB','VB','C-sharp','java','c','python']
 
-more_joke = more_fun(langs[0])
+def excepttest(listx):
+	try:
+		for x in range(0,(len(listx)+1)):
+			print("Calling function for",x,"\n")
+			print("Calling more_fun with value",listx[x])
+			more_joke = more_fun(listx[x])
+			print(more_joke)
+	except IndexError:
+		print("IndexError exception was called")
+
+def excepttest2(listx):
+	for x in range(0,(len(listx)+1)):
+		try:
+			print("Calling function for",x,"\n")
+			print("Calling more_fun with value",listx[x])
+			more_joke = more_fun(listx[x])
+			print(more_joke)
+		except IndexError:
+			print("IndexError exception was called")
+
+# excepttest2(langs2)
+# excepttest2(langs)
+#excepttest(langs2)
+
